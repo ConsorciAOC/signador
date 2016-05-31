@@ -14,7 +14,7 @@ S’ha de fer una crida al servei REST:
 * http://signador.aoc.cat/signador/initProcess
 
 Capçaleres obligatòries a enviar:
-* **Authoritzation**:  codi d’autenticació generat amb una HMAC.
+* **Authoritzation**:  Codi d’autenticació generat amb una HMAC.
 * **Origin**: IP del domini que realitzarà les peticions.
 
 Resposta del servei REST:
