@@ -4,6 +4,7 @@ Documentació del projecte de signador centralitzat
 Per donar-se d’alta en el servei primer s’ha d’informar la següent informació:
 *	Domini del qual es realitzarà les peticions.
 *	Imatge amb el logo. 
+*	Clau per generar els tokens.
 
 Per integrar-se al servei de signatura s’han de fer les següents crides:
 
@@ -73,7 +74,7 @@ Descripció dels camps JSON comuns de la configuració:
 *	**Descripció**: Descripció del procés de signatura. No és obligatori.
 
 Descripció dels camps JSON de la configuració de l’applet:
-*	**keystore_type**: Tipus de keystore. Camp obligatori.
+*	**keystore_type**: Tipus de keystore. Camp obligatori. 
 *	**signature_mode**: Mode de signatura. Camp obligatori.
 *	**doc_type**: Tipus de document. Camp obligatori.
 *	**doc_name**: Nom del document. Camp obligatori. 
@@ -85,6 +86,46 @@ Descripció dels camps JSON de la configuració de l’apsa:
 *	**doc_name**: Nom del document. Camp obligatori.
 *	**hash_a_xifrar**: hash a signar. Camp obligatori.
 *	**signingCertificate**: Certificat per signar en base64. Camp no obligatori.
+
+Els possibles valors acceptats del **keystore_type** són:
+*	0: Generic_keystore.
+*	1: MS_keystore.
+*	2: PKCS12_keystore.
+*	3: Smartcard_keystore.
+*	4: Mozilla_keystore.
+*	5: Java_keystore.
+*	6: MacOSX_keystore.
+
+Els possibles valors del **signature_mode** són:
+*	1: CMS_attached.
+*	2: CMS_detached.
+*	3: CMS_detached_hash.
+*	4: CMS_in_PDF.
+*	5: XMLdsig_enveloped.
+*	6: XMLdsig_enveloping.
+*	7: XMLdsig_detached.
+*	8: XMLdsig_detached_hash.
+*	9: XAdES_BES_enveloped.
+*	10: XAdES_BES_enveloping.
+*	11: XAdES_BES_detached.
+*	12: XAdES_BES_detached_hash.
+*	13: XAdES_T_enveloped.
+*	14: XAdES_T_enveloping.
+*	15: XAdES_T_detached.
+*	16: XAdES_T_detached_hash.
+*	21: CAdES_BES_attached.
+*	22: CAdES_BES_detached.
+*	23: CAdES_BES_detached_hash.
+*	24: CAdES_BES_in_PDF.
+*	25: CAdES_T_attached.
+*	26: CAdES_T_detached.
+*	27: CAdES_T_detached_hash.
+*	28: CAdES_T_in_PDF.
+
+Els possibles valors del **doc_type** són:
+*	3: hashDoc.
+*	4: B64fileContent.
+
 En cas que es vulgui signar més d’un document o hash el servei ho permet, posant els diferents documents o hashos separats per “;” amb el seu respectiu nom també separat per “;”.
 
 Resposta del servei REST:
