@@ -96,7 +96,7 @@ Els possibles valors acceptats del **keystore_type** són:
 *	5: Java_keystore.
 *	6: MacOSX_keystore.
 
-Els possibles valors del **signature_mode** són:
+Els possibles valors acceptats del **signature_mode** són:
 *	1: CMS_attached.
 *	2: CMS_detached.
 *	3: CMS_detached_hash.
@@ -122,7 +122,7 @@ Els possibles valors del **signature_mode** són:
 *	27: CAdES_T_detached_hash.
 *	28: CAdES_T_in_PDF.
 
-Els possibles valors del **doc_type** són:
+Els possibles valors acceptats del **doc_type** són:
 *	3: hashDoc.
 *	4: B64fileContent.
 
