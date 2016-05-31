@@ -11,7 +11,8 @@ Per començar a utilizar el servei de signatura s'han de realitzar les següents
 ## 1. InitProcess: Servei per iniciar el procés de signatura
 
 S'ha de fer una crida al servei _REST_:
-* http://signador.aoc.cat/signador/initProcess
+* Entorn PRE: http://signador-pre.aoc.cat/signador/initProcess
+* Entorn PRO: http://signador.aoc.cat/signador/initProcess
 
 S'han d'enviar obligatòriament les següents capçaleres:
 * **Authoritzation**:  Codi d'autenticació generat amb una HMAC.
@@ -35,7 +36,8 @@ I els possibles valors dels camps són:
 
 S'ha de fer una crida al servei _REST_:
 
-* http://signador.aoc.cat/signador/startSignProcess
+* Entorn PRE: http://signador-pre.aoc.cat/signador/startSignProcess
+* Entorn PRO: http://signador.aoc.cat/signador/startSignProcess
 
 * _JSON_ a enviar per iniciar procés de l'applet:
 ````json
