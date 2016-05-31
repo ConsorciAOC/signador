@@ -35,11 +35,10 @@ I els possibles valors dels camps són:
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
 S'ha de fer una crida al servei _REST_:
-
 * Entorn PRE: http://signador-pre.aoc.cat/signador/startSignProcess
 * Entorn PRO: http://signador.aoc.cat/signador/startSignProcess
 
-* _JSON_ a enviar per iniciar procés de l'applet:
+El _JSON_ a enviar per iniciar procés de l'applet:
 ````json
 {
 	"callbackUrl": "",
@@ -55,7 +54,7 @@ S'ha de fer una crida al servei _REST_:
 	}
 }
 ````
-* _JSON_ a enviar per iniciar procés de l'apsa:
+El _JSON_ a enviar per iniciar procés de l'apsa:
 ````json
 {
 	"callbackUrl": "",
