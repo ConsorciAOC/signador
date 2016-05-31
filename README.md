@@ -10,8 +10,7 @@ Per integrar-se al servei de signatura s’han de fer les següents crides:
 ## 1. InitProcess: Servei per iniciar el procés de signatura
 
 S’ha de fer una crida al servei REST:
-
-*[Servei init] (http://signador.aoc.cat/signador/initProcess)
+* [Servei init] (http://signador.aoc.cat/signador/initProcess)
 
 Capçaleres obligatòries a enviar:
 * **Authoritzation**:  codi d’autenticació generat amb una HMAC.
