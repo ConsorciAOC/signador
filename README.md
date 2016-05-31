@@ -23,7 +23,7 @@ El servei ens retornarà un JSON amb el següent format:
 ````json
 {
 	"status": "",
-	"tokenId": ""
+	"tokenId": "",
 	"message": ""
 }
 ````
@@ -63,7 +63,7 @@ S’ha de fer una crida al servei REST:
 	"applet_apsa_cfg": {
 			"keystore_type": "1",
 			"doc_name": "nom",							
-			"hash_a_xifrar": "gYbYj9w6"
+			"hash_a_xifrar": "gYbYj9w6",
 			"signingCertificate": ""
 	}
 }
@@ -94,7 +94,7 @@ El servei ens retornarà un JSON amb el següent format:
 ````json
 {
 	"status": "OK/KO",
-	"tokenId": "12345"
+	"tokenId": "12345",
 	"message": ""
 }
 ````
