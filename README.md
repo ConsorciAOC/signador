@@ -125,6 +125,7 @@ Els possibles valors acceptats del **signature_mode** són:
 Els possibles valors acceptats del **doc_type** són:
 *	3: hashDoc.
 *	4: B64fileContent.
+*	6: urlFile.
 
 En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per [;] amb el seu respectiu nom també separat per [;].
 
