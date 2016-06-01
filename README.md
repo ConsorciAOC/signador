@@ -50,7 +50,7 @@ A continuació és mostra un exemple simplificat de com quedaria la crida feta a
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
-def clau = 'LaTerraMulladaFaOlorDeRevolucio'
+def clau = 'changeit'
 def algoritme = 'HmacSHA256'
 def mac = Mac.getInstance(algoritme)
 def secretKeySpec = new SecretKeySpec(clau.getBytes(), algoritme)
@@ -66,7 +66,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64.Encoder;
 
-String clau = "ArrelIAles";
+String clau = "legalizeit";
 String algoritme = "HmacSHA256";
 Mac mac = Mac.getInstance(algoritme);
 SecretKeySpec secretKeySpec = new SecretKeySpec(clau.getBytes(), algoritme);
