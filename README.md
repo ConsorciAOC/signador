@@ -21,7 +21,7 @@ Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_:
 * Entorn PRO: http://signador.aoc.cat/signador/initProcess
 
 La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les següents capçaleres http:
-* **Authoritzation**:  SC <Codi d'autenticació generat amb un algoritme HMAC codificat en base64>
+* **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
 
 La resposta del servei _REST_ tindrà el següent format:
@@ -51,60 +51,87 @@ import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 def clau = 'LaTerraMulladaFaOlorDeRevolucio'
-Mac mac = Mac.getInstance("HmacSHA256")
-SecretKeySpec secretKeySpec = new SecretKeySpec(clau.getBytes(), "HmacSHA256")
+def algoritme = 'HmacSHA256'
+def mac = Mac.getInstance(algoritme)
+def secretKeySpec = new SecretKeySpec(clau.getBytes(), algoritme)
 mac.init(secretKeySpec)
 byte[] digest = mac.doFinal('http://dominiAppClient.cat'.getBytes())
 digest.encodeBase64().toString()
 ```
 
+De la mateixa forma en **Java** (ometen `try/catch`, `main` etc):
+
+```java
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64.Encoder;
+
+String clau = "ArrelIAles";
+String algoritme = "HmacSHA256";
+Mac mac = Mac.getInstance(algoritme);
+SecretKeySpec secretKeySpec = new SecretKeySpec(clau.getBytes(), algoritme);
+mac.init(secretKeySpec);
+byte[] digest = mac.doFinal("http://dominiAppClient.cat".getBytes());
+Encoder encoder = java.util.Base64.getEncoder();
+encoder.encodeToString(digest);
+```
+
+**Nota**: La classe `java.util.Base64` existeix a partir de la versió 8 de *Java*, si es desenvolupa amb una altre versió és pot utilitzat qualsevol altre codificador en *Base64* com per exemple el [`javax.xml.bind.DatatypeConverter`](https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html) que es troba dins de la versió 6 i 7 de *Java*. O el `org.apache.commons.codec.binary.Base64` del [Apache Commons Codec](http://commons.apache.org/proper/commons-codec/), o tants d'altres.
+
+Només proveim aquests codis perquè són els llenguatges amb els que solem treballar, per veure exemples en altres llenguatges de programació podeu consultar el següent [_recurs_](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
+
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
-S'ha de fer una crida al servei _REST_:
+Un cop és diposa del `token` per a l'operació de signatura, es pot iniciar el porcés com a tal. 
+Per a fer-ho, s'ha de fer una crida al servei _REST_:
+
 * Entorn PRE: http://signador-pre.aoc.cat/signador/startSignProcess
 * Entorn PRO: http://signador.aoc.cat/signador/startSignProcess
 
-El _JSON_ a enviar per iniciar procés de l'applet:
+La crida consisteix en un *POST* on l'object _JSON_ a enviar per iniciar procés de l'applet té la següent forma:
+
 ````json
 {
 	"callbackUrl": "",
 	"tokenId": "",
-	"descripcio": "descripció de proves",
+	"descripcio": "",
 	"applet_cfg":{
-		"keystore_type": "0",
-		"signature_mode": "12",
-		"doc_type": "3",
-		"doc_name": "nom",					
-		"document_to_sign": "CfwqKKwXitsErA=",
-		"hash_algorithm": "SHA1"
+		"keystore_type": "",
+		"signature_mode": "",
+		"doc_type": "",
+		"doc_name": "",					
+		"document_to_sign": "",
+		"hash_algorithm": ""
 	}
 }
 ````
 El _JSON_ a enviar per iniciar procés de l'apsa:
+
 ````json
 {
 	"callbackUrl": "",
 	"tokenId": "",
-	"descripcio": "descripció de proves apsa",
+	"descripcio": "",
 	"applet_apsa_cfg": {
-			"keystore_type": "1",
-			"doc_name": "nom",							
-			"hash_a_xifrar": "gYbYj9w6",
+			"keystore_type": "",
+			"doc_name": "",							
+			"hash_a_xifrar": "",
 			"signingCertificate": ""
 	}
 }
 ````
+
 Descripció dels camps _JSON_ comuns de la configuració:
-*	**callbackUrl**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini. És un camp obligatori.
+*	**callbackUrl**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. És un camp obligatori.
 *	**tokenId**: El token que ens ha retornat el servei d'inici del procés. És un camp obligatori.
-*	**Descripció**: Descripció del procés de signatura. No és obligatori.
+*	**Descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
 
 Descripció dels camps _JSON_ de la configuració de l'applet:
-*	**keystore_type**: Tipus de keystore. Camp obligatori. 
+*	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura. Camp obligatori. Per garantir la compatibilitat amb totes els sistemes es recomana informar com a valor `0`.
 *	**signature_mode**: Mode de signatura. Camp obligatori.
 *	**doc_type**: Tipus de document. Camp obligatori.
 *	**doc_name**: Nom del document. Camp obligatori. 
-*	**document_to_sign**: Document en UTF-8 a signar en base64. Camp obligatori.
+*	**document_to_sign**: Document original a signar n UTF-8 codificat en base64. Camp obligatori.
 *	**hash_algorithm**: Algoritme de hash. Camp no obligatori. Per defecte SHA-1.
 
 Descripció dels camps JSON de la configuració de l'apsa:
@@ -153,9 +180,9 @@ Els possibles valors acceptats del **doc_type** són:
 *	4: B64fileContent.
 *	6: urlFile.
 
-En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per [;] amb el seu respectiu nom també separat per [;].
+En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `document_to_sign`) amb el seu respectiu nom també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir.
 
-La resposta del servei _REST_ tindrà el següent format:
+La resposta del servei _REST_ a aquesta crida tindrà el següent format:
 
 ````json
 {
@@ -169,7 +196,12 @@ Els possibles valors dels camps:
 *	**tokenId**: El token del procés de signatura.
 *	**message**: El missatge d'error en cas que no hagi anat correctament.
 
-## 3.	Resposta
+## 3. TODO: 
+
+Manca explicar el tema d'obrir una URL amb un get passant el token per a que l'usuari pugui descarregar el jnlp i executrar-lo
+
+
+## 4.	Resposta
 
 Un cop s'hagi executat el **JNLP**, el servei respondrà en la url de callback que s'hagi passat en els paràmetres de configuració, per informar de la resposta de la signatura en cas que hagi anat bé o el motiu de l'error en cas que no.
 
