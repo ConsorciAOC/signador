@@ -1,22 +1,28 @@
 # Signador Centralitzat
 ###Documentació del projecte del Signador centralitzat:
 
-Per poder-se donar d'alta en el servei primer s'ha d'informar la següent informació:
-*	Domini des del qual es realitzarà les peticions.
-*	Imatge amb el logo. 
-*	Clau per generar els tokens.
+Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
-Per començar a utilizar el servei de signatura s'han de realitzar les següents crides:
+*	Domini des del qual es realitzarà les peticions.
+*	Imatge amb el logo de l'aplicació usuaria.
+*	Clau per a identificar l'aplicació com usuaria del servei.
+
+## Ús del servei
+
+Per a utilizar el servei de signatura serà necessari realitzar les següents crides:
 
 ## 1. InitProcess: Servei per iniciar el procés de signatura
 
-S'ha de fer una crida al servei _REST_:
+Cada operació de signatura requerira d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron per tant aquest `token` servirà per lligar desprès la signatura resultant amb el procés intern q l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de signador centralitzat per tal de poder per exemple gestionar els errors si fos el cas etc.
+
+Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_:
+
 * Entorn PRE: http://signador-pre.aoc.cat/signador/initProcess
 * Entorn PRO: http://signador.aoc.cat/signador/initProcess
 
-S'han d'enviar obligatòriament les següents capçaleres:
-* **Authoritzation**:  Codi d'autenticació generat amb una HMAC.
-* **Origin**: IP del domini que realitzarà les peticions.
+La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les següents capçaleres http:
+* **Authoritzation**:  SC <Codi d'autenticació generat amb un algoritme HMAC codificat en base64>
+* **Origin**: Nom del domini que realitzarà les peticions.
 
 La resposta del servei _REST_ tindrà el següent format:
 
@@ -27,10 +33,30 @@ La resposta del servei _REST_ tindrà el següent format:
 	"message": ""
 }
 ````
-I els possibles valors dels camps són:
+Els possibles valors dels camps són:
 *	**status**: **OK** o **KO** en funció de si ha anat correctament o no.
-*	**tokenId**: El token generat pel servei necessari per iniciar el procés de signatura.
+*	**tokenId**: El token generat pel servei necessari per a iniciar el procés de signatura.
 *	**message**: El missatge d'error en cas que no hagi anat correctament.
+
+## 1.1 http-header: Authoritzation - HMAC SHA256
+
+Per a calcular la capçalera d'autorització es fa servir el *Message Authentication Code* (MAC) basat en una funció de resum criptogràfic (*HMAC*), en aquest cas com a funció de *Hash* farem servir *SHA256*. 
+
+En aquest cas les dades a processar serà el mateix *nom del domini* tal i com s'ha especificat a l'alta i el secret per a procesar aquesta dada serà la *clau* que s'ha triat també en el procés d'alta. 
+
+A continuació és mostra un exemple simplificat de com quedaria la crida feta amb **Groovy**:
+
+```java
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+
+def clau = 'LaTerraMulladaFaOlorDeRevolucio'
+Mac mac = Mac.getInstance("HmacSHA256")
+SecretKeySpec secretKeySpec = new SecretKeySpec(clau.getBytes(), "HmacSHA256")
+mac.init(secretKeySpec)
+byte[] digest = mac.doFinal('http://dominiAppClient.cat'.getBytes())
+digest.encodeBase64().toString()
+```
 
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
