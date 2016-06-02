@@ -226,7 +226,9 @@ Els possibles valors dels camps:
 *	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
-**NOTA:** És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
+**NOTES:** 
+* És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
+* No hi ha política de reintents pel que fa a l'enviament de la signatura per part del signador a l'aplicació client, en cas que hi hagi algún problema amb aquest, s'haurà de tornar a iniciar l'operació.
 
 ## Llibreria integradors
 
