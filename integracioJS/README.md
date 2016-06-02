@@ -36,7 +36,7 @@ El mètode customitzable per servei de l'applet és: `sign( params )`
 
 El format dels paràmetres de l'objecte _JSON_ que espera és el següent: 
 
-```json
+```javascript
 {
   "callback": "",
   "tokenId":  "",
@@ -80,7 +80,7 @@ El mètode customitzable per servei de l'apsa és: `signApsa( params )`
 
 El format dels paràmetres de l'objecte _JSON_ que espera és el següent: 
 
-````json
+````javascript
 {
   "callback": "",
   "tokenId":  "",
