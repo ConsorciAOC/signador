@@ -327,7 +327,7 @@ var signadorCentralitzat = (function (jQry){
 	sc.signPDF	= function( params ){
 		var cfg = this.cfg.setSignatureMode( this.signMode.CADES_BES_IN_PDF )
 			.setDocumentType( this.docType.B64FILECONTENT )
-				.setDocumentName( params.docName )
+				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
 						.setTokenId( params.tokenId )
 							.setCallbackUrl( params.callback );
@@ -351,7 +351,7 @@ var signadorCentralitzat = (function (jQry){
 	sc.signXAdESHash = function( params ){
 		var cfg = this.cfg.setSignatureMode( this.signMode.XADES_BES_DETACHED_HASH )
 			.setDocumentType( this.docType.HASHDOC )
-				.setDocumentName( params.docName )
+				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
 						.setTokenId( params.tokenId )
 							.setCallbackUrl( params.callback );
@@ -375,7 +375,7 @@ var signadorCentralitzat = (function (jQry){
 	sc.signCAdESHash = function( params ){
 		var cfg = this.cfg.setSignatureMode( this.signMode.CADES_BES_DETACHED_HASH )
 			.setDocumentType( this.docType.HASHDOC )
-				.setDocumentName( params.docName )
+				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
 						.setTokenId( params.tokenId )
 							.setCallbackUrl( params.callback );
@@ -395,7 +395,7 @@ var signadorCentralitzat = (function (jQry){
 	 * 	- hash_a_xifrar: HASH a signar codificat en base64.
 	 */
 	sc.signApsaHash = function( params ){
-		var cfg = this.cfg.setDocumentName( params.docName )
+		var cfg = this.cfg.setDocumentName( params.doc_name )
 				.setDocumentToSign( params.hash_a_xifrar )
 					.setTokenId( params.tokenId )
 						.setCallbackUrl( params.callback );
