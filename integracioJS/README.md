@@ -64,20 +64,20 @@ Descripció dels camps _JSON_:
 
 ### 2. Consulta Apsa:
 
-El mètode bàsic per signar en el servei de l'apsa és: ``signApsaHash( params );``
+El mètode bàsic per signar en el servei de l'apsa és: `signApsaHash( params );`
 
 El format dels paràmetres de l'objecte _JSON_ que esperen els mètodes 
 
-````json
+```json
 {
   "callback": "",
   "tokenId":  "",
   "docName": "",
   "hash_a_xifrar": ""
 }
-````
+```
 
-El mètode customitzable per servei de l'apsa és: ``signApsa( params )``
+El mètode customitzable per servei de l'apsa és: `signApsa( params )`
 
 El format dels paràmetres de l'objecte _JSON_ que espera és el següent: 
 
@@ -101,32 +101,45 @@ Descripció dels camps _JSON_:
 *	**hash_a_xifrar**: hash a signar.
 
 
-## Exemples d'Ús
+### 3. Exemples d'ús
 
-Per fer ús de la llibreria és tant simple com incloure la llibreria com a recurs en la pàgina a on es vulgui utilitzar.
+Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jquery* i la pròpia llibreria de l'aplicació com a recurs en la plana *HTML* on es vulgui utilitzar.^
 
-````javascript
-<script type="text/javascript" src="%PATH%/resources/js/SignadorCentralitzat.js"></script>
+### 3.1 `signadorCentralitzat.sign( params )`
+
+```javascript
+<script type="text/javascript" src="%PATH%/SignadorCentralitzat.js"></script>
 
 <script type="text/javascript">
 	
 		$(document).ready(function(){
 			
 			$('#idBoto').click(function(){
-						signadorCentralitzat[sign]( { callback: $('#idUrlCallback').val(), 
-						                              tokenId: $('#tokenId').val() , 
-						                              descripcio: $('#idDescripcio').val(), 
-						                              keystore_type: $('#idKeystore').val(), 
-						                              signature_mode: $('#idSignMode').val(), 
-						                              doc_type: $('#idDocType').val(), 
-						                              doc_name: $('#idNomDoc').val(), 
-						                              document_to_sign: $('#idDoc').val(), 
-						                              hash_algorithm: $('#idAlgorithm').val() });
+					signadorCentralitzat.sign( { callback: $('#idUrlCallback').val(), 
+					                              tokenId: $('#tokenId').val() , 
+					                              descripcio: $('#idDescripcio').val(), 
+					                              keystore_type: $('#idKeystore').val(), 
+					                              signature_mode: $('#idSignMode').val(), 
+					                              doc_type: $('#idDocType').val(), 
+					                              doc_name: $('#idNomDoc').val(), 
+					                              document_to_sign: $('#idDoc').val(), 
+					                              hash_algorithm: $('#idAlgorithm').val() });
 			});
 			
 		});
 	
 </script>
+```
 
-````
+### 3.2 `signadorCentralitzat.signPDF( params )`
+
+// TODO
+
+### 3.3 `signadorCentralitzat.signXAdESHash( params )`
+
+// TODO
+
+### 3.4 `signadorCentralitzat.signCAdESHash( params )`
+
+// TODO
 
