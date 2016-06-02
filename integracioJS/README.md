@@ -1,20 +1,19 @@
 # Llibreria integradors
 
-Per tal de facilitar la integració amb el nostre servei hem creat una llibreria amb _Javascript_ que conté uns mètodes simples i uns
-altres més customitzables per poder-te integrar més fàcilment amb el servei.
+Per tal de facilitar la integració amb el servei de signatura s'ha creat una llibreria _Javascript_ que conté uns mètodes simples per a generació de signatures de forma generiques i uns altres més customitzables. L'objectiu és facilitar el procés d'integració amb el servei.
 
-La llibreria _Javascript_ pels diferents entorns són la següent:
+Les llibreries _Javascript_ pels diferents entorns són les següents:
 
-* Entorn PRE: [descarregar] (https://github.com/lcamps01/signador/blob/master/integracioJS/SignadorCentralitzat_PRE.js)
-* Entorn PRO: [descarregar] (https://github.com/lcamps01/signador/blob/master/integracioJS/SignadorCentralitzat_PRO.js)
+* [Entorn PRE](https://github.com/lcamps01/signador/blob/master/integracioJS/SignadorCentralitzat_PRE.js)
+* [Entorn PRO] (https://github.com/lcamps01/signador/blob/master/integracioJS/SignadorCentralitzat_PRO.js)
 
 ## Ús de la llibreria
 
-A continuació comentem els diferents mètodes de la llibreria segons si es vol signar amb l'applet o amb l'apsa:
+A continuació es descriuen els diferents mètodes de la llibreria segons si es vol signar amb l'applet o amb l'apsa:
 
-### 1. Consulta Applet:
+### 1. Applet
 
-Els mètodes bàsics per signar en el servei de l'applet són els següents:
+Els mètodes bàsics per signar amb el servei utilitzant l'applet de signatura són els següents:
 
 ````javascript
   signPDF( params );
@@ -22,34 +21,34 @@ Els mètodes bàsics per signar en el servei de l'applet són els següents:
   signCAdESHash( params );
 ````
 
-El format dels paràmetres de l'objecte _JSON_ que esperen els mètodes 
+Aquests mètodes esperen tots un objecte de tipus _JSON_ amb el següent format:
 
-````json
+```json
 {
   "callback": "",
   "tokenId":  "",
   "docName": "",
   "document_to_sign": ""
 }
-````
+```
 
-El mètode customitzable per servei de l'applet és: ``sign( params )``
+El mètode customitzable per servei de l'applet és: `sign( params )`
 
 El format dels paràmetres de l'objecte _JSON_ que espera és el següent: 
 
-````json
+```json
 {
   "callback": "",
   "tokenId":  "",
-  "descripcio": "",
-  "keystore_type": "",
+  "descripcio": "", // no obligatori. valor per defecte: 'Operació de signatura'
+  "keystore_type": "", // no obligatori: valor per defecte: 0 --> GENERIC_KEYSTORE
   "signature_mode": "",
   "doc_type": "",
   "docName": "",
   "document_to_sign": "",
   "hash_algorithm": ""
 }
-````
+```
 
 Descripció dels camps _JSON_:
 *	**callback**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
@@ -64,9 +63,9 @@ Descripció dels camps _JSON_:
 
 ### 2. Consulta Apsa:
 
-El mètode bàsic per signar en el servei de l'apsa és: `signApsaHash( params );`
+El mètode bàsic per signar amb el servei utilitzant l'apsa és: `signApsaHash( params );`
 
-El format dels paràmetres de l'objecte _JSON_ que esperen els mètodes 
+El format dels paràmetres de l'objecte _JSON_ que esperen els mètodes és:
 
 ```json
 {
@@ -85,8 +84,8 @@ El format dels paràmetres de l'objecte _JSON_ que espera és el següent:
 {
   "callback": "",
   "tokenId":  "",
-  "descripcio": "",
-  "keystore_type": "",
+  "descripcio": "", // no obligatori. valor per defecte: 'Operació de signatura'
+  "keystore_type": "", // no obligatori: valor per defecte: 0 --> GENERIC_KEYSTORE
   "docName": "",
   "hash_a_xifrar": ""
 }
@@ -103,7 +102,7 @@ Descripció dels camps _JSON_:
 
 ### 3. Exemples d'ús
 
-Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jquery* i la pròpia llibreria de l'aplicació com a recurs en la plana *HTML* on es vulgui utilitzar.^
+Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jquery* i la pròpia llibreria de l'aplicació com a recurs en la plana *HTML* on es vulgui utilitzar.
 
 ### 3.1 `signadorCentralitzat.sign( params )`
 
