@@ -54,7 +54,7 @@ El format dels paràmetres de l'objecte _JSON_ que espera és el següent:
 Descripció dels camps _JSON_:
 *	**callback**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
 *	**tokenId**: El token que ens ha retornat el servei d'inici del procés.
-*	**Descripció**: Camp de text amb la descripció del procés de signatura.
+*	**descripcio**: Camp de text amb la descripció del procés de signatura.
 *	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura.
 *	**signature_mode**: Mode de signatura.
 *	**doc_type**: Tipus de document.
@@ -95,10 +95,38 @@ El format dels paràmetres de l'objecte _JSON_ que espera és el següent:
 Descripció dels camps _JSON_:
 *	**callback**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
 *	**tokenId**: El token que ens ha retornat el servei d'inici del procés.
-*	**Descripció**: Camp de text amb la descripció del procés de signatura.
+*	**descripcio**: Camp de text amb la descripció del procés de signatura.
 *	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura.
 *	**doc_name**: Nom del document.
 *	**hash_a_xifrar**: hash a signar.
 
 
 ## Exemples d'Ús
+
+Per fer ús de la llibreria és tant simple com incloure la llibreria com a recurs en la pàgina a on es vulgui utilitzar.
+
+````javascript
+<script type="text/javascript" src="%PATH%/resources/js/SignadorCentralitzat.js"></script>
+
+<script type="text/javascript">
+	
+		$(document).ready(function(){
+			
+			$('#idBoto').click(function(){
+						signadorCentralitzat[sign]( { callback: $('#idUrlCallback').val(), 
+						                              tokenId: $('#tokenId').val() , 
+						                              descripcio: $('#idDescripcio').val(), 
+						                              keystore_type: $('#idKeystore').val(), 
+						                              signature_mode: $('#idSignMode').val(), 
+						                              doc_type: $('#idDocType').val(), 
+						                              doc_name: $('#idNomDoc').val(), 
+						                              document_to_sign: $('#idDoc').val(), 
+						                              hash_algorithm: $('#idAlgorithm').val() });
+			});
+			
+		});
+	
+</script>
+
+````
+
