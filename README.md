@@ -1,5 +1,5 @@
 # Signador Centralitzat
-###Documentació del projecte del Signador centralitzat:
+###Documentació del projecte del Signador centralitzat
 
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
@@ -196,14 +196,14 @@ Els possibles valors dels camps:
 *	**tokenId**: El token del procés de signatura.
 *	**message**: El missatge d'error en cas que no hagi anat correctament.
 
-## 3. Signatura per part de l'usuari: 
+## 3. Signatura per part de l'usuari
 
 Un cop s'ha aconseguit el `token` i creada la configuració de signatura vinculada al mateix, l'aplicació client ha de redirigir l'usuari a la web del signador centralitzat per tal de que aquest pugui acabar realitzant la signatura. Per tal de fer-ho s'ha de realitzar un _GET_ passant com a paràmetre un `id` amd el valor del `token` a la següent URL:
 
 * Entorn PRE: http://signador-pre.aoc.cat/signador/?id=token
 * Entorn PRO: http://signador.aoc.cat/signador/?id=token
 
-Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un (**JNLP**)[https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html].
+Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un [**JNLP**](https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html).
 
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
@@ -230,4 +230,4 @@ Els possibles valors dels camps:
 
 ## Llibreria integradors
 
-Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar en el servei. Trobareu més detall sobre la mateixa [aqui](https://github.com/lcamps01/signador/edit/master/INTEGRACIO.md). 
+Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar en el servei. Trobareu més detall sobre la mateixa [aqui](https://github.com/lcamps01/signador/blob/master/integracioJS/README.md). 
