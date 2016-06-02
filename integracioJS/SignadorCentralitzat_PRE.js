@@ -8,19 +8,17 @@
  	
 var signadorCentralitzat = (function (jQry){
 
+	var signadorCentralitzatException = function (msg) {
+		   this.value = 'Problema amb el signadorCentralitzat';
+		   this.message = msg;
+		   this.toString = function() {
+		      return this.value + this.message;
+		   };
+	};
+
 	// comprovem que ens han passat un objecte
 	if(!jQry){
-		// TODO: comprovar q es el de jquery... i no simplement not null
-		// TODO: crear utils generic per llançar execptions
-		throw { 
-    		name:        "signadorCentralitzatException", 
-    		level:       "Show Stopper", 
-    		message:     "JQuery is mandatory", 
-    		htmlMessage: "Error detected.",
-    		toString:    function(){return this.name + ": " + this.message;} 
-		}; 
-		
-		//throw signadorCentralitzatException('jQuery is mandatory...');
+		throw signadorCentralitzatException('jQuery es obligatori');
 	}
 	
 	if( !console ) { console = {}; console.log = function(){};}
@@ -93,9 +91,9 @@ var signadorCentralitzat = (function (jQry){
 		var documentToSign; // no default... es obligatori
 		
 		var hashAlgorithm = 'SHA1';				
-		var callbackUrl; // no default : El callback s'hauria de passar al signPDFHash?? a la func?
+		var callbackUrl; // no default... es obligatori
 		var tokenId; 
-		var descripcio = 'Some description...' // default buit? no mandatory?
+		var descripcio = 'Operació de signatura' // default generic
 				
 		/**
 		 * 
@@ -291,14 +289,6 @@ var signadorCentralitzat = (function (jQry){
 	};
 
 	// MÈTODES PRIVATS
-		
-	var signadorCentralitzatException = function (msg) {
-		   this.value = 'Problema amb el signadorCentralitzat';
-		   this.message = msg;
-		   this.toString = function() {
-		      return this.value + this.message;
-		   };
-	};
 	
 	/**
 	 * Crida ajax gènerica per reutilizar a la resta de codi
