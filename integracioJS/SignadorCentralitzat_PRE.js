@@ -23,7 +23,7 @@ var signadorCentralitzat = (function (jQry){
 		//throw signadorCentralitzatException('jQuery is mandatory...');
 	}
 	
-	if( !console ) console = {}; console.log = function(){};
+	if( !console ) { console = {}; console.log = function(){};}
 	
 	var sc = {};
 	
