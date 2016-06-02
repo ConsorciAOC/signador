@@ -221,3 +221,7 @@ Els possibles valors dels camps:
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
 El temps màxim permès per processar la petició és de 5 minuts. Passat aquest temps la petició es donarà per finalitzada amb error de timeout.
+
+## Llibreria integradors
+
+Hem posat a disposició dels integradors una llibreria per poder-se integrar en el servei. [Veure](https://github.com/lcamps01/signador/edit/master/INTEGRACIO.md)
