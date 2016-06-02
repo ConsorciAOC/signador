@@ -13,7 +13,7 @@ Per a utilizar el servei de signatura serà necessari realitzar les següents cr
 
 ## 1. InitProcess: Servei per iniciar el procés de signatura
 
-Cada operació de signatura requerira d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron per tant aquest `token` servirà per lligar desprès la signatura resultant amb el procés intern q l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de signador centralitzat per tal de poder per exemple gestionar els errors si fos el cas etc.
+Cada operació de signatura requerirà d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron per tant aquest `token` servirà per lligar després la signatura resultant amb el procés intern q l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de signador centralitzat per tal de poder per exemple gestionar els errors si fos el cas, etc.
 
 Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_:
 
@@ -78,7 +78,7 @@ encoder.encodeToString(digest);
 
 **Nota**: La classe `java.util.Base64` existeix a partir de la versió 8 de *Java*, si es desenvolupa amb una altre versió és pot utilitzat qualsevol altre codificador en *Base64* com per exemple el [`javax.xml.bind.DatatypeConverter`](https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html) que es troba dins de la versió 6 i 7 de *Java*. O el `org.apache.commons.codec.binary.Base64` del [Apache Commons Codec](http://commons.apache.org/proper/commons-codec/), o tants d'altres.
 
-Només proveim aquests codis perquè són els llenguatges amb els que solem treballar, per veure exemples en altres llenguatges de programació podeu consultar el següent [_recurs_](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
+Només proveïm aquests codis perquè són els llenguatges amb els que solem treballar, per veure exemples en altres llenguatges de programació podeu consultar el següent [_recurs_](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
 
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
