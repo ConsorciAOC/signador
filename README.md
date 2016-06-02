@@ -134,7 +134,7 @@ Descripció dels camps _JSON_ de la configuració de l'applet:
 *	**document_to_sign**: Document original a signar n UTF-8 codificat en base64. Camp obligatori.
 *	**hash_algorithm**: Algoritme de hash. Camp no obligatori. Per defecte SHA-1.
 
-Descripció dels camps JSON de la configuració de l'apsa:
+Descripció dels camps _JSON_ de la configuració de l'apsa:
 *	**keystore_type**: Tipus de keystore. Camp obligatori.
 *	**doc_name**: Nom del document. Camp obligatori.
 *	**hash_a_xifrar**: hash a signar. Camp obligatori.
@@ -196,14 +196,20 @@ Els possibles valors dels camps:
 *	**tokenId**: El token del procés de signatura.
 *	**message**: El missatge d'error en cas que no hagi anat correctament.
 
-## 3. TODO: 
+## 3. Signatura per part de l'usuari: 
 
-Manca explicar el tema d'obrir una URL amb un get passant el token per a que l'usuari pugui descarregar el jnlp i executrar-lo
+Un cop s'ha aconseguit el `token` i creada la configuració de signatura vinculada al mateix, l'aplicació client ha de redirigir l'usuari a la web del signador centralitzat per tal de que aquest pugui acabar realitzant la signatura. Per tal de fer-ho s'ha de realitzar un _GET_ passant com a paràmetre un `id` amd el valor del `token` a la següent URL:
 
+* Entorn PRE: http://signador-pre.aoc.cat/signador/?id=token
+* Entorn PRO: http://signador.aoc.cat/signador/?id=token
+
+Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un (**JNLP**)[https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html].
+
+El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
 ## 4.	Resposta
 
-Un cop s'hagi executat el **JNLP**, el servei respondrà en la url de callback que s'hagi passat en els paràmetres de configuració, per informar de la resposta de la signatura en cas que hagi anat bé o el motiu de l'error en cas que no.
+Un cop el client hagi executat la signatura a través del **JNLP**, el servei del signador rebrà la signatura i respondrà a l'aplicació client utilitzant la URL de callback que s'hagi informat en els paràmetres de configuració. El servei retornarà la resposta amb la signatura generada en cas que hagi anat bé o el motiu de l'error en cas que no.
 
 El format del _JSON_ que enviarem a l'endpoint informat será el següent:
 ````json
@@ -220,8 +226,8 @@ Els possibles valors dels camps:
 *	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
-El temps màxim permès per processar la petició és de 5 minuts. Passat aquest temps la petició es donarà per finalitzada amb error de timeout.
+**NOTA:** És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
 
 ## Llibreria integradors
 
-Hem posat a disposició dels integradors una llibreria per poder-se integrar en el servei. [Veure](https://github.com/lcamps01/signador/edit/master/INTEGRACIO.md)
+Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar en el servei. Trobareu més detall sobre la mateixa [aqui](https://github.com/lcamps01/signador/edit/master/INTEGRACIO.md). 
