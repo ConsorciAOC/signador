@@ -107,38 +107,113 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 ### 3.1 `signadorCentralitzat.sign( params )`
 
 ```javascript
+<script type="text/javascript" src="%PATH%/jquery.js"></script> 
 <script type="text/javascript" src="%PATH%/SignadorCentralitzat.js"></script>
 
 <script type="text/javascript">
-	
-		$(document).ready(function(){
-			
-			$('#idBoto').click(function(){
-					signadorCentralitzat.sign( { callback: $('#idUrlCallback').val(), 
-					                              tokenId: $('#tokenId').val() , 
-					                              descripcio: $('#idDescripcio').val(), 
-					                              keystore_type: $('#idKeystore').val(), 
-					                              signature_mode: $('#idSignMode').val(), 
-					                              doc_type: $('#idDocType').val(), 
-					                              doc_name: $('#idNomDoc').val(), 
-					                              document_to_sign: $('#idDoc').val(), 
-					                              hash_algorithm: $('#idAlgorithm').val() });
-			});
-			
-		});
+		
+	$('#idBoto').click(function(){
+		signadorCentralitzat.sign( { callback: $('#idUrlCallback').val(), 
+		                              tokenId: $('#tokenId').val() , 
+		                              descripcio: $('#idDescripcio').val(), 
+		                              keystore_type: $('#idKeystore').val(), 
+		                              signature_mode: $('#idSignMode').val(), 
+		                              doc_type: $('#idDocType').val(), 
+		                              doc_name: $('#idNomDoc').val(), 
+		                              document_to_sign: $('#idDoc').val(), 
+		                              hash_algorithm: $('#idAlgorithm').val() });
+	});
 	
 </script>
 ```
 
 ### 3.2 `signadorCentralitzat.signPDF( params )`
 
-// TODO
+```javascript
+<script type="text/javascript" src="%PATH%/jquery.js"></script> 
+<script type="text/javascript" src="%PATH%/SignadorCentralitzat.js"></script>
+
+<script type="text/javascript">
+		
+	$('#idBoto').click(function(){
+		signadorCentralitzat.signPDF( { callback: $('#idUrlCallback').val(), 
+		                              tokenId: $('#tokenId').val() , 
+		                              doc_name: $('#idNomDoc').val(), 
+		                              document_to_sign: $('#idDoc').val() });
+	});
+	
+</script>
+```
 
 ### 3.3 `signadorCentralitzat.signXAdESHash( params )`
 
-// TODO
+```javascript
+<script type="text/javascript" src="%PATH%/jquery.js"></script> 
+<script type="text/javascript" src="%PATH%/SignadorCentralitzat.js"></script>
+
+<script type="text/javascript">
+		
+	$('#idBoto').click(function(){
+		signadorCentralitzat.signXAdESHash( { callback: $('#idUrlCallback').val(), 
+		                              tokenId: $('#tokenId').val() , 
+		                              doc_name: $('#idNomDoc').val(), 
+		                              document_to_sign: $('#idDoc').val() });
+	});
+	
+</script>
+```
 
 ### 3.4 `signadorCentralitzat.signCAdESHash( params )`
 
-// TODO
+```javascript
+<script type="text/javascript" src="%PATH%/jquery.js"></script> 
+<script type="text/javascript" src="%PATH%/SignadorCentralitzat.js"></script>
 
+<script type="text/javascript">
+		
+	$('#idBoto').click(function(){
+		signadorCentralitzat.signCAdESHash( { callback: $('#idUrlCallback').val(), 
+		                              tokenId: $('#tokenId').val() , 
+		                              doc_name: $('#idNomDoc').val(), 
+		                              document_to_sign: $('#idDoc').val()});
+	});
+	
+</script>
+```
+
+### 3.5 `signadorCentralitzat.signApsaHash( params )`
+
+```javascript
+<script type="text/javascript" src="%PATH%/jquery.js"></script> 
+<script type="text/javascript" src="%PATH%/SignadorCentralitzat.js"></script>
+
+<script type="text/javascript">
+		
+	$('#idBoto').click(function(){
+		signadorCentralitzat.signApsaHash( { callback: $('#idUrlCallback').val(), 
+		                              tokenId: $('#tokenId').val(),
+		                              doc_name: $('#idNomDoc').val(), 
+		                              document_to_sign: $('#idDoc').val()});
+	});
+	
+</script>
+```
+
+### 3.6 `signadorCentralitzat.signApsa( params )`
+
+```javascript
+<script type="text/javascript" src="%PATH%/jquery.js"></script> 
+<script type="text/javascript" src="%PATH%/SignadorCentralitzat.js"></script>
+
+<script type="text/javascript">
+		
+	$('#idBoto').click(function(){
+		signadorCentralitzat.signCAdESHash( { callback: $('#idUrlCallback').val(), 
+		                              tokenId: $('#tokenId').val(),
+		                              descripcio: $('#idDescripcio').val(),
+		                              doc_name: $('#idNomDoc').val(), 
+		                              document_to_sign: $('#idDoc').val()});
+	});
+	
+</script>
+```
