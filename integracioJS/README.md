@@ -27,7 +27,7 @@ Aquests mètodes esperen tots un objecte de tipus _JSON_ amb el següent format:
 {
   "callback": "",
   "tokenId":  "",
-  "docName": "",
+  "doc_name": "",
   "document_to_sign": ""
 }
 ```
@@ -44,7 +44,7 @@ El format dels paràmetres de l'objecte _JSON_ que espera és el següent:
   "keystore_type": "", // no obligatori: valor per defecte: 0 --> GENERIC_KEYSTORE
   "signature_mode": "",
   "doc_type": "",
-  "docName": "",
+  "doc_name": "",
   "document_to_sign": "",
   "hash_algorithm": ""
 }
@@ -71,7 +71,7 @@ El format dels paràmetres de l'objecte _JSON_ que esperen els mètodes és:
 {
   "callback": "",
   "tokenId":  "",
-  "docName": "",
+  "doc_name": "",
   "hash_a_xifrar": ""
 }
 ```
@@ -86,7 +86,7 @@ El format dels paràmetres de l'objecte _JSON_ que espera és el següent:
   "tokenId":  "",
   "descripcio": "", // no obligatori. valor per defecte: 'Operació de signatura'
   "keystore_type": "", // no obligatori: valor per defecte: 0 --> GENERIC_KEYSTORE
-  "docName": "",
+  "doc_name": "",
   "hash_a_xifrar": ""
 }
 ````
@@ -193,7 +193,7 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 		signadorCentralitzat.signApsaHash( { callback: $('#idUrlCallback').val(), 
 		                              tokenId: $('#tokenId').val(),
 		                              doc_name: $('#idNomDoc').val(), 
-		                              document_to_sign: $('#idDoc').val()});
+		                              hash_a_xifrar: $('#idHash').val()});
 	});
 	
 </script>
@@ -208,11 +208,12 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signCAdESHash( { callback: $('#idUrlCallback').val(), 
+		signadorCentralitzat.signApsa( { callback: $('#idUrlCallback').val(), 
 		                              tokenId: $('#tokenId').val(),
 		                              descripcio: $('#idDescripcio').val(),
+		                              keystore_type: $('#idKeystore').val(), 
 		                              doc_name: $('#idNomDoc').val(), 
-		                              document_to_sign: $('#idDoc').val()});
+		                              hash_a_xifrar: $('#idHash').val()});
 	});
 	
 </script>
