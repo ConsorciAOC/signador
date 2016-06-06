@@ -121,6 +121,8 @@ El _JSON_ a enviar per iniciar procés de l'apsa:
 }
 ````
 
+En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida és fa des de *Javascript* utilitzant domini registrat els pròpis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
+
 Descripció dels camps _JSON_ comuns de la configuració:
 *	**callbackUrl**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. És un camp obligatori.
 *	**tokenId**: El token que ens ha retornat el servei d'inici del procés. És un camp obligatori.
@@ -231,6 +233,13 @@ Serà necessari per tant per part de l'aplicació client d'implementar un endpoi
 **NOTES:** 
 * És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
 * No hi ha política de reintents pel que fa a l'enviament de la signatura per part del signador a l'aplicació client, en cas que hi hagi algún problema amb aquest, s'haurà de tornar a iniciar l'operació.
+
+## 5. Demo
+
+Podeu veure una **Demo** d'una integració del servei a les següents Urls:
+
+* [Demo preproducció](http://signador-pre.aoc.cat/signador/demo)
+* [Demo producció](http://signador.aoc.cat/signador/demo)
 
 ## Llibreria integradors
 
