@@ -228,7 +228,9 @@ Els possibles valors dels camps:
 *	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
-Serà necessari per tant per part de l'aplicació client d'implementar un endpoint que accepti rebre un _POST_ amb el contingut del _JSON_ especificat en aquesta punt.
+Serà necessari per tant per part de l'aplicació client d'implementar un endpoint que accepti rebre un _POST_ amb el contingut del _JSON_ especificat en aquesta punt. Amb la resposta anirà la capçalera http `Content-Type: application/json`.
+
+En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, es rebrà una resposta amb el mateix `token` per cadascuna de les signatures generades.
 
 **NOTES:** 
 * És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
