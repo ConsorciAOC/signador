@@ -1,4 +1,7 @@
-# Signador Centralitzat
+# Signador Centralitzat - En *Beta*
+
+**La següent documentació està en construcció i és susceptible de patir canvis**
+
 ###Documentació del projecte del Signador centralitzat
 
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
