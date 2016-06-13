@@ -181,6 +181,8 @@ Els possibles valors acceptats del **signature_mode** són:
 *	28: CAdES_T_in_PDF.
 
 Els possibles valors acceptats del **doc_type** són:
+*       1: allFilesInDir
+*       2: singleFile
 *	3: hashDoc.
 *	4: B64fileContent.
 *	6: urlFile.
@@ -219,13 +221,15 @@ Un cop el client hagi executat la signatura a través del **JNLP**, el servei de
 El format del _JSON_ que enviarem a l'endpoint informat será el següent:
 ````json
 {
+   "status": "OK/KO",
    "token": "id del token",
    "signResult": "resultat de la signatura",
-   "type": "XML/CMS/PDF/HASH",
+   "type": "XML/CMS/PDF/HASH/ZIP",
    "error": "motiu de l’error"
 }
 ````
 Els possibles valors dels camps:
+*	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
 *	**signResult**: El resultat de la signatura en base64.
 *	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH**.
