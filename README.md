@@ -4,10 +4,13 @@
 
 ###Documentació del projecte del Signador centralitzat
 
+TODO: Diagrama de flux
+
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
 *	Domini des del qual es realitzarà les peticions.
-*	Imatge amb el logo de l'aplicació usuaria.
+*	Imatge amb el logo de l'aplicació usuaria. TODO: Add image
+*	Imatge amb el logo que apareixerà a l'applet. *No obligatori* TODO: Add Image
 *	Clau per a identificar l'aplicació com usuaria del servei.
 
 ## Ús del servei
@@ -232,7 +235,7 @@ Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
 *	**signResult**: El resultat de la signatura en base64.
-*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH**.
+*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/ZIP**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
 Serà necessari per tant per part de l'aplicació client d'implementar un endpoint que accepti rebre un _POST_ amb el contingut del _JSON_ especificat en aquesta punt. Amb la resposta anirà la capçalera http `Content-Type: application/json`.
@@ -249,6 +252,12 @@ Podeu veure una **Demo** d'una integració del servei a les següents Urls:
 
 * [Demo preproducció](http://signador-pre.aoc.cat/signador/demo)
 * [Demo producció](http://signador.aoc.cat/signador/demo)
+
+## 6. TODO: Altres
+
+* Recomanació HTTPS
+* Recomanació tipus signatures (Hash)
+* Restriccions mida màxima documents
 
 ## Llibreria integradors
 
