@@ -4,24 +4,28 @@
 
 ###Documentació del projecte del Signador centralitzat
 
-TODO: Diagrama de flux
-
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
 *	Domini des del qual es realitzarà les peticions.
-*	Imatge amb el logo de l'aplicació usuaria. TODO: Add image
-*	Imatge amb el logo que apareixerà a l'applet. *No obligatori* TODO: Add Image
+*	Imatge amb el logo de l'aplicació usuaria. Mida màxima 300 width x 100 height
+*	Imatge amb el logo que apareixerà a l'applet. Mida màxima 300 width x 100 height. *No obligatori*.
 *	Clau per a identificar l'aplicació com usuaria del servei.
+
+## Diagrama de flux
+
+Per tal de donar context i entendre com funciona el servei a continuació és mostra un esquema del flux d'operació d'una aplicació contra el signador centralitzat per a intentar il·lustrar les crides i el funcionament del mateix:
+
+![Diagrama flux signador centralitzat](/diagrama flux.png?raw=true "Diagrama flux signador centralitzat")
 
 ## Ús del servei
 
-Per a utilizar el servei de signatura serà necessari realitzar les següents crides:
+Per a utilizar el servei de signatura serà necessari la realització de les següents crides:
 
 ## 1. InitProcess: Servei per iniciar el procés de signatura
 
-Cada operació de signatura requerirà d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron per tant aquest `token` servirà per lligar després la signatura resultant amb el procés intern q l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de signador centralitzat per tal de poder per exemple gestionar els errors si fos el cas, etc.
+Cada operació de signatura requerirà d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron per tant aquest `token` servirà per lligar després la signatura resultant amb el procés intern que l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de signador centralitzat per tal de poder per exemple gestionar els errors si fos el cas, etc.
 
-Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_:
+Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_ ubicat al següent endpoint:
 
 * Entorn PRE: http://signador-pre.aoc.cat/signador/initProcess
 * Entorn PRO: http://signador.aoc.cat/signador/initProcess
@@ -29,6 +33,7 @@ Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_:
 La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les següents capçaleres http:
 * **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
+* **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
 
 La resposta del servei _REST_ tindrà el següent format:
 
@@ -43,14 +48,16 @@ Els possibles valors dels camps són:
 *	**status**: **OK** o **KO** en funció de si ha anat correctament o no.
 *	**token**: El token generat pel servei necessari per a iniciar el procés de signatura.
 *	**message**: El missatge d'error en cas que no hagi anat correctament.
+	
+Es comprovarà que la data proporcionada a la capçalera **Date** estigui dins del rang `now -1 hora < Date < now +1 hora`
 
 ### 1.1 http-header: Authoritzation - HMAC SHA256
 
 Per a calcular la capçalera d'autorització es fa servir el *Message Authentication Code* (MAC) basat en una funció de resum criptogràfic (*HMAC*), en aquest cas com a funció de *Hash* farem servir *SHA256*. 
 
-En aquest cas les dades a processar serà el mateix *nom del domini* tal i com s'ha especificat a l'alta i el secret per a procesar aquesta dada serà la *clau* que s'ha triat també en el procés d'alta. 
+En aquest cas les dades a processar serà el mateix *nom del domini* tal i com s'ha especificat a l'alta, concatenat amb el caràcter underscore `_` i la *data* proporcionada a la capçalera date (exemple `http://ajuntament.cat_28/05/2016 13:21`). El secret per a procesar aquesta dada amb l'algoritme `HMAC_SHA256` serà la *clau* que s'ha triat també durant el procés d'alta. 
 
-A continuació és mostra un exemple simplificat de com quedaria la crida feta amb **Groovy**:
+A continuació és mostra un exemple simplificat de com es podria generar la capçalera d'autenticació amb **Groovy**:
 
 ```java
 import javax.crypto.Mac
@@ -59,9 +66,14 @@ import javax.crypto.spec.SecretKeySpec
 def clau = 'changeit'
 def algoritme = 'HmacSHA256'
 def mac = Mac.getInstance(algoritme)
+
+def domini = 'http://ajuntament.cat'
+def date = new Date().format('dd/MM/yyyy HH:mm')
+def dades = "${domini}_${date}"
+
 def secretKeySpec = new SecretKeySpec(clau.getBytes(), algoritme)
 mac.init(secretKeySpec)
-byte[] digest = mac.doFinal('http://dominiAppClient.cat'.getBytes())
+byte[] digest = mac.doFinal(dades.getBytes())
 digest.encodeBase64().toString()
 ```
 
