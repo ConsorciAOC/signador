@@ -7,7 +7,7 @@
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
 *	Domini des del qual es realitzarà les peticions.
-*	Imatge amb el logo de l'aplicació usuaria. Mida màxima 300 width x 100 height
+*	Imatge amb el logo de l'aplicació usuaria. Mida màxima 300 width x 100 height.
 *	Imatge amb el logo que apareixerà a l'applet. Mida màxima 300 width x 100 height. *No obligatori*.
 *	Clau per a identificar l'aplicació com usuaria del servei.
 
@@ -51,7 +51,7 @@ Els possibles valors dels camps són:
 	
 Es comprovarà que la data proporcionada a la capçalera **Date** estigui dins del rang `now -1 hora < Date < now +1 hora`
 
-### 1.1 http-header: Authoritzation - HMAC SHA256
+### 1.1. http-header: Authoritzation - HMAC SHA256
 
 Per a calcular la capçalera d'autorització es fa servir el *Message Authentication Code* (MAC) basat en una funció de resum criptogràfic (*HMAC*), en aquest cas com a funció de *Hash* farem servir *SHA256*. 
 
@@ -83,30 +83,42 @@ De la mateixa forma en **Java** (ometen `try/catch`, `main` etc):
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64.Encoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+String domini = "http://ajuntament.cat";
+SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+String date = sdf.format(new Date());
+String dades = domini + "_" + date;
 
 String clau = "legalizeit";
 String algoritme = "HmacSHA256";
 Mac mac = Mac.getInstance(algoritme);
 SecretKeySpec secretKeySpec = new SecretKeySpec(clau.getBytes(), algoritme);
 mac.init(secretKeySpec);
-byte[] digest = mac.doFinal("http://dominiAppClient.cat".getBytes());
+byte[] digest = mac.doFinal(dades.getBytes());
 Encoder encoder = java.util.Base64.getEncoder();
 encoder.encodeToString(digest);
 ```
 
 **Nota**: La classe `java.util.Base64` existeix a partir de la versió 8 de *Java*, si es desenvolupa amb una altre versió és pot utilitzat qualsevol altre codificador en *Base64* com per exemple el [`javax.xml.bind.DatatypeConverter`](https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html) que es troba dins de la versió 6 i 7 de *Java*. O el `org.apache.commons.codec.binary.Base64` del [Apache Commons Codec](http://commons.apache.org/proper/commons-codec/), o tants d'altres.
 
-Només proveïm aquests codis perquè són els llenguatges amb els que solem treballar, per veure exemples en altres llenguatges de programació podeu consultar el següent [_recurs_](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
+Proveïm aquests codis a tall d'exemple, per veure exemples en altres llenguatges de programació podeu consultar el següent [_recurs_](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
 
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
-Un cop és diposa del `token` per a l'operació de signatura, es pot iniciar el porcés com a tal. 
-Per a fer-ho, s'ha de fer una crida al servei _REST_:
+Un cop és diposa del `token` per a l'operació de signatura, es pot iniciar el porcés. Per tal de fer-ho es necessari associar la configuració de signatura que realitzarà l'usuari amb el `token` d'operació obtingut.
+
+Per a fer-ho, s'ha de realitzar una crida al servei _REST_ al següent endpoint:
 
 * Entorn PRE: http://signador-pre.aoc.cat/signador/startSignProcess
 * Entorn PRO: http://signador.aoc.cat/signador/startSignProcess
+ 
+En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida és fa des de *Javascript* utilitzant domini registrat els pròpis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
 
-La crida consisteix en un *POST* on l'object _JSON_ a enviar per iniciar procés de l'applet té la següent forma:
+### 2.1. StartSignProcess: Applet de signatura
+
+La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte per a iniciar el procés de signatura amb l'applet té la següent forma:
 
 ````json
 {
@@ -167,7 +179,12 @@ La crida consisteix en un *POST* on l'object _JSON_ a enviar per iniciar procés
 	}
 }
 ````
-El _JSON_ a enviar per iniciar procés de l'apsa:
+
+Al següent apartat és descriu amb més detall l'ús de cadascún d'aquests camps, notis només que la gran part dels mateixos és opcional i no és necessari enviar-los per a poder iniciar el procés correctament.
+
+### 2.2. StartSignProcess: Applet de PSA (APSA light)
+
+Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON_ a enviar té la següent forma.
 
 ````json
 {
@@ -183,36 +200,36 @@ El _JSON_ a enviar per iniciar procés de l'apsa:
 }
 ````
 
-En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida és fa des de *Javascript* utilitzant domini registrat els pròpis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
-
-En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `document_to_sign`) amb el seu respectiu nom també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir.
-
-### 2.1 Camps comuns de la configuració
+### 2.3. Camps comuns de la configuració
 
 Descripció dels camps _JSON_ comuns de la configuració:
-*	**callbackUrl**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. És un camp obligatori.
-*	**token**: El token que ens ha retornat el servei d'inici del procés. És un camp obligatori.
+*	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp obligatori**.
+*	**token**: El token que ens ha retornat el servei d'inici del procés. **Camp obligatori**.
 *	**Descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
 
-### 2.2 Camps de la configuració de l'applet
+### 2.4. Camps de la configuració de l'Applet
 
 Descripció dels camps _JSON_ de la configuració de l'applet:
-*	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura. Camp obligatori. Per garantir la compatibilitat amb totes els sistemes es recomana informar com a valor `0`.
-*	**signature_mode**: Mode de signatura. Camp obligatori.
-*	**doc_type**: Tipus de document. Camp obligatori.
-*	**doc_name**: Nom del document. Camp obligatori. 
-*	**document_to_sign**: Document original a signar n UTF-8 codificat en base64. Camp obligatori.
-*	**hash_algorithm**: Algoritme de hash. Camp no obligatori. Per defecte SHA-1.
+*	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura. Per garantir la compatibilitat amb totes els sistemes es recomana informar com a valor `0`. **Camp obligatori**.
+*	**signature_mode**: Mode de signatura. **Camp obligatori**.
+*	**doc_type**: Tipus de document. **Camp obligatori**.
+*	**doc_name**: Nom del document. **Camp obligatori**.
+*	**document_to_sign**: Document original a signar n UTF-8 codificat en base64. **Camp obligatori**.
+*	**hash_algorithm**: Algoritme de hash. Per defecte SHA-1. Camp no obligatori.
 
-### 2.3 Camps de la configuració de l'apsa
+En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `document_to_sign`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir.
+
+### 2.5. Camps de la configuració de l'APSA
 
 Descripció dels camps _JSON_ de la configuració de l'apsa:
-*	**keystore_type**: Tipus de keystore. Camp obligatori.
-*	**doc_name**: Nom del document. Camp obligatori.
-*	**hash_a_xifrar**: hash a signar. Camp obligatori.
+*	**keystore_type**: Tipus de keystore. **Camp obligatori**.
+*	**doc_name**: Nom del document. **Camp obligatori**.
+*	**hash_a_xifrar**: hash a signar. **Camp obligatori**.
 *	**signingCertificate**: Certificat per signar en base64. Camp no obligatori.
 
-### 2.4 Valors genèrics
+En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `hash_a_xifrar`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir.
+
+### 2.6. Possibles valors dels camps de configuració:
 
 Els possibles valors acceptats del **keystore_type** són:
 *	0: Generic_keystore.
@@ -256,9 +273,9 @@ Els possibles valors acceptats del **doc_type** són:
 *	4: B64fileContent.
 *	6: urlFile.
 
-### 2.5 Resposta
+### 3. StartSignProcess: Resposta
 
-La resposta del servei _REST_ a aquesta crida tindrà el següent format:
+La resposta del servei _REST_ a aquestes crides tindrà el següent format:
 
 ````json
 {
@@ -267,12 +284,13 @@ La resposta del servei _REST_ a aquesta crida tindrà el següent format:
 	"message": ""
 }
 ````
+
 Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
 *	**message**: El missatge d'error en cas que no hagi anat correctament.
 
-## 3. Signatura per part de l'usuari
+## 4. Signatura per part de l'usuari
 
 Un cop s'ha aconseguit el `token` i creada la configuració de signatura vinculada al mateix, l'aplicació client ha de redirigir l'usuari a la web del signador centralitzat per tal de que aquest pugui acabar realitzant la signatura. Per tal de fer-ho s'ha de realitzar un _GET_ passant com a paràmetre un `id` amd el valor del `token` a la següent URL:
 
@@ -283,7 +301,7 @@ Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a 
 
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
-## 4.	Resposta
+## 5. Callback Resposta
 
 Un cop el client hagi executat la signatura a través del **JNLP**, el servei del signador rebrà la signatura i respondrà a l'aplicació client utilitzant la URL de callback que s'hagi informat en els paràmetres de configuració. El servei retornarà la resposta amb la signatura generada en cas que hagi anat bé o el motiu de l'error en cas que no.
 
@@ -306,20 +324,25 @@ Els possibles valors dels camps:
 
 Serà necessari per tant per part de l'aplicació client d'implementar un endpoint que accepti rebre un _POST_ amb el contingut del _JSON_ especificat en aquesta punt. Amb la resposta anirà la capçalera http `Content-Type: application/json`.
 
-En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, es rebrà una resposta amb el mateix `token` per cadascuna de les signatures generades. La resposta serà un document _ZIP_ a on contindrà les diferents signatures generades.
+En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, l'aplicació rebrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
 
 **NOTES:** 
 * És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
 * No hi ha política de reintents pel que fa a l'enviament de la signatura per part del signador a l'aplicació client, en cas que hi hagi algún problema amb aquest, s'haurà de tornar a iniciar l'operació.
 
-## 5. Demo
+## 6. Demo / Serveis integrats
 
 Podeu veure una **Demo** d'una integració del servei a les següents Urls:
 
 * [Demo preproducció](http://signador-pre.aoc.cat/signador/demo)
 * [Demo producció](http://signador.aoc.cat/signador/demo)
 
-## 6. TODO: Altres
+A banda de la **Demo** a tall d'exemple també es mostren les Urls del **Signasuite** que és un servei de validació/creació de signatures etc. que properament estarà també integrat amb el servei del signador:
+
+* [Signasuite preproducció](http://signasuite-pre.aoc.cat/signasuite/inici)
+* [Signasuite producció](http://signasuite.aoc.cat/signasuite/inici)
+
+## 7. TODO: Altres
 
 * Recomanació HTTPS
 * Recomanació tipus signatures (Hash)
@@ -327,4 +350,4 @@ Podeu veure una **Demo** d'una integració del servei a les següents Urls:
 
 ## Llibreria integradors
 
-Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar en el servei. Trobareu més detall sobre la mateixa [aqui](https://github.com/lcamps01/signador/blob/master/integracioJS/README.md). 
+Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar en el servei. Trobareu més detall sobre la mateixa [aqui](https://github.com/ConsorciAOC/signador/blob/master/integracioJS/README.md).
