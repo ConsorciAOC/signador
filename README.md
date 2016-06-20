@@ -273,7 +273,20 @@ Els possibles valors acceptats del **doc_type** són:
 *	4: B64fileContent.
 *	6: urlFile.
 
-### 3. StartSignProcess: Resposta
+### 2.7. Filtres de certificats: **certs_cfg**
+
+L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de seleccionar el certificat per part de l'usuari. Si el filtre és prou específic per donar només una coincidència a l'usuari no se li mostrarà el diàleg de selecció de certificats i se seleccionarà de forma automàtica la coincidència, en cas que n'hi hagi més d'un és mostrarà el diàleg de selecció amb els certificats que coincideixin amb el criteri proporcionat:
+
+* 	**allowed_CAs**: Permet filtrar mitjançant el _CommonName_ de l'_IssuerDistinguishedName_ que apareix en el certificat. Es poden indicar múltiples entrades separades per punts i comes (;). El filtre és *case insensitive*. Exemple: `“EC-SAFP;EC-idCAT”`.
+* 	**allowed_OIDs**: Permet filtrar mitjançant l'identificador de la directiva de certificat que apareix a l'extensió **Bases del certificat**. Es poden indicar múltiples entrades separades per punts i comes (;).
+* 	**selected_alias**: Permet filtrar per l'àlies del certificat que cal utilitzar en la signatura. Es comprova que existeixi en el dispositiu / magatzem seleccionat.
+* 	**selected_CN**: Permet el CommonName dins del SubjectDistinguishedName del certificat que cal utilitzar en la signatura
+* 	**subject_Text**:
+* 	**required_nif**:
+
+
+
+## 3. StartSignProcess: Resposta
 
 La resposta del servei _REST_ a aquestes crides tindrà el següent format:
 
