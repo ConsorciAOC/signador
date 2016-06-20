@@ -377,6 +377,7 @@ A banda de la **Demo** a tall d'exemple també es mostren les Urls del **Signasu
 * Recomanació HTTPS
 * Recomanació tipus signatures (Hash)
 * Restriccions mida màxima documents
+* doc_type 1,2 explicar funcionament.
 
 ## Llibreria integradors
 
