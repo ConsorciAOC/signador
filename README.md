@@ -303,6 +303,19 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**pdf_signature_rotation**: Permet rotar el camp de signatura visible dins del PDF, rotant la imatge i el text del mateix. Els possibles valors són `90`,`180`,`270` (per defecte pren el valor `0`). El gir es fa en sentit anti-horari el nombre de graus especificats.
 * 	**pdf_show_adobe_sign_validation**: Al visualitzar la signatura a través de l'Abobe aquest per defecte mostra  el tick, cross o el interrogant i la descripció de l'estat: signature valid, signature invalid, signature not yet verified (a banda de la imatge, text etc que afegeix l'applet). Aquest paràmetre permet configurar si es vol que es mostri o no aquesta informació donant com a valor `true` o `false`. Per defecte aquest paràmetre pren el valor `false` i per tant aquesta informació no es mostra.
 
+
+### 2.9. **xml_cfg**
+            
+TODO: descripció
+
+### 2.10. **cms_cfg**
+
+TODO: descripció
+
+### 2.11. **ades_cfg**
+
+TODO: descripció
+
 ## 3. StartSignProcess: Resposta
 
 La resposta del servei _REST_ a aquestes crides tindrà el següent format:
