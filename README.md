@@ -282,20 +282,26 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**selected_alias**: Permet filtrar per l'àlies del certificat. Es comprova que existeixi en el dispositiu / magatzem seleccionat.
 * 	**selected_CN**: Permet filtrar per el _CommonName_ dins del _SubjectDistinguishedName_ del certificat.
 * 	**subject_Text**: Permet filtrar per una cadena de text que ha d'estar present dins de qualsevol dels camps del _SubjectDistinguishedName_ del certificat. El filtre és _case insensitive_. Exemple: `“Director General”`
-* 	**required_nif**: Aquest paràmetre no permet el filtrage a priori, sinó que el que fa és realitzar una comprovació contra PSIS previa a la realització de la signatura, validant que el certificat seleccionat per l'usuari és correspon amb el _NIF_ indicat en aquest camp. Cas que no sigui així l'applet no continuarà amb l'operació de signatura i mostrarà el missatge d'error corresponent. 
+* 	**required_nif**: Aquest paràmetre no permet el filtrage a priori, sinó que el que fa és realitzar una comprovació contra [PSIS](http://web.aoc.cat/blog/serveis/validador/) previa a la realització de la signatura, validant que el certificat seleccionat per l'usuari és correspon amb el _NIF_ indicat en aquest camp. Cas que no sigui així l'applet no continuarà amb l'operació de signatura i mostrarà el missatge d'error corresponent. 
 
 ### 2.8. Aparença i configuració de sigantures PDF: **pdf_cfg**
-* 	**pdf_visible_signature**:
-* 	**pdf_reserved_space**:
-* 	**pdf_signature_field**:
-* 	**pdf_certification_level**:
-* 	**pdf_reason**:
-* 	**pdf_location**:
-* 	**pdf_signature_image**:
-* 	**pdf_signature_rectangle**:
-* 	**pdf_signature_page_number**:
-* 	**pdf_signature_rotation**:
-* 	**pdf_show_adobe_sign_validation**:
+* 	**pdf_visible_signature**: Permet indicar a l'applet que la signatura que es crearà al document PDF sigui invisible (valor a `false`). Per defecte el valor és `true` (visible). Si hi ha camps de signatura, aquest paràmetre no té afectació i es signarà en els camp/s buits de signatura.
+* 	**pdf_reserved_space**: Permet especificar l'espai de memòria a reservar per la signatura dins del document PDF. Cal indicar aquest valor en `KBytes`. Per defecte, el valor que pren aquest paràmetre en funció del tipus de signatura és: 
+	* 	Signatura CMS:      	26 KB 
+	* 	Signatura CAdES: 	500 KB.
+* 	**pdf_signature_field**: Si el document PDF a signar disposa de camps de signatura buits, és possible indicar el nom del camp que es desitja signar mitjançant aquest paràmetre.
+* 	**pdf_certification_level**: Permet especificar el nivell de certificació de la signatura d'un document PDF. Els possibles valors d'aquest atribut són:
+	* 	0 : Document no certificat (opció per defecte).
+	* 	1 : Document certificat. No es permeten canvis.
+	* 	2 : Document certificat. Es permet l'emplenament de formularis.
+	* 	3 : Document certificat. Es permet l'emplenament de formularis, i anotacions.
+* 	**pdf_reason**: Permet indicar el motiu de la signatura (camp propi d'Adobe). L'ús d'aquest paràmetre deshabilita aquesta opció en el diàleg de signatura de documents PDF.
+* 	**pdf_location**: Permet indicar una localització (camp propi d'Adobe). L'ús d'aquest paràmetre deshabilita aquesta opció en el diàleg de signatura de documents PDF.
+* 	**pdf_signature_image**: Ens permet escollir la imatge que apareix a la signatura d'un document PDF. El valor d'aquest paràmetre haurà de ser la codificació en Base64 del fitxer amb l'imatge
+* 	**pdf_signature_rectangle**: Quan no hi ha camps de signatura i la signatura ha de ser visible, hi ha l'opció de seleccionar on es crearà el camp de la mateixa. Aquest paràmetre permet especificar les coordenades del quadre de signatura dins de la plana. El valor d'aquest paràmetre per defecte és `100 100 200 200`. Les coordenades s'indiquen de forma numèrica i separades per espais, el valor de les mateixes es correspon a: `LowerLeftX LowerLeftY UpperRightX UpperRightY`.
+* 	**pdf_signature_page_number**: Indica en quina plana del document ha d'anar la signatura. És possible indicar que la signatura es coloqui a l'última plana del document PDF especificant el valor `0`, o també és possible indicar que sigui visible a totes les planes del mateix especificant el valor `-1`.
+* 	**pdf_signature_rotation**: Permet rotar el camp de signatura visible dins del PDF, rotant la imatge i el text del mateix. Els possibles valors són `90`,`180`,`270` (per defecte pren el valor `0`). El gir es fa en sentit anti-horari el nombre de graus especificats.
+* 	**pdf_show_adobe_sign_validation**: Al visualitzar la signatura a través de l'Abobe aquest per defecte mostra  el tick, cross o el interrogant i la descripció de l'estat: signature valid, signature invalid, signature not yet verified (a banda de la imatge, text etc que afegeix l'applet). Aquest paràmetre permet configurar si es vol que es mostri o no aquesta informació donant com a valor `true` o `false`. Per defecte aquest paràmetre pren el valor `false` i per tant aquesta informació no es mostra.
 
 ## 3. StartSignProcess: Resposta
 
@@ -336,7 +342,7 @@ El format del _JSON_ que enviarem a l'endpoint informat será el següent:
    "token": "id del token",
    "signResult": "resultat de la signatura",
    "type": "XML/CMS/PDF/HASH/ZIP",
-   "error": "motiu de l’error"
+   "error": "motiu de l'error"
 }
 ````
 Els possibles valors dels camps:
