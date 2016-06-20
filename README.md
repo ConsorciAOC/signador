@@ -277,14 +277,25 @@ Els possibles valors acceptats del **doc_type** són:
 
 L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de seleccionar el certificat per part de l'usuari. Si el filtre és prou específic per donar només una coincidència a l'usuari no se li mostrarà el diàleg de selecció de certificats i se seleccionarà de forma automàtica la coincidència, en cas que n'hi hagi més d'un és mostrarà el diàleg de selecció amb els certificats que coincideixin amb el criteri proporcionat:
 
-* 	**allowed_CAs**: Permet filtrar mitjançant el _CommonName_ de l'_IssuerDistinguishedName_ que apareix en el certificat. Es poden indicar múltiples entrades separades per punts i comes (;). El filtre és *case insensitive*. Exemple: `“EC-SAFP;EC-idCAT”`.
-* 	**allowed_OIDs**: Permet filtrar mitjançant l'identificador de la directiva de certificat que apareix a l'extensió **Bases del certificat**. Es poden indicar múltiples entrades separades per punts i comes (;).
-* 	**selected_alias**: Permet filtrar per l'àlies del certificat que cal utilitzar en la signatura. Es comprova que existeixi en el dispositiu / magatzem seleccionat.
-* 	**selected_CN**: Permet el CommonName dins del SubjectDistinguishedName del certificat que cal utilitzar en la signatura
-* 	**subject_Text**:
-* 	**required_nif**:
+* 	**allowed_CAs**: Permet filtrar mitjançant el _CommonName_ de l'_IssuerDistinguishedName_ del certificat. Es poden indicar múltiples entrades separades per punts i comes `;`. El filtre és _case insensitive_. Exemple: `“EC-SAFP;EC-idCAT”`.
+* 	**allowed_OIDs**: Permet filtrar mitjançant l'identificador de la directiva de certificat que apareix a l'extensió _Bases del certificat_. Es poden indicar múltiples entrades separades per punts i comes `;`.
+* 	**selected_alias**: Permet filtrar per l'àlies del certificat. Es comprova que existeixi en el dispositiu / magatzem seleccionat.
+* 	**selected_CN**: Permet filtrar per el _CommonName_ dins del _SubjectDistinguishedName_ del certificat.
+* 	**subject_Text**: Permet filtrar per una cadena de text que ha d'estar present dins de qualsevol dels camps del _SubjectDistinguishedName_ del certificat. El filtre és _case insensitive_. Exemple: `“Director General”`
+* 	**required_nif**: Aquest paràmetre no permet el filtrage a priori, sinó que el que fa és realitzar una comprovació contra PSIS previa a la realització de la signatura, validant que el certificat seleccionat per l'usuari és correspon amb el _NIF_ indicat en aquest camp. Cas que no sigui així l'applet no continuarà amb l'operació de signatura i mostrarà el missatge d'error corresponent. 
 
-
+### 2.8. Aparença i configuració de sigantures PDF: **pdf_cfg**
+* 	**pdf_visible_signature**:
+* 	**pdf_reserved_space**:
+* 	**pdf_signature_field**:
+* 	**pdf_certification_level**:
+* 	**pdf_reason**:
+* 	**pdf_location**:
+* 	**pdf_signature_image**:
+* 	**pdf_signature_rectangle**:
+* 	**pdf_signature_page_number**:
+* 	**pdf_signature_rotation**:
+* 	**pdf_show_adobe_sign_validation**:
 
 ## 3. StartSignProcess: Resposta
 
