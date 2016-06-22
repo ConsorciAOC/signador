@@ -283,6 +283,7 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**selected_CN**: Permet filtrar per el _CommonName_ dins del _SubjectDistinguishedName_ del certificat.
 * 	**subject_Text**: Permet filtrar per una cadena de text que ha d'estar present dins de qualsevol dels camps del _SubjectDistinguishedName_ del certificat. El filtre és _case insensitive_. Exemple: `“Director General”`
 * 	**required_nif**: Aquest paràmetre no permet el filtrage a priori, sinó que el que fa és realitzar una comprovació contra [PSIS](http://web.aoc.cat/blog/serveis/validador/) previa a la realització de la signatura, validant que el certificat seleccionat per l'usuari és correspon amb el _NIF_ indicat en aquest camp. Cas que no sigui així l'applet no continuarà amb l'operació de signatura i mostrarà el missatge d'error corresponent. 
+* 	**psis_validation**: Igual que el paràmetre **required_nif** aquest paràmetre fa una validació previa del certificat abans de realitzar la signatura. Simplement valida que el certificat sigui reconegut per [PSIS](http://web.aoc.cat/blog/serveis/validador/).
 
 ### 2.8. Aparença i configuració de sigantures PDF: **pdf_cfg**
 * 	**pdf_visible_signature**: Permet indicar a l'applet que la signatura que es crearà al document PDF sigui invisible (valor a `false`). Per defecte el valor és `true` (visible). Si hi ha camps de signatura, aquest paràmetre no té afectació i es signarà en els camp/s buits de signatura.
@@ -304,9 +305,15 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**pdf_show_adobe_sign_validation**: Al visualitzar la signatura a través de l'Abobe aquest per defecte mostra  el tick, cross o el interrogant i la descripció de l'estat: signature valid, signature invalid, signature not yet verified (a banda de la imatge, text etc que afegeix l'applet). Aquest paràmetre permet configurar si es vol que es mostri o no aquesta informació donant com a valor `true` o `false`. Per defecte aquest paràmetre pren el valor `false` i per tant aquesta informació no es mostra.
 
 
-### 2.9. **xml_cfg**
+### 2.9. Paràmetres de signatura XML: **xml_cfg**
             
-TODO: descripció
+* 	**n_enveloping**:
+* 	**n_detached**:
+* 	**uris_to_be_signed**:
+* 	**includeXMLTimestamp**:
+* 	**xmlts_tsa_url**:
+* 	**canonicalizationWithComments**:
+* 	**protectKeyInfo**:
 
 ### 2.10. **cms_cfg**
 
