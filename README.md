@@ -307,13 +307,13 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 
 ### 2.9. Paràmetres de signatura XML: **xml_cfg**
             
-* 	**n_enveloping**:
-* 	**n_detached**:
-* 	**uris_to_be_signed**:
-* 	**includeXMLTimestamp**:
-* 	**xmlts_tsa_url**:
-* 	**canonicalizationWithComments**:
-* 	**protectKeyInfo**:
+* 	**n_enveloping**: En el cas d'utilitzar qualsevol de les formes de signatura XML enveloping havent de signar múltiples documents, ja sigui documents locals o remots utilitzant la seva URL, és possible generar una única signatura que inclogui referències a tots els documents signats, en comptes d'una signatura per cadascún dels documents. Per a fer-ho aquest paràmetre ha de prendre el valor `true`. Per defecte el valor és `false`. 
+* 	**n_detached**: Igual que amb el **n_enveloping** però per a les signatures XML detached, permet generar una signatura XML amb referències a tots els documents signats. La diferència respecte la opció anterior és la possibilitat de poder utilitzar també els resums criptogràfics precalculats dels documents a signar. Per a fer-ho aquest paràmetre ha de prendre el valor `true`. Per defecte el valor és `false`. 
+* 	**uris_to_be_signed**: En cas de signatures de tipus XAdES enveloped, és possible mitjançant aquest paràmetre, especificar el node o nodes a signar, en lloc de signar tot el document. Els identificadors s'han d'especificar separats per `;` i cal que es corresponguin amb el valor del atribut `id` dels `<nodes>` del document sobre els que es vol realitzar la signatura. En cas que s'especifiquin identificadors de nodes que no existeixen al document, retornarà un missatge d'error indicant que els atributs no existeixen al document a signar.
+* 	**includeXMLTimestamp**: En cas que la signatura incorpori un segell de temps, indica si aquest ha de ser del tipus `XMLTimeStamp` o `EncapsulatedTimeStamp`. Per defecte aquest paràmetre pren el valor `true` que indica que el segell serà de tipus `XMLTimeStamp`, si es vol que el tipus sigui `EncapsulatedTimeStamp` s'ha de posar el valor del paràmetre a `false`.
+* 	**xmlts_tsa_url**: Indica l'adreça URL del servei de segellat de temps `XMLTimestamp`. El seu valor per defecte és el servei de segellat de temps de PSIS per segells de temps de format XML segons l'estàndard definit per OASIS al protocol DSS: http://psis.catcert.net/psis/catcert/dss. És molt important tenir en compte que, en cas de modificar el valor d'aquest paràmetre, cal garantir que el servei de segellat que estem seleccionant treballi segons el protocol corresponent. 
+* 	**canonicalizationWithComments**: Indica si l'algoritme de canonicalització emprat en la generació de la signatura XML tindrà en compte comentaris o no. Per defecte pren el valor `false`, i per tant ometrà els comentaris. En cas de voler el contrari, el valor del paràmetre a de ser `true`.
+* 	**protectKeyInfo**: Valor booleà que indica si s'ha de signar l'element `<KeyInfo>` amb la informació de la clau amb la que s'ha realitzat la signatura. Per defecte pren el valor `false`.
 
 ### 2.10. **cms_cfg**
 
