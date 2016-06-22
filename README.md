@@ -320,18 +320,21 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**timeStamp_CMS_signature**: Permet afegir un segell de temps a les signatures CMS (no aplica per a CAdES-T que per definició ja incorporen el segell de temps) i per extensió a les signatures CMS incrustades en un PDF. Per activar-ho cal posar el valor del paràmetre a `true`. Per defecte el valor és `false`.
 * 	**cmsts_tsa_url**: Indica l'adreça URL del servei de segellat de temps de segells binaris. El seu valor per defecte és el servei de segellat de temps segons el protocol [RFC3161](https://www.ietf.org/rfc/rfc3161.txt) de PSIS: http://psis.catcert.net/psis/catcert/tsp. S'ha de tenir en compte que en cas de canviar aquest valor el servei de TSA que es proporcioni compleixi amb aquest RFC.
 
-### 2.11. Paràmetres de polítiques per als formats avançats de signatura: **ades_cfg**
+### 2.11. Paràmetres de polítiques per als formats avançats de signatura XAdES i CAdES: **ades_cfg**
 
 TODO: 
 
-* 	**commitment_identifier**:
-* 	**commitment_description**:
-* 	**commitment_object_reference**:
-* 	**signer_role**:
-* 	**signature_policy**:
-* 	**signature_policy_hash**:
-* 	**signature_policy_qualifier**:
-* 	**signature_policy_hash_algorithm**:
+* 	**commitment_identifier**: Permet especificar el compromís de signatura.
+* 	**commitment_description**: Descripció del compromís de signatura, en cas que aquest s'hagi especificat. És un paràmetre opcional, és a dir, es pot especificar compromís sense descripció. _Disponible només per signatures XAdES_.
+* 	**commitment_object_reference**: Referència a l'atribut sobre el que s'aplica el compromís de signatura. En cas de no especificar res, el compromís s'aplica sobre tots els atributs. _Disponible només per signatures XAdES_.
+* 	**signer_role**: Permet incloure el rol del signatari (_ClaimedRole_) com a element signat dins de la signatura.
+* 	**signature_policy**: Permet incloure la política contra la que s'haurà de validar la signatura generada. El valor del paràmetre haurà de ser l'OID de la política de signatura (implica l'ús del paràmetre **signature_policy_hash**)
+* 	**signature_policy_hash**: El valor d'aquest paràmetre conté el hash codificat en Base64 del document XML que descriu la política de signatura contra la que es validarà la signatura generada.
+* 	**signature_policy_qualifier**: Qualificador de l'identificador de la política de signatura. 
+* 	**signature_policy_hash_algorithm**: Algoritme de resum criptogràfic emprat per a calcular el **signature_policy_hash**. Els possibles valors són: 
+	* 1: `SHA1`
+	* 3: `SHA256`
+	* 5: `SHA512`
 
 ## 3. StartSignProcess: Resposta
 
