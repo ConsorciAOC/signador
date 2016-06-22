@@ -315,13 +315,23 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**canonicalizationWithComments**: Indica si l'algoritme de canonicalització emprat en la generació de la signatura XML tindrà en compte comentaris o no. Per defecte pren el valor `false`, i per tant ometrà els comentaris. En cas de voler el contrari, el valor del paràmetre a de ser `true`.
 * 	**protectKeyInfo**: Valor booleà que indica si s'ha de signar l'element `<KeyInfo>` amb la informació de la clau amb la que s'ha realitzat la signatura. Per defecte pren el valor `false`.
 
-### 2.10. **cms_cfg**
+### 2.10. Paràmetres de signatura CMS: **cms_cfg**
 
-TODO: descripció
+* 	**timeStamp_CMS_signature**: Permet afegir un segell de temps a les signatures CMS (no aplica per a CAdES-T que per definició ja incorporen el segell de temps) i per extensió a les signatures CMS incrustades en un PDF. Per activar-ho cal posar el valor del paràmetre a `true`. Per defecte el valor és `false`.
+* 	**cmsts_tsa_url**: Indica l'adreça URL del servei de segellat de temps de segells binaris. El seu valor per defecte és el servei de segellat de temps segons el protocol [RFC3161](https://www.ietf.org/rfc/rfc3161.txt) de PSIS: http://psis.catcert.net/psis/catcert/tsp. S'ha de tenir en compte que en cas de canviar aquest valor el servei de TSA que es proporcioni compleixi amb aquest RFC.
 
-### 2.11. **ades_cfg**
+### 2.11. Paràmetres de polítiques per als formats avançats de signatura: **ades_cfg**
 
-TODO: descripció
+TODO: 
+
+* 	**commitment_identifier**:
+* 	**commitment_description**:
+* 	**commitment_object_reference**:
+* 	**signer_role**:
+* 	**signature_policy**:
+* 	**signature_policy_hash**:
+* 	**signature_policy_qualifier**:
+* 	**signature_policy_hash_algorithm**:
 
 ## 3. StartSignProcess: Resposta
 
@@ -392,12 +402,11 @@ A banda de la **Demo** a tall d'exemple també es mostren les Urls del **Signasu
 * [Signasuite preproducció](http://signasuite-pre.aoc.cat/signasuite/inici)
 * [Signasuite producció](http://signasuite.aoc.cat/signasuite/inici)
 
-## 7. TODO: Altres
+## 7. Recomanacions/Restriccions
 
-* Recomanació HTTPS
-* Recomanació tipus signatures (Hash)
-* Restriccions mida màxima documents
-* doc_type 1,2 explicar funcionament.
+* El servei té una restricció de mida pel que respecta a les peticions, els frontalts estan configurats per no acceptar missatges de mida superior a `7MB`. Per tant s'ha de tenir en compte aquesta restricció a l'hora de passar documents grans codificats en base64 dins del camp `document_to_sign`.
+* Es recomanable per a l'agilitat del servei i de les pròpies aplicacions usuaris (tenint també en compte la restricció de mida dels documents a signar) signar sempre que sigui possible el resum criptogràfic del document en comptes del document sencer. D'aquesta manera el servei funcionarà de forma més àgil i els temps de resposta tant per l'aplicació client com per a l'usuari final que realitza la signatura seràn més optims. No s'ha d'oblidar també que finalment és l'aplicació client la que haurà de gestionar aquestes signatures i per qualsevol aplicació sempre serà més fàcil treballar amb signatures de pocs KB que de MB.
+* De moment no hi ha cap restricció al respecte, però s'exigirà en un futur, que les aplicacions que s'integrin amb el servei utilitzin protocol HTTPS tant en les crides com en el callback encarregat de rebre la signatura.
 
 ## Llibreria integradors
 
