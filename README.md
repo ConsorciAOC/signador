@@ -384,7 +384,7 @@ El format del _JSON_ que enviarem a l'endpoint informat será el següent:
 Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
-*	**signResult**: El resultat de la signatura en base64.
+*	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
 *	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/ZIP**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
