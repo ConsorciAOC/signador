@@ -125,6 +125,7 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 	"callbackUrl": "",
 	"token": "",
 	"descripcio": "",
+	"responseB64": "",
 	"applet_cfg":{
 		"keystore_type": "",
 		"signature_mode": "",
@@ -191,6 +192,7 @@ Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON
 	"callbackUrl": "",
 	"token": "",
 	"descripcio": "",
+	"responseB64": "",
 	"applet_apsa_cfg": {
 			"keystore_type": "",
 			"doc_name": "",							
@@ -205,7 +207,8 @@ Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON
 Descripció dels camps _JSON_ comuns de la configuració:
 *	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp obligatori**.
 *	**token**: El token que ens ha retornat el servei d'inici del procés. **Camp obligatori**.
-*	**Descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
+*	**descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
+*	**responseB64**: Permet indicar si es vol que la resposta es retorni en base64 o en una URL per descarregar-la. Els possibles valors són `true` o `false`. Per defecte aquest paràmetre pren el valor `false`. No és obligatori. _**En breu estarà disponible**_.
 
 ### 2.4. Camps de la configuració de l'Applet
 
