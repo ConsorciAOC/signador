@@ -400,6 +400,13 @@ En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci va
 * És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
 * No hi ha política de reintents pel que fa a l'enviament de la signatura per part del signador a l'aplicació client, en cas que hi hagi algún problema amb aquest, s'haurà de tornar a iniciar l'operació.
 
+### 5.1 URL descàrrega
+
+Per realitzar la descàrrega és simplement un _GET_ de la URL que hem rebut en la resposta, a més s'han d'incloure obligatòriament les següents capçaleres http:
+* **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
+* **Origin**: Nom del domini que realitzarà les peticions.
+* **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
+
 ## 6. Demo / Serveis integrats
 
 Podeu veure una **Demo** d'una integració del servei a les següents Urls:
