@@ -103,7 +103,9 @@ encoder.encodeToString(digest);
 
 **Nota**: La classe `java.util.Base64` existeix a partir de la versió 8 de *Java*, si es desenvolupa amb una altre versió és pot utilitzat qualsevol altre codificador en *Base64* com per exemple el [`javax.xml.bind.DatatypeConverter`](https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html) que es troba dins de la versió 6 i 7 de *Java*. O el `org.apache.commons.codec.binary.Base64` del [Apache Commons Codec](http://commons.apache.org/proper/commons-codec/), o tants d'altres.
 
-Proveïm aquests codis a tall d'exemple, per veure exemples en altres llenguatges de programació podeu consultar el següent [_recurs_](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
+Proveïm aquests codis a tall d'exemple, per veure exemples en altres llenguatges de programació de com calcular el _HMAC_ podeu consultar el següent [recurs](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
+
+Podeu trobar també un exemple complet en _Groovy_ de com invocar el `/initProcess` per aconseguir el _token_ de l'operació [aqui](https://github.com/albciff/groovy-scripts/blob/master/scripts/HTTPBuilder_get_initProcess_signador.groovy)
 
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
