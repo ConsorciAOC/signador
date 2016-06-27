@@ -185,6 +185,8 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 
 Al següent apartat és descriu amb més detall l'ús de cadascún d'aquests camps, notis només que la gran part dels mateixos és opcional i no és necessari enviar-los per a poder iniciar el procés correctament.
 
+Podeu trobar també un exemple simple en _Groovy_ de com invocar el `/startSignProcess` passant una configuració de signatura d'exemple [aqui](https://github.com/albciff/groovy-scripts/blob/master/scripts/HTTPBuilder_post_startSignProcess_signador.groovy)
+
 ### 2.2. StartSignProcess: Applet de PSA (APSA light)
 
 Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON_ a enviar té la següent forma.
