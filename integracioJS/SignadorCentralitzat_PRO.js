@@ -72,6 +72,8 @@ var signadorCentralitzat = (function (jQry){
 	 * Constants del tipus de document
 	 */
 	sc.docType = {
+		ALLFILESINDIR : 1,
+		SINGLEFILE : 2,
 		HASHDOC : 3,
 		B64FILECONTENT : 4,
 		URLFILE : 6
@@ -90,10 +92,62 @@ var signadorCentralitzat = (function (jQry){
 		var documentName; // no default... es obligatori.
 		var documentToSign; // no default... es obligatori
 		
-		var hashAlgorithm = 'SHA1';				
+		var hashAlgorithm = 'SHA-1';				
 		var callbackUrl; // no default... es obligatori
-		var tokenId; 
+		var token; 
 		var descripcio = 'Operació de signatura' // default generic
+		var responseB64;
+		
+		/**
+		 *Paràmetres opcionals
+		 */
+		// apsa certificat
+		var signingCertificate;
+		
+		// Filtratge certificats
+		var allowedCAs;
+		var allowedOIDs;
+		var selectedAlias;
+		var selectedCN;
+		var subjectText;
+		var psisValidation;
+		var requiredNif;
+				
+		// PDF params
+		var visibleSignature;
+		var reservedSpace;
+		var signatureField; 
+		var certificationLevel;
+		var reason;
+		var location;
+		var signatureImage;
+		var signatureRectangle;
+		var signaturePageNumber;
+		var signatureRotation;
+		var showSignValidation;
+		
+		//XML params
+		var enveloping;
+		var detached;
+		var urisSigned;
+		var xmltimestamp;
+		var urltsa;
+		var canonComments;
+		var protectKey;
+		
+		// CMS params
+		var cmsTimestamp;
+		var cmsTsa;
+		
+		// AdES params
+		var commitmentIdentifier;
+		var commitmentDescription;
+		var commitmentReference;
+		var signerRole;
+		var policy;
+		var policyHash;
+		var policyQualifier;
+		var policyAlgorithm;				
 				
 		/**
 		 * 
@@ -105,11 +159,14 @@ var signadorCentralitzat = (function (jQry){
 				else if(typeof kt === 'string'){
 					kt = kt.toLowerCase();
 					if(kt.indexOf('win')){
-						keystoreType = 1; // windows keystore
+						keystoreType = sc.keyType.MS_KEYSTORE; // windows keystore
 					}else if(kt.indexOf('fire')){
-						keystoreType = 4; // firefox keystore
+						keystoreType = sc.keyType.MOZILLA_KEYSTORE; // firefox keystore
 					}
 				}
+			}else{
+				// Posem el genèric
+				keystoreType = sc.keyType.GENERIC_KEYSTORE;
 			}
 			console.log('[setKeystoreType] arg: ' + kt + ' keystoreType : ' + keystoreType);
 			return this;
@@ -190,12 +247,36 @@ var signadorCentralitzat = (function (jQry){
 		/**
 		 * 
 		 */
-		cfg.setTokenId = function (tdi){
+		cfg.setToken = function (tdi){
 			if( tdi ){
-				tokenId = tdi;
+				token = tdi;
 			}
 			
-			console.log('[setTokenId] arg: ' + tdi + ' tokenId : ' + tokenId);
+			console.log('[setToken] arg: ' + tdi + ' token : ' + token);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setResponseB64 = function ( rb64 ){
+			if( rb64 ){
+				responseB64 = rb64;
+			}
+			
+			console.log('[setResponseB64] arg: ' + rb64 + ' responseB64 : ' + responseB64);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSigningCertificate = function ( sc ){
+			if( sc ){
+				signingCertificate = sc;
+			}
+			
+			console.log('[setSigningCertificate] arg: ' + sc + ' signingCertificate : ' + signingCertificate);
 			return this;
 		};
 		
@@ -212,21 +293,487 @@ var signadorCentralitzat = (function (jQry){
 		};
 		
 		/**
+		 * 
+		 */
+		cfg.setAllowedCAs = function ( acas ){
+			if( acas ){
+				allowedCAs = acas;
+			}
+			
+			console.log('[setAllowedCAs] arg: ' + acas + ' allowedCAs : ' + allowedCAs);
+			return this;
+		};
+				
+		/**
+		 * 
+		 */
+		cfg.setAllowedOIDs = function ( aoids ){
+			if( aoids ){
+				allowedOIDs = aoids;
+			}
+			
+			console.log('[setAllowedOIDs] arg: ' + aoids + ' allowedOIDs : ' + allowedOIDs);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSelectedAlias = function ( selAlias ){
+			if( selAlias ){
+				selectedAlias = selAlias;
+			}
+			
+			console.log('[setSelectedAlias] arg: ' + selAlias + ' selectedAlias : ' + selectedAlias);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSelectedCN = function ( selCN ){
+			if( selCN ){
+				selectedCN = selCN;
+			}
+			
+			console.log('[setSelectedCN] arg: ' + selCN + ' selectedCN : ' + selectedCN);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSubjectText = function ( sTxt ){
+			if( sTxt ){
+				subjectText = sTxt;
+			}
+			
+			console.log('[setSubjectText] arg: ' + sTxt + ' subjectText : ' + subjectText);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setRequiredNif = function ( rNif ){
+			if( rNif ){
+				requiredNif = rNif;
+			}
+			
+			console.log('[setRequiredNif] arg: ' + rNif + ' requiredNif : ' + requiredNif);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setPsisValidation = function ( pv ){
+			if( pv ){
+				psisValidation = pv;
+			}
+			
+			console.log('[setPsisValidation] arg: ' + rNif + ' psisValidation : ' + psisValidation);
+			return this;
+		};
+
+		/**
+		 * 
+		 */
+		cfg.setVisibleSignature = function ( vSig ){
+			if( vSig){
+				visibleSignature = vSig;
+			}
+			
+			console.log('[setVisibleSignature] arg: ' + vSig + ' visibleSignature : ' + visibleSignature);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setReservedSpace = function ( rSpc ){
+			if( rSpc ){
+				reservedSpace = rSpc;
+			}
+			
+			console.log('[setReservedSpace] arg: ' + rSpc + ' reservedSpace : ' + reservedSpace);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSignatureField = function ( sf ){
+			if( sf ){
+				signatureField = sf;
+			}
+			
+			console.log('[setSignatureField] arg: ' + sf + ' signatureField : ' + signatureField);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setCertificationLevel = function ( cl ){
+			if( cl ){
+				certificationLevel = cl;
+			}
+			
+			console.log('[setCertificationLevel] arg: ' + cl + ' certificationLevel : ' + certificationLevel);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setReason = function ( r ){
+			if( r ){
+				reason = r;
+			}
+			
+			console.log('[setReason] arg: ' + r + ' reason : ' + reason);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setLocation = function ( l ){
+			if( l ){
+				location = l;
+			}
+			
+			console.log('[setLocation] arg: ' + l + ' location : ' + location);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSignatureImage = function ( si ){
+			if( si ){
+				signatureImage = si;
+			}
+			
+			console.log('[setSignatureImage] arg: ' + si + ' signatureImage : ' + signatureImage);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSignatureRectangle = function ( sr ){
+			if( sr ){
+				signatureRectangle = sr;
+			}
+			
+			console.log('[setSignatureRectangle] arg: ' + sr + ' signatureRectangle : ' + signatureRectangle);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSignaturePageNumber = function ( spn ){
+			if( spn ){
+				signaturePageNumber = spn;
+			}
+			
+			console.log('[setSignaturePageNumber] arg: ' + spn + ' signaturePageNumber : ' + signaturePageNumber);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSignatureRotation = function ( sr ){
+			if( sr ){
+				signatureRotation = sr;
+			}
+			
+			console.log('[setSignatureRotation] arg: ' + sr + ' signatureRotation : ' + signatureRotation);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setShowSignValidation = function ( ssv ){
+			if( ssv ){
+				showSignValidation = ssv;
+			}
+			
+			console.log('[setShowSignValidation] arg: ' + ssv + ' showSignValidation : ' + showSignValidation);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setEnveloping = function ( env ){
+			if( env ){
+				enveloping = env;
+			}
+			
+			console.log('[setEnveloping] arg: ' + env + ' enveloping : ' + enveloping);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setDetached = function ( dtc ){
+			if( dtc ){
+				detached = dtc;
+			}
+			
+			console.log('[setDetached] arg: ' + dtc + ' detached : ' + detached);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setUrisSigned = function ( uri ){
+			if( uri ){
+				urisSigned = uri;
+			}
+			
+			console.log('[setUrisSigned] arg: ' + uri + ' urisSigned : ' + urisSigned);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setXmltimestamp = function ( xtp ){
+			if( xtp ){
+				xmltimestamp = xtp;
+			}
+			
+			console.log('[setXmltimestamp] arg: ' + xtp + ' xmltimestamp : ' + xmltimestamp);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setUrltsa = function ( tsa ){
+			if( tsa ){
+				urltsa = tsa;
+			}
+			
+			console.log('[setUrltsa] arg: ' + tsa + ' urltsa : ' + urltsa);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setCanonComments = function ( cc ){
+			if( cc ){
+				canonComments = cc;
+			}
+			
+			console.log('[setCanonComments] arg: ' + cc + ' canonComments : ' + canonComments);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setProtectKey = function ( pk ){
+			if( pk ){
+				protectKey = pk;
+			}
+			
+			console.log('[setProtectKey] arg: ' + pk + ' protectKey : ' + protectKey);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setCmsTimestamp = function ( ct ){
+			if( ct ){
+				cmsTimestamp = ct;
+			}
+			
+			console.log('[setCmsTimestamp] arg: ' + ct + ' cmsTimestamp : ' + cmsTimestamp);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setCmsTsa = function ( ctsa ){
+			if( ctsa ){
+				cmsTsa = ctsa;
+			}
+			
+			console.log('[setCmsTsa] arg: ' + ctsa + ' cmsTsa : ' + cmsTsa);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setCommitmentIdentifier = function ( ci ){
+			if( ci ){
+				commitmentIdentifier = ci;
+			}
+			
+			console.log('[setCommitmentIdentifier] arg: ' + ci + ' commitmentIdentifier : ' + commitmentIdentifier);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setCommitmentDescription = function ( cd ){
+			if( cd ){
+				commitmentDescription = cd;
+			}
+			
+			console.log('[setCommitmentDescription] arg: ' + cd + ' commitmentDescription : ' + commitmentDescription);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setCommitmentReference = function ( cr ){
+			if( cr ){
+				commitmentReference = cr;
+			}
+			
+			console.log('[setCommitmentReference] arg: ' + cr + ' commitmentReference : ' + commitmentReference);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setSignerRole = function ( sr ){
+			if( sr ){
+				signerRole = sr;
+			}
+			
+			console.log('[setSignerRole] arg: ' + tsa + ' signerRole : ' + signerRole);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setPolicy = function ( p ){
+			if( p ){
+				policy = p;
+			}
+			
+			console.log('[setPolicy] arg: ' + p + ' policy : ' + policy);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setPolicyHash = function ( ph ){
+			if( ph ){
+				policyHash = ph;
+			}
+			
+			console.log('[setPolicyHash] arg: ' + ph + ' policyHash : ' + policyHash);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setPolicyQualifier = function ( pq ){
+			if( pq ){
+				policyQualifier = pq;
+			}
+			
+			console.log('[setPolicyQualifier] arg: ' + pq + ' policyQualifier : ' + policyQualifier);
+			return this;
+		};
+		
+		/**
+		 * 
+		 */
+		cfg.setPolicyAlgorithm = function ( pa ){
+			if( pa ){
+				policyAlgorithm = pa;
+			}
+			
+			console.log('[setPolicyAlgorithm] arg: ' + pa + ' policyAlgorithm : ' + policyAlgorithm);
+			return this;
+		};
+				
+		/**
 		 * objecte json de l'applet
 		 */
 		cfg.createConfig = function () {
 			return { 
 						callbackUrl : callbackUrl,
-						tokenId : tokenId,
+						token : token,
 						descripcio : descripcio,
+						responseB64 : responseB64,
 						applet_cfg :	{ 	keystore_type : keystoreType,
 											signature_mode : signatureMode,
 											doc_type : documentType,
 											hash_algorithm : hashAlgorithm,
 											doc_name : documentName,
-											document_to_sign : documentToSign
+											document_to_sign : documentToSign,
+											pdf_cfg : {
+												pdf_visible_signature : visibleSignature,
+												pdf_reserved_space : reservedSpace,
+												pdf_signature_field : signatureField, 
+												pdf_certification_level : certificationLevel,
+												pdf_reason : reason,
+												pdf_location : location,
+												pdf_signature_image : signatureImage,
+												pdf_signature_rectangle : signatureRectangle,
+												pdf_signature_page_number : signaturePageNumber,
+												pdf_signature_rotation : signatureRotation,
+												pdf_show_adobe_sign_validation : showSignValidation
+											},
+											certs_cfg : {
+												allowed_CAs : allowedCAs,
+												allowed_OIDs : allowedOIDs,
+												selected_alias : selectedAlias,
+												selected_CN : selectedCN,
+												subject_Text : subjectText,
+												psis_validation : psisValidation,
+												required_nif : requiredNif
+											},
+											xml_cfg : {
+												n_enveloping : enveloping,
+												n_detached : detached,
+												uris_to_be_signed : urisSigned,
+												includeXMLTimestamp : xmltimestamp,
+												xmlts_tsa_url : urltsa,
+												canonicalizationWithComments : canonComments,
+												protectKeyInfo : protectKey
+											},
+											cms_cfg : {
+												timeStamp_CMS_signature : cmsTimestamp,
+												cmsts_tsa_url : cmsTsa
+											},
+											ades_cfg : {
+												commitment_identifier : commitmentIdentifier,
+												commitment_description : commitmentDescription,
+												commitment_object_reference : commitmentReference,
+												signer_role : signerRole,
+												signature_policy : policy,
+												signature_policy_hash : policyHash,
+												signature_policy_qualifier: policyQualifier,
+												signature_policy_hash_algorithm : policyAlgorithm	
+											}
 										}
-			};
+					};
 		};
 		
 		/**
@@ -235,11 +782,13 @@ var signadorCentralitzat = (function (jQry){
 		cfg.createApsaConfig = function (){
 			return { 
 				callbackUrl : callbackUrl,
-				tokenId : tokenId,
+				token : token,
 				descripcio : descripcio,
+				responseB64 : responseB64,
 				applet_apsa_cfg :	{ 	keystore_type : keystoreType,
 										doc_name : documentName,
-										hash_a_xifrar : documentToSign
+										hash_a_xifrar : documentToSign,
+										signingCertificate : signingCertificate
 									}
 			};
 		};
@@ -268,7 +817,7 @@ var signadorCentralitzat = (function (jQry){
 		var successFn = function (window){ 
 			return function (data){
 				if(data.status === 'OK'){
-					window.location = '/signador?id=' + data.tokenId;
+					window.location = '/signador?id=' + data.token;
 				}else{
 					// something wrong...
 					alert(data.message);
@@ -320,8 +869,8 @@ var signadorCentralitzat = (function (jQry){
 	 * I com a paràmetres d'entrada és necessari que l'ojecte json 
 	 * contingui els següents camps: 
 	 *  - callback: La Url de callback necessària per informar de la resposta.
-	 * 	- tokenId: El token del procés de signatura.
-	 *  - docName: Nom del document.
+	 * 	- token: El token del procés de signatura.
+	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: PDF a signar en UTF-8 codificat en base64.
 	 */
 	sc.signPDF	= function( params ){
@@ -329,7 +878,7 @@ var signadorCentralitzat = (function (jQry){
 			.setDocumentType( this.docType.B64FILECONTENT )
 				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
-						.setTokenId( params.tokenId )
+						.setToken( params.token )
 							.setCallbackUrl( params.callback );
 		
 		// invoke
@@ -344,8 +893,8 @@ var signadorCentralitzat = (function (jQry){
 	 * I com a paràmetres d'entrada és necessari que l'ojecte json 
 	 * contingui els següents camps: 
 	 *  - callback: La Url de callback necessària per informar de la resposta.
-	 * 	- tokenId: El token del procés de signatura.
-	 *  - docName: Nom del document.
+	 * 	- token: El token del procés de signatura.
+	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: HASH a signar codificat en base64.
 	 */
 	sc.signXAdESHash = function( params ){
@@ -353,7 +902,7 @@ var signadorCentralitzat = (function (jQry){
 			.setDocumentType( this.docType.HASHDOC )
 				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
-						.setTokenId( params.tokenId )
+						.setToken( params.token )
 							.setCallbackUrl( params.callback );
 				
 		// invoke
@@ -368,8 +917,8 @@ var signadorCentralitzat = (function (jQry){
 	 * I com a paràmetres d'entrada és necessari que l'ojecte json 
 	 * contingui els següents camps: 
 	 *  - callback: La Url de callback necessària per informar de la resposta.
-	 * 	- tokenId: El token del procés de signatura.
-	 *  - docName: Nom del document.
+	 * 	- token: El token del procés de signatura.
+	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: HASH a signar codificat en base64.
 	 */
 	sc.signCAdESHash = function( params ){
@@ -377,7 +926,7 @@ var signadorCentralitzat = (function (jQry){
 			.setDocumentType( this.docType.HASHDOC )
 				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
-						.setTokenId( params.tokenId )
+						.setToken( params.token )
 							.setCallbackUrl( params.callback );
 				
 		// invoke
@@ -390,14 +939,14 @@ var signadorCentralitzat = (function (jQry){
 	 * I com a paràmetres d'entrada és necessari que l'ojecte json 
 	 * contingui els següents camps: 
 	 *  - callback: La Url de callback necessària per informar de la resposta.
-	 * 	- tokenId: El token del procés de signatura.
-	 *  - docName: Nom del document.
+	 * 	- token: El token del procés de signatura.
+	 *  - doc_name: Nom del document.
 	 * 	- hash_a_xifrar: HASH a signar codificat en base64.
 	 */
 	sc.signApsaHash = function( params ){
 		var cfg = this.cfg.setDocumentName( params.doc_name )
 				.setDocumentToSign( params.hash_a_xifrar )
-					.setTokenId( params.tokenId )
+					.setToken( params.token )
 						.setCallbackUrl( params.callback );
 			
 		// invoke
@@ -412,24 +961,96 @@ var signadorCentralitzat = (function (jQry){
 	 * Els paràmetres permesos que poden contenir el JSON són els següents camps: 
 	 *  - callback: La Url de callback necessària per informar de la resposta.
 	 *  - descripcio: descripció del procés de signatura.
-	 * 	- tokenId: El token del procés de signatura.
+	 *  - responseB64: Si es vol rebre la resposta en base64 o amb la url de descarrega
+	 * 	- token: El token del procés de signatura.
 	 *  - keystore_type: Tipus de keystore a utilizar.
 	 *  - signature_mode: Mode de signatura a utilizar
 	 *	- doc_type: Tipus de document a utilizar.
-	 *  - docName: Nom del document.
+	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: PDF a signar en UTF-8 codificat en base64.
 	 * 	- hash_algorithm: Algoritme de hash a utilizar.
+	 * 	- allowedCAs:
+	 *	- allowedOIDs:
+	 *	- selectedAlias:
+	 *	- selectedCN:
+	 *	- subjectText:
+	 *	- psisValidation:
+	 *	- requiredNif:
+	 *	- visibleSignature:
+	 *	- reservedSpace:
+	 *	- signatureField:
+	 *	- certificationLevel:
+	 *	- reason:
+	 *	- location:
+	 *	- signatureImage:
+	 *	- signatureRectangle:
+	 *	- signaturePageNumber:
+	 * 	- signatureRotation:
+	 *	- showSignValidation:
+	 *	- enveloping:
+	 *	- detached:
+	 * 	- urisSigned:
+	 *	- timestamp:
+	 *	- tsa:
+	 * 	- canonicalization:
+	 *	- protectKey:
+	 *	- cmsTimestamp:
+	 *	- cmsTsaUrl:
+	 *	- commitmentIdentifier:
+	 *	- commitmentDescription:
+	 *	- commitmentReference:
+	 *	- signerRole:
+	 *	- policy:
+	 *	- policyHash:
+	 *	- policyQualifier:
+	 *	- policyAlgorithm:
 	 */
 	sc.sign = function( params ){
 		var cfg = this.cfg.setCallbackUrl( params.callback )
-				.setTokenId( params.tokenId )
+					.setToken( params.token )
 					.setDescripcio( params.descripcio )
-						.setKeystoreType( params.keystore_type )
-							.setSignatureMode( params.signature_mode )
-								.setDocumentType( params.doc_type )
-									.setDocumentName( params.doc_name )
-										.setHashAlgorithm( params.hash_algorithm )
-											.setDocumentToSign( params.document_to_sign );
+					.setResponseB64( params.responseB64 )
+					.setKeystoreType( params.keystore_type )
+					.setSignatureMode( params.signature_mode )
+					.setDocumentType( params.doc_type )
+					.setDocumentName( params.doc_name )
+					.setHashAlgorithm( params.hash_algorithm )
+					.setDocumentToSign( params.document_to_sign )
+					.setAllowedCAs( params.allowedCAs )
+					.setAllowedOIDs( params.allowedOIDs )
+					.setSelectedAlias( params.selectedAlias )
+					.setSelectedCN( params.selectedCN )
+					.setSubjectText( params.subjectText )
+					.setPsisValidation( params.psisValidation )
+					.setRequiredNif( params.requiredNif )
+					.setVisibleSignature( params.visibleSignature )
+					.setReservedSpace( params.reservedSpace )
+					.setSignatureField( params.signatureField )
+					.setCertificationLevel( params.certificationLevel )
+					.setReason( params.reason )
+					.setLocation( params.location )
+					.setSignatureImage( params.signatureImage )
+					.setSignatureRectangle( params.signatureRectangle )
+					.setSignaturePageNumber( params.signaturePageNumber )
+					.setSignatureRotation( params.signatureRotation )
+					.setShowSignValidation( params.showSignValidation )
+					.setEnveloping( params.enveloping )
+					.setDetached( params.detached )
+					.setUrisSigned( params.urisSigned )
+					.setXmltimestamp( params.timestamp )
+					.setUrltsa( params.tsa )
+					.setCanonComments( params.canonicalization )
+					.setProtectKey( params.protectKey )
+					.setCmsTimestamp( params.cmsTimestamp )
+					.setCmsTsa( params.cmsTsaUrl )
+					.setCommitmentIdentifier( params.commitmentIdentifier )
+					.setCommitmentDescription( params.commitmentDescription )
+					.setCommitmentReference( params.commitmentReference )
+					.setSignerRole( params.signerRole )
+					.setPolicy( params.policy )
+					.setPolicyHash( params.policyHash )
+					.setPolicyQualifier( params.policyQualifier )
+					.setPolicyAlgorithm( params.policyAlgorithm );
 				
 		// invoke
 		sc.signar( cfg.createConfig() );
@@ -442,19 +1063,23 @@ var signadorCentralitzat = (function (jQry){
 	 * permesos per l'APSA.
 	 * Els paràmetres permesos que poden contenir el JSON són els següents camps:: 
 	 *  - callback: La Url de callback necessària per informar de la resposta.
-	 * 	- tokenId: El token del procés de signatura.
+	 * 	- token: El token del procés de signatura.
 	 *  - descripcio: descripció del procés de signatura.
+	 *  - responseB64: Si es vol rebre la resposta en base64 o amb la url de descarrega 
 	 *  - keystore_type: Tipus de keystore a utilizar.
-	 *  - docName: Nom del document.
+	 *  - doc_name: Nom del document.
 	 * 	- hash_a_xifrar: Hash a signar codificat en base64.
+	 *	- signingCertificate: Certificat per signar.
 	 */
 	sc.signApsa = function( params ){
 		var cfg = this.cfg.setCallbackUrl( params.callback )
-				.setTokenId( params.tokenId )
+					.setToken( params.token )
 					.setDescripcio( params.descripcio )
-						.setKeystoreType( params.keystore_type )
-							.setDocumentName( params.doc_name )
-								.setDocumentToSign( params.hash_a_xifrar );
+					.setResponseB64( params.responseB64 )
+					.setKeystoreType( params.keystore_type )
+					.setDocumentName( params.doc_name )
+					.setDocumentToSign( params.hash_a_xifrar )
+					.setSigningCertificate( params.signingCertificate );
 				
 		// invoke
 		sc.signar( cfg.createApsaConfig() );
