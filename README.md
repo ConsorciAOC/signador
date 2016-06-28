@@ -154,7 +154,8 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 			"selected_alias": "",
 			"selected_CN": "",
 			"subject_Text": "",
-			"required_nif": ""
+			"required_nif": "",
+			"psis_validation": ""
 		},
 		"xml_cfg": {
 			"n_enveloping": "",
@@ -212,7 +213,7 @@ Descripció dels camps _JSON_ comuns de la configuració:
 *	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp obligatori**.
 *	**token**: El token que ens ha retornat el servei d'inici del procés. **Camp obligatori**.
 *	**descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
-*	**responseB64**: Permet indicar si es vol que la resposta es retorni en base64 o en una URL per descarregar-la. Els possibles valors són `true` o `false`. Per defecte aquest paràmetre pren el valor `false`. No és obligatori. _**En breu estarà disponible**_.
+*	**responseB64**: Permet indicar si es vol que la resposta es retorni en base64 o en una URL per descarregar-la. Els possibles valors són `true` o `false`. Per defecte aquest paràmetre pren el valor `true`. No és obligatori.
 
 ### 2.4. Camps de la configuració de l'Applet
 
@@ -329,8 +330,6 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 
 ### 2.11. Paràmetres de polítiques per als formats avançats de signatura XAdES i CAdES: **ades_cfg**
 
-TODO: 
-
 * 	**commitment_identifier**: Permet especificar el compromís de signatura.
 * 	**commitment_description**: Descripció del compromís de signatura, en cas que aquest s'hagi especificat. És un paràmetre opcional, és a dir, es pot especificar compromís sense descripció. _Disponible només per signatures XAdES_.
 * 	**commitment_object_reference**: Referència a l'atribut sobre el que s'aplica el compromís de signatura. En cas de no especificar res, el compromís s'aplica sobre tots els atributs. _Disponible només per signatures XAdES_.
@@ -402,10 +401,13 @@ En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci va
 
 ### 5.1 URL descàrrega
 
-Per realitzar la descàrrega és simplement un _GET_ de la URL que hem rebut en la resposta, a més s'han d'incloure obligatòriament les següents capçaleres http:
+En cas que l'usuari hagi iniciat el procés posant en el paràmetre `responseB64` el valor `false`, rebrà en el `signResult` una URL a on es descarregarà la resposta realitzant simplement un _GET_ de la URL, a més s'han d'incloure obligatòriament les següents capçaleres http:
 * **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
+
+**NOTES:** 
+* La descàrrega de la resposta només estarà disponible 15 dies.
 
 ## 6. Demo / Serveis integrats
 
