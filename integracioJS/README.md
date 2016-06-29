@@ -39,7 +39,7 @@ Descripció dels camps _JSON_:
 *	**doc_name**: Nom del document.
 *	**document_to_sign**: Document original a signar n UTF-8 codificat en base64.
 
-El mètode customitzable per servei de l'applet és: `sign( json )` a on el l'objecte _JSON_ que espera té el format de l'applet que s'ha descrit en l'apartat [2.1](https://github.com/ConsorciAOC/signador/blob/master/README.md)
+El mètode customitzable per servei de l'applet és: `sign( json )` a on el l'objecte _JSON_ que espera té el format de l'applet que s'ha descrit en l'apartat [2.1](https://github.com/ConsorciAOC/signador/blob/master/README.md#21-startsignprocess-applet-de-signatura)
 
 ### 2. Consulta Apsa:
 
