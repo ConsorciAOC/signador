@@ -22,46 +22,24 @@ Els mètodes bàsics per signar amb el servei utilitzant l'applet de signatura s
   signXAdESHash( params );
   signCAdESHash( params );
 ````
-
 Aquests mètodes esperen tots un objecte de tipus _JSON_ amb el següent format:
 
 ```json
 {
-  "callback": "",
-  "tokenId":  "",
+  "callbackUrl": "",
+  "token":  "",
   "doc_name": "",
   "document_to_sign": ""
 }
 ```
 
-El mètode customitzable per servei de l'applet és: `sign( params )`
-
-El format dels paràmetres de l'objecte _JSON_ que espera és el següent: 
-
-```javascript
-{
-  "callback": "",
-  "tokenId":  "",
-  "descripcio": "", // no obligatori. valor per defecte: 'Operació de signatura'
-  "keystore_type": "", // no obligatori: valor per defecte: 0 --> GENERIC_KEYSTORE
-  "signature_mode": "",
-  "doc_type": "",
-  "doc_name": "",
-  "document_to_sign": "",
-  "hash_algorithm": ""
-}
-```
-
 Descripció dels camps _JSON_:
-*	**callback**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
-*	**tokenId**: El token que ens ha retornat el servei d'inici del procés.
-*	**descripcio**: Camp de text amb la descripció del procés de signatura.
-*	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura.
-*	**signature_mode**: Mode de signatura.
-*	**doc_type**: Tipus de document.
+*	**callbackUrl**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
+*	**token**: El token que ens ha retornat el servei d'inici del procés.
 *	**doc_name**: Nom del document.
 *	**document_to_sign**: Document original a signar n UTF-8 codificat en base64.
-*	**hash_algorithm**: Algoritme de hash.
+
+El mètode customitzable per servei de l'applet és: `sign( json )` a on el l'objecte _JSON_ que espera té el format de l'applet que s'ha descrit en l'apartat [2.1](https://github.com/ConsorciAOC/signador/blob/master/README.md)
 
 ### 2. Consulta Apsa:
 
@@ -71,8 +49,8 @@ El format dels paràmetres de l'objecte _JSON_ que esperen els mètodes és:
 
 ```json
 {
-  "callback": "",
-  "tokenId":  "",
+  "callbackUrl": "",
+  "token":  "",
   "doc_name": "",
   "hash_a_xifrar": ""
 }
@@ -84,29 +62,32 @@ El format dels paràmetres de l'objecte _JSON_ que espera és el següent:
 
 ````javascript
 {
-  "callback": "",
-  "tokenId":  "",
+  "callbackUrl": "",
+  "token":  "",
   "descripcio": "", // no obligatori. valor per defecte: 'Operació de signatura'
+  "responseB64": "", // no obligatori.
   "keystore_type": "", // no obligatori: valor per defecte: 0 --> GENERIC_KEYSTORE
   "doc_name": "",
-  "hash_a_xifrar": ""
+  "hash_a_xifrar": "",
+  "signingCertificate": "" // no obligatori
 }
 ````
 
 Descripció dels camps _JSON_:
-*	**callback**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
-*	**tokenId**: El token que ens ha retornat el servei d'inici del procés.
+*	**callbackUrl**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
+*	**token**: El token que ens ha retornat el servei d'inici del procés.
 *	**descripcio**: Camp de text amb la descripció del procés de signatura.
+*	**responseB64**: Camp per indicar si es vol que la resposta es retorni en base64 o en una _URL_ per descarregar-la.
 *	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura.
 *	**doc_name**: Nom del document.
 *	**hash_a_xifrar**: hash a signar.
-
+*	**signingCertificate**: Certificat per signar en base64.
 
 ### 3. Exemples d'ús
 
 Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jquery* i la pròpia llibreria de l'aplicació com a recurs en la plana *HTML* on es vulgui utilitzar.
 
-### 3.1 `signadorCentralitzat.sign( params )`
+### 3.1 `signadorCentralitzat.sign( json )`
 
 ```javascript
 <script type="text/javascript" src="%PATH%/jquery.js"></script> 
@@ -115,15 +96,17 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.sign( { callback: $('#idUrlCallback').val(), 
-		                              tokenId: $('#tokenId').val() , 
-		                              descripcio: $('#idDescripcio').val(), 
-		                              keystore_type: $('#idKeystore').val(), 
-		                              signature_mode: $('#idSignMode').val(), 
-		                              doc_type: $('#idDocType').val(), 
-		                              doc_name: $('#idNomDoc').val(), 
-		                              document_to_sign: $('#idDoc').val(), 
-		                              hash_algorithm: $('#idAlgorithm').val() });
+		signadorCentralitzat.sign( { callbackUrl: $('#idUrlCallback').val(), 
+		                              token: $('#tokenId').val() , 
+		                              descripcio: $('#idDescripcio').val(),
+		                              applet_cfg: {
+		                              	keystore_type: $('#idKeystore').val(), 
+		                                signature_mode: $('#idSignMode').val(), 
+		                                doc_type: $('#idDocType').val(), 
+		                                doc_name: $('#idNomDoc').val(), 
+		                                document_to_sign: $('#idDoc').val(), 
+		                                hash_algorithm: $('#idAlgorithm').val() 
+		                              }});
 	});
 	
 </script>
@@ -138,10 +121,10 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signPDF( { callback: $('#idUrlCallback').val(), 
-		                              tokenId: $('#tokenId').val() , 
-		                              doc_name: $('#idNomDoc').val(), 
-		                              document_to_sign: $('#idDoc').val() });
+		signadorCentralitzat.signPDF( { callbackUrl: $('#idUrlCallback').val(), 
+		                                token: $('#tokenId').val() , 
+		                                doc_name: $('#idNomDoc').val(), 
+		                                document_to_sign: $('#idDoc').val() });
 	});
 	
 </script>
@@ -156,10 +139,10 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signXAdESHash( { callback: $('#idUrlCallback').val(), 
-		                              tokenId: $('#tokenId').val() , 
-		                              doc_name: $('#idNomDoc').val(), 
-		                              document_to_sign: $('#idDoc').val() });
+		signadorCentralitzat.signXAdESHash( { callbackUrl: $('#idUrlCallback').val(), 
+		                                      token: $('#tokenId').val() , 
+		                                      doc_name: $('#idNomDoc').val(), 
+		                                      document_to_sign: $('#idDoc').val() });
 	});
 	
 </script>
@@ -174,10 +157,10 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signCAdESHash( { callback: $('#idUrlCallback').val(), 
-		                              tokenId: $('#tokenId').val() , 
-		                              doc_name: $('#idNomDoc').val(), 
-		                              document_to_sign: $('#idDoc').val()});
+		signadorCentralitzat.signCAdESHash( { callbackUrl: $('#idUrlCallback').val(), 
+		                                      token: $('#tokenId').val() , 
+		                                      doc_name: $('#idNomDoc').val(), 
+		                                      document_to_sign: $('#idDoc').val()});
 	});
 	
 </script>
@@ -192,10 +175,10 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signApsaHash( { callback: $('#idUrlCallback').val(), 
-		                              tokenId: $('#tokenId').val(),
-		                              doc_name: $('#idNomDoc').val(), 
-		                              hash_a_xifrar: $('#idHash').val()});
+		signadorCentralitzat.signApsaHash( { callbackUrl: $('#idUrlCallback').val(), 
+		                                     token: $('#tokenId').val(),
+		                                     doc_name: $('#idNomDoc').val(), 
+		                                     hash_a_xifrar: $('#idHash').val()});
 	});
 	
 </script>
@@ -210,12 +193,12 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signApsa( { callback: $('#idUrlCallback').val(), 
-		                              tokenId: $('#tokenId').val(),
-		                              descripcio: $('#idDescripcio').val(),
-		                              keystore_type: $('#idKeystore').val(), 
-		                              doc_name: $('#idNomDoc').val(), 
-		                              hash_a_xifrar: $('#idHash').val()});
+		signadorCentralitzat.signApsa( { callbackUrl: $('#idUrlCallback').val(), 
+		                                 token: $('#tokenId').val(),
+		                                 descripcio: $('#idDescripcio').val(),
+		                                 keystore_type: $('#idKeystore').val(), 
+		                                 doc_name: $('#idNomDoc').val(), 
+		                                 hash_a_xifrar: $('#idHash').val()});
 	});
 	
 </script>
