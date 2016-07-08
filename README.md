@@ -135,6 +135,7 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 		"doc_name": "",					
 		"document_to_sign": "",
 		"hash_algorithm": "",
+		"pkcs11_files": "",
 		"pdf_cfg": {
 			"pdf_visible_signature": "",
 			"pdf_reserved_space": "",
@@ -224,6 +225,7 @@ Descripció dels camps _JSON_ de la configuració de l'applet:
 *	**doc_name**: Nom del document. **Camp obligatori**.
 *	**document_to_sign**: Document original a signar n UTF-8 codificat en base64. **Camp obligatori**.
 *	**hash_algorithm**: Algoritme de hash. Per defecte SHA-1. Altres possibles valors: SHA-256, SHA-512. Camp no obligatori.
+*	**pkcs11_files**: Path de la llibreria PKCS11 i ID. Es poden especificar n elements amb el següent format: `path,id; ...` . Camp no obligatori. **Camp de moment no disponible**
 
 En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `document_to_sign`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir.
 
