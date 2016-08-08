@@ -51,6 +51,8 @@ Els possibles valors dels camps són:
 	
 Es comprovarà que la data proporcionada a la capçalera **Date** estigui dins del rang `now -1 hora < Date < now +1 hora`
 
+**Nota**: Donat que es tracta d'una autenticació aquesta crida no suporta el _CORS_ i per tant la crida s'ha de fer des del backend.
+
 ### 1.1. http-header: Authoritzation - HMAC SHA256
 
 Per a calcular la capçalera d'autorització es fa servir el *Message Authentication Code* (MAC) basat en una funció de resum criptogràfic (*HMAC*), en aquest cas com a funció de *Hash* farem servir *SHA256*. 
