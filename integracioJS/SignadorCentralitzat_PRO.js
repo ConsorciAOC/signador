@@ -304,7 +304,7 @@ var signadorCentralitzat = (function (jQry){
 		var successFn = function (window){ 
 			return function (data){
 				if(data.status === 'OK'){
-					window.location = '/signador?id=' + data.token;
+					window.location = 'http://signador.aoc.cat/signador?id=' + data.token;
 				}else{
 					// something wrong...
 					alert(data.message);
