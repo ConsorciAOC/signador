@@ -417,8 +417,8 @@ En cas que l'usuari hagi iniciat el procés posant en el paràmetre `responseB64
 
 Podeu veure una **Demo** d'una integració del servei a les següents Urls:
 
-* [Demo preproducció](http://signador-pre.aoc.cat/signador/demo)
-* [Demo producció](http://signador.aoc.cat/signador/demo)
+* [Demo preproducció](https://signador-pre.aoc.cat/signador/demo)
+* [Demo producció](https://signador.aoc.cat/signador/demo)
 
 A banda de la **Demo** a tall d'exemple també es mostren les Urls del **Signasuite** que és un servei de validació/creació de signatures etc. que properament estarà també integrat amb el servei del signador:
 
