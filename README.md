@@ -10,6 +10,7 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 *	Imatge amb el logo de l'aplicació usuaria. Mida màxima 300 width x 100 height.
 *	Imatge amb el logo que apareixerà a l'applet. Mida màxima 300 width x 100 height. *No obligatori*.
 *	Clau per a identificar l'aplicació com usuaria del servei.
+*	TODO: Allow Native
 
 ## Diagrama de flux
 
@@ -225,9 +226,10 @@ Descripció dels camps _JSON_ de la configuració de l'applet:
 *	**signature_mode**: Mode de signatura. **Camp obligatori**.
 *	**doc_type**: Tipus de document. **Camp obligatori**.
 *	**doc_name**: Nom del document. **Camp obligatori**.
-*	**document_to_sign**: Document original a signar n UTF-8 codificat en base64. **Camp obligatori**.
-*	**hash_algorithm**: Algoritme de hash. Per defecte SHA-1. Altres possibles valors: SHA-256, SHA-512. Camp no obligatori.
-*	**pkcs11_files**: Indica la ruta dels drivers necessaris d'un o varis dispositius _PKCS11_ per a que l'aplicació carregui les claus d'aquests. Les rutes dels drivers s'han d’especificar de la forma path _pathDriver1,ID1;pathDriver2,ID2;..._. L'ID és una cadena de text arbitrària que l'aplicació utilitza internament per a diferenciar els diferents dispositius _PKCS11_. Aquest ID també és el que es mostrarà al popup que demana el PIN amb el text: *Introduïu el PIN per a (ID):*. A més és poden especificar rutes mútuament excloents, per exemple en el cas que un mateix dispositiu _PKCS11_ pugui tenir diferents versions de drivers. En aquest cas es pot especificar de la següent forma _[pathDriverAVersio1,pathDriverAVersio2,pathDriverAVersioN],IDA_. En aquest cas l'aplicació anirà provant de carregar els drivers especificades entre `[ ]` en el ordre establert fins que en pugui carregar una, un cop carregada la resta ja no es provaran. Per a la configuració es poden combinar les dues formes, per exemple: _[pathDriverAVersio1,pathDriverAVersio2],IDA;pathB,IDB_. Camp no obligatori. **Camp de moment no disponible**
+*	**document_to_sign**: Document original a signar en format UTF-8 i codificat en base64. **Camp obligatori**.
+*	**hash_algorithm**: Algoritme de hash. Per defecte `SHA-1`. Altres possibles valors: `SHA-256` i `SHA-512`. Camp no obligatori.
+*	**pkcs11_files**: Indica la ruta dels drivers necessaris d'un o varis dispositius _PKCS11_ per a que l'aplicació carregui les claus d'aquests. Les rutes dels drivers s'han d’especificar de la següent forma: _pathDriver1,ID1;pathDriver2,ID2;..._. El _pathDriver_ és la ruta absoluta del controlador del dispositiu _PKCS11_. L'_ID_ és una cadena de text arbitrària que l'aplicació utilitza internament per a diferenciar els diferents dispositius. Aquest _ID_ també és el que es mostrarà al popup que demana el PIN amb el text: *Introduïu el PIN per a (ID):*. 
+També és poden especificar rutes mútuament excloents, per exemple en el cas que un mateix dispositiu _PKCS11_ pugui tenir diferents versions de controladors (amb diferents rutes) o és vulgui donar suport a diferents sistemes operatius; en aquest cas es pot especificar de la següent forma _[pathDriverAVersio1,pathDriverAVersio2,pathDriverAVersioN,pathDriverASistemaOperatiu2],IDA_. En aquest cas l'aplicació anirà provant de carregar els drivers especificades entre `[ ]` en el ordre establert fins que en pugui carregar una, un cop carregada la resta ja no es provaran. Per a la configuració es poden combinar les dues formes, per exemple: _[pathDriverAVersio1,pathDriverAVersio2],IDA;pathB,IDB_. Camp no obligatori. **Camp de moment no disponible**
 
 En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `document_to_sign`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir.
 
@@ -369,6 +371,8 @@ Un cop s'ha aconseguit el `token` i creada la configuració de signatura vincula
 
 Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un [**JNLP**](https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html).
 
+TODO: Nativa
+
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
 ## 5. Callback Resposta
@@ -427,6 +431,14 @@ A banda de la **Demo** a tall d'exemple també es mostren les Urls del **Signasu
 * El servei té una restricció de mida pel que respecta a les peticions, els frontalts estan configurats per no acceptar missatges de mida superior a `7MB`. Per tant s'ha de tenir en compte aquesta restricció a l'hora de passar documents grans codificats en base64 dins del camp `document_to_sign`.
 * Es recomanable per a l'agilitat del servei i de les pròpies aplicacions usuaris (tenint també en compte la restricció de mida dels documents a signar) signar sempre que sigui possible el resum criptogràfic del document en comptes del document sencer. D'aquesta manera el servei funcionarà de forma més àgil i els temps de resposta tant per l'aplicació client com per a l'usuari final que realitza la signatura seràn més optims. No s'ha d'oblidar també que finalment és l'aplicació client la que haurà de gestionar aquestes signatures i per qualsevol aplicació sempre serà més fàcil treballar amb signatures de pocs KB que de MB.
 * De moment no hi ha cap restricció al respecte, però s'exigirà en un futur, que les aplicacions que s'integrin amb el servei utilitzin protocol HTTPS tant en les crides com en el callback encarregat de rebre la signatura.
+
+## 8. TODO: Compatibilitat
+
+### 8.1 TODO: Sistemes operatius (JNLP/App nativa)
+### 8.2 TODO: versions java (JNLP/App nativa)
+### 8.3 TODO: Navegadors
+### 8.4 TODO: PKCS11!!!
+### 8.5 TODO: Altres?
 
 ## Llibreria integradors
 
