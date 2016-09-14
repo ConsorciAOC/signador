@@ -341,10 +341,7 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**signature_policy**: Permet incloure la política contra la que s'haurà de validar la signatura generada. El valor del paràmetre haurà de ser l'OID de la política de signatura (implica l'ús del paràmetre **signature_policy_hash**)
 * 	**signature_policy_hash**: El valor d'aquest paràmetre conté el hash codificat en Base64 del document XML que descriu la política de signatura contra la que es validarà la signatura generada.
 * 	**signature_policy_qualifier**: Qualificador de l'identificador de la política de signatura. 
-* 	**signature_policy_hash_algorithm**: Algoritme de resum criptogràfic emprat per a calcular el **signature_policy_hash**. Els possibles valors són: 
-	* 1: `SHA1`
-	* 3: `SHA256`
-	* 5: `SHA512`
+* 	**signature_policy_hash_algorithm**: Algoritme de resum criptogràfic emprat per a calcular el **signature_policy_hash**. Els possibles valors són: `SHA-1`, `SHA-256`, `SHA-512`.
 
 ## 3. StartSignProcess: Resposta
 
