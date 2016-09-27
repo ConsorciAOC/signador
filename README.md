@@ -28,8 +28,8 @@ Cada operació de signatura requerirà d'un `token` per tal de poder iniciar el 
 
 Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_ ubicat al següent endpoint:
 
-* Entorn PRE: http://signador-pre.aoc.cat/signador/initProcess
-* Entorn PRO: http://signador.aoc.cat/signador/initProcess
+* Entorn PRE: https://signador-pre.aoc.cat/signador/initProcess
+* Entorn PRO: https://signador.aoc.cat/signador/initProcess
 
 La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les següents capçaleres http:
 * **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
@@ -116,8 +116,8 @@ Un cop és diposa del `token` per a l'operació de signatura, es pot iniciar el 
 
 Per a fer-ho, s'ha de realitzar una crida al servei _REST_ al següent endpoint:
 
-* Entorn PRE: http://signador-pre.aoc.cat/signador/startSignProcess
-* Entorn PRO: http://signador.aoc.cat/signador/startSignProcess
+* Entorn PRE: https://signador-pre.aoc.cat/signador/startSignProcess
+* Entorn PRO: https://signador.aoc.cat/signador/startSignProcess
  
 En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida és fa des de *Javascript* utilitzant domini registrat els pròpis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
 
@@ -366,8 +366,8 @@ Els possibles valors dels camps:
 
 Un cop s'ha aconseguit el `token` i creada la configuració de signatura vinculada al mateix, l'aplicació client ha de redirigir l'usuari a la web del signador centralitzat per tal de que aquest pugui acabar realitzant la signatura. Per tal de fer-ho s'ha de realitzar un _GET_ passant com a paràmetre un `id` amd el valor del `token` a la següent URL:
 
-* Entorn PRE: http://signador-pre.aoc.cat/signador/?id=token
-* Entorn PRO: http://signador.aoc.cat/signador/?id=token
+* Entorn PRE: https://signador-pre.aoc.cat/signador/?id=token
+* Entorn PRO: https://signador.aoc.cat/signador/?id=token
 
 Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un [**JNLP**](https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html).
 
