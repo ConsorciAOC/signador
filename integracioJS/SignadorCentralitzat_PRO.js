@@ -299,12 +299,12 @@ var signadorCentralitzat = (function (jQry){
 		var newWindow = window.open();
 		
 		// URL en funció del entorn
-		var url = 'http://signador.aoc.cat/signador/startSignProcess';
+		var url = 'https://signador.aoc.cat/signador/startSignProcess';
 				
 		var successFn = function (window){ 
 			return function (data){
 				if(data.status === 'OK'){
-					window.location = 'http://signador.aoc.cat/signador?id=' + data.token;
+					window.location = 'https://signador.aoc.cat/signador?id=' + data.token;
 				}else{
 					// something wrong...
 					alert(data.message);
