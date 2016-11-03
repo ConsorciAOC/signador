@@ -128,6 +128,7 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 ````json
 {
 	"callbackUrl": "",
+	"redirectUrl": "",
 	"token": "",
 	"descripcio": "",
 	"responseB64": "",
@@ -215,6 +216,7 @@ Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON
 
 Descripció dels camps _JSON_ comuns de la configuració:
 *	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp obligatori**.
+* 	**redirectUrl**: Url per fer la redirecció del servei un cop ha finalitzat la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp opcional**. És obligatori informar el camp **callbackUrl** o el **redirectUrl**. **Paràmetre en fase de desenvolupament**
 *	**token**: El token que ens ha retornat el servei d'inici del procés. **Camp obligatori**.
 *	**descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
 *	**responseB64**: Permet indicar si es vol que la resposta es retorni en base64 o en una URL per descarregar-la. Els possibles valors són `true` o `false`. Per defecte aquest paràmetre pren el valor `true`. No és obligatori.
@@ -375,9 +377,15 @@ TODO: Nativa
 
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
-## 5. Callback Resposta
+## 5. Callback Resposta (**en desenvolupament**)
 
-Un cop el client hagi executat la signatura a través del **JNLP**, el servei del signador rebrà la signatura i respondrà a l'aplicació client utilitzant la URL de callback que s'hagi informat en els paràmetres de configuració. El servei retornarà la resposta amb la signatura generada en cas que hagi anat bé o el motiu de l'error en cas que no.
+Un cop el client hagi executat la signatura a través del **JNLP**, el servei del signador rebrà la signatura i en funció dels paràmetres de configuració, per si s'ha informat el paràmetre **callbackURL** o **redirectURL** realitzarà una cosa o una altre.
+
+En cas que l'usuari hagi informat el paràmetre **redirectURL**, l'aplicació realitzarà la redirecció a la URL que s'hagi informat.
+
+En la URL de redirecció informada, afegirem el paràmetre `token_id` amb el valor del token.
+
+I en el cas que l'usuari hagi informat el paràmetre **callbackURL**, l'aplicació al rebre la resposta respondrà a l'aplicació client utilitzant la URL de callback que s'hagi informat en els paràmetres de configuració. El servei retornarà la resposta amb la signatura generada en cas que hagi anat bé o el motiu de l'error en cas que no.
 
 El format del _JSON_ que enviarem a l'endpoint informat será el següent:
 ````json
@@ -413,6 +421,38 @@ En cas que l'usuari hagi iniciat el procés posant en el paràmetre `responseB64
 
 **NOTES:** 
 * La descàrrega de la resposta només estarà disponible 15 dies.
+
+### 5.2 GetSignature: Servei de consulta de la resposta (**en desenvolupament**)
+
+Per tal d'obtenir la resposta de la signatura s'ha de fer una crida al servei _REST_ ubicat a la següent URL: 
+
+* Entorn PRE: https://signador-pre.aoc.cat/signador/getSignature?identificador=token
+* Entorn PRO: https://signador.aoc.cat/signador/getSignature?identificador=token
+
+La crida és simplement un _GET_ passant com a paràmetre un `identificador` amb el valor del `token`, a més també ha d'incloure obligatòriament la següent capçalera http:
+
+* **Origin**: Nom del domini que realitzarà les peticions.
+
+La resposta del servei _REST_ tindrà el següent format:
+
+````json
+{
+   "status": "OK/KO",
+   "token": "id del token",
+   "signResult": "resultat de la signatura",
+   "type": "XML/CMS/PDF/HASH/ZIP",
+   "error": "motiu de l'error"
+}
+````
+Els possibles valors dels camps:
+*	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
+*	**token**: El token del procés de signatura.
+*	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
+*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/ZIP**.
+*	**error**: El motiu d'error en cas que no hagi anat correctament.
+
+**NOTES:** 
+* La consulta de la resposta només estarà disponible 15 dies.
 
 ## 6. Demo / Serveis integrats
 
