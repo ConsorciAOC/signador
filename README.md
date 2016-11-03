@@ -200,6 +200,7 @@ Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON
 ````json
 {
 	"callbackUrl": "",
+	"redirectUrl": "",
 	"token": "",
 	"descripcio": "",
 	"responseB64": "",
@@ -215,11 +216,13 @@ Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON
 ### 2.3. Camps comuns de la configuració
 
 Descripció dels camps _JSON_ comuns de la configuració:
-*	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp obligatori**.
-* 	**redirectUrl**: Url per fer la redirecció del servei un cop ha finalitzat la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp opcional**. És obligatori informar el camp **callbackUrl** o el **redirectUrl**. **Paràmetre en fase de desenvolupament**
+*	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp opcional**.
+* 	**redirectUrl**: Url per fer la redirecció del servei un cop ha finalitzat la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp opcional**. **Paràmetre en fase de desenvolupament**
 *	**token**: El token que ens ha retornat el servei d'inici del procés. **Camp obligatori**.
 *	**descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
 *	**responseB64**: Permet indicar si es vol que la resposta es retorni en base64 o en una URL per descarregar-la. Els possibles valors són `true` o `false`. Per defecte aquest paràmetre pren el valor `true`. No és obligatori.
+
+**Nota**: És obligatori informar el camp **callbackUrl** o el **redirectUrl**.
 
 ### 2.4. Camps de la configuració de l'Applet
 
