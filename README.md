@@ -10,7 +10,7 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 *	Imatge amb el logo de l'aplicació usuaria. Mida màxima 300 width x 100 height.
 *	Imatge amb el logo que apareixerà a l'applet. Mida màxima 300 width x 100 height. *No obligatori*.
 *	Clau per a identificar l'aplicació com usuaria del servei.
-*	TODO: Allow Native
+*	Allow Native, per si es permet el funcionament del servei amb l'aplicació nativa. **en desenvolupament**
 
 ## Diagrama de flux
 
