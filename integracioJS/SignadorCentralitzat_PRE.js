@@ -93,7 +93,7 @@ var signadorCentralitzat = (function (jQry){
 		var documentToSign; // no default... es obligatori
 		
 		var hashAlgorithm = 'SHA-1';				
-		var callbackUrl; // no default... es obligatori
+		var redirectUrl; // no default... es obligatori
 		var token; 
 		var descripcio = 'Operació de signatura' // default generic
 		var responseB64;
@@ -187,12 +187,12 @@ var signadorCentralitzat = (function (jQry){
 		/**
 		 * 
 		 */
-		cfg.setCallbackUrl = function (cb){
+		cfg.setRedirectUrl = function (cb){
 			if( cb ){
-				callbackUrl = cb;
+				redirectUrl = cb;
 			}
 			
-			console.log('[setCallbackUrl] arg: ' + cb + ' callbackUrl : ' + callbackUrl);
+			console.log('[setRedirectUrl] arg: ' + cb + ' redirectUrl : ' + redirectUrl);
 			return this;
 		};
 		
@@ -249,7 +249,7 @@ var signadorCentralitzat = (function (jQry){
 		 */
 		cfg.createConfig = function () {
 			return { 
-						callbackUrl : callbackUrl,
+						redirectUrl : redirectUrl,
 						token : token,
 						descripcio : descripcio,
 						responseB64 : responseB64,
@@ -268,7 +268,7 @@ var signadorCentralitzat = (function (jQry){
 		 */
 		cfg.createApsaConfig = function (){
 			return { 
-				callbackUrl : callbackUrl,
+				redirectUrl : redirectUrl,
 				token : token,
 				descripcio : descripcio,
 				responseB64 : responseB64,
@@ -293,7 +293,7 @@ var signadorCentralitzat = (function (jQry){
 	 */
 	sc.signar = function (data) {
 		
-		// obrim la finestra aqui pq si ho fem dins del callback
+		// obrim la finestra aqui pq si ho fem dins del redirect
 		// de la crida ajax el context canvi i tot i que l'acció vingui
 		// del onclick del user tindriem problemes amb el bloqueig de popups
 		var newWindow = window.open();
@@ -355,7 +355,7 @@ var signadorCentralitzat = (function (jQry){
 	 * i el tipus de document B64FILECONTENT
 	 * I com a paràmetres d'entrada és necessari que l'ojecte json 
 	 * contingui els següents camps: 
-	 *  - callbackUrl: La Url de callback necessària per informar de la resposta.
+	 *  - redirectUrl: La Url de redireccio necessària per informar de la resposta.
 	 * 	- token: El token del procés de signatura.
 	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: PDF a signar en UTF-8 codificat en base64.
@@ -366,7 +366,7 @@ var signadorCentralitzat = (function (jQry){
 				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
 						.setToken( params.token )
-							.setCallbackUrl( params.callbackUrl );
+							.setRedirectUrl( params.redirectUrl );
 		
 		// invoke
 		sc.signar( cfg.createConfig() );
@@ -379,7 +379,7 @@ var signadorCentralitzat = (function (jQry){
 	 * i el tipus de de document HASHDOC
 	 * I com a paràmetres d'entrada és necessari que l'ojecte json 
 	 * contingui els següents camps: 
-	 *  - callbackUrl: La Url de callback necessària per informar de la resposta.
+	 *  - redirectUrl: La Url de redirect necessària per informar de la resposta.
 	 * 	- token: El token del procés de signatura.
 	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: HASH a signar codificat en base64.
@@ -390,7 +390,7 @@ var signadorCentralitzat = (function (jQry){
 				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
 						.setToken( params.token )
-							.setCallbackUrl( params.callbackUrl );
+							.setRedirectUrl( params.redirectUrl );
 				
 		// invoke
 		sc.signar( cfg.createConfig() );
@@ -403,7 +403,7 @@ var signadorCentralitzat = (function (jQry){
 	 * i el tipus de document HASHDOC
 	 * I com a paràmetres d'entrada és necessari que l'ojecte json 
 	 * contingui els següents camps: 
-	 *  - callbackUrl: La Url de callback necessària per informar de la resposta.
+	 *  - redirectUrl: La Url de redireccio necessària per informar de la resposta.
 	 * 	- token: El token del procés de signatura.
 	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: HASH a signar codificat en base64.
@@ -414,7 +414,7 @@ var signadorCentralitzat = (function (jQry){
 				.setDocumentName( params.doc_name )
 					.setDocumentToSign( params.document_to_sign )
 						.setToken( params.token )
-							.setCallbackUrl( params.callbackUrl );
+							.setRedirectUrl( params.redirectUrl );
 				
 		// invoke
 		sc.signar( cfg.createConfig() );
@@ -425,7 +425,7 @@ var signadorCentralitzat = (function (jQry){
 	 *
 	 * I com a paràmetres d'entrada és necessari que l'ojecte json 
 	 * contingui els següents camps: 
-	 *  - callbackUrl: La Url de callback necessària per informar de la resposta.
+	 *  - redirectUrl: La Url de redirect necessària per informar de la resposta.
 	 * 	- token: El token del procés de signatura.
 	 *  - doc_name: Nom del document.
 	 * 	- hash_a_xifrar: HASH a signar codificat en base64.
@@ -434,7 +434,7 @@ var signadorCentralitzat = (function (jQry){
 		var cfg = this.cfg.setDocumentName( params.doc_name )
 				.setDocumentToSign( params.hash_a_xifrar )
 					.setToken( params.token )
-						.setCallbackUrl( params.callbackUrl );
+						.setRedirectUrl( params.redirectUrl );
 			
 		// invoke
 		sc.signar( cfg.createApsaConfig() );
@@ -457,7 +457,7 @@ var signadorCentralitzat = (function (jQry){
 	 * Aquest mètode és totalment configurable i accepta tots els paràmetres 
 	 * permesos per l'APSA.
 	 * Els paràmetres permesos que poden contenir el JSON són els següents camps:: 
-	 *  - callbackUrl: La Url de callback necessària per informar de la resposta.
+	 *  - redirectUrl: La Url de redireccio necessària per informar de la resposta.
 	 * 	- token: El token del procés de signatura.
 	 *  - descripcio: descripció del procés de signatura.
 	 *  - responseB64: Si es vol rebre la resposta en base64 o amb la url de descarrega 
@@ -467,7 +467,7 @@ var signadorCentralitzat = (function (jQry){
 	 *	- signingCertificate: Certificat per signar.
 	 */
 	sc.signApsa = function( params ){
-		var cfg = this.cfg.setCallbackUrl( params.callbackUrl )
+		var cfg = this.cfg.setRedirectUrl( params.redirectUrl )
 					.setToken( params.token )
 					.setDescripcio( params.descripcio )
 					.setResponseB64( params.responseB64 )
