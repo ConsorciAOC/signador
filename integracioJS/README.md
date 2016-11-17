@@ -26,7 +26,7 @@ Aquests mètodes esperen tots un objecte de tipus _JSON_ amb el següent format:
 
 ```json
 {
-  "callbackUrl": "",
+  "redirectUrl": "",
   "token":  "",
   "doc_name": "",
   "document_to_sign": ""
@@ -34,7 +34,7 @@ Aquests mètodes esperen tots un objecte de tipus _JSON_ amb el següent format:
 ```
 
 Descripció dels camps _JSON_:
-*	**callbackUrl**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
+*	**redirectUrl**: Url per fer la redirecció del servei un cop ha finalitzat la operació de signatura.
 *	**token**: El token que ens ha retornat el servei d'inici del procés.
 *	**doc_name**: Nom del document.
 *	**document_to_sign**: Document original a signar n UTF-8 codificat en base64.
@@ -49,7 +49,7 @@ El format dels paràmetres de l'objecte _JSON_ que esperen els mètodes és:
 
 ```json
 {
-  "callbackUrl": "",
+  "redirectUrl": "",
   "token":  "",
   "doc_name": "",
   "hash_a_xifrar": ""
@@ -62,7 +62,7 @@ El format dels paràmetres de l'objecte _JSON_ que espera és el següent:
 
 ````javascript
 {
-  "callbackUrl": "",
+  "redirectUrl": "",
   "token":  "",
   "descripcio": "", // no obligatori. valor per defecte: 'Operació de signatura'
   "responseB64": "", // no obligatori.
@@ -74,7 +74,7 @@ El format dels paràmetres de l'objecte _JSON_ que espera és el següent:
 ````
 
 Descripció dels camps _JSON_:
-*	**callbackUrl**: Url del servei a on realitzarà la crida per informar del resultat de la operació de signatura.
+*	**redirectUrl**: Url per fer la redirecció del servei un cop ha finalitzat la operació de signatura.
 *	**token**: El token que ens ha retornat el servei d'inici del procés.
 *	**descripcio**: Camp de text amb la descripció del procés de signatura.
 *	**responseB64**: Camp per indicar si es vol que la resposta es retorni en base64 o en una _URL_ per descarregar-la.
@@ -96,7 +96,7 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.sign( { callbackUrl: $('#idUrlCallback').val(), 
+		signadorCentralitzat.sign( { redirectUrl: $('#idUrlRedirect').val(), 
 		                              token: $('#tokenId').val() , 
 		                              descripcio: $('#idDescripcio').val(),
 		                              applet_cfg: {
@@ -121,7 +121,7 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signPDF( { callbackUrl: $('#idUrlCallback').val(), 
+		signadorCentralitzat.signPDF( { redirectUrl: $('#idUrlRedirect').val(), 
 		                                token: $('#tokenId').val() , 
 		                                doc_name: $('#idNomDoc').val(), 
 		                                document_to_sign: $('#idDoc').val() });
@@ -139,7 +139,7 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signXAdESHash( { callbackUrl: $('#idUrlCallback').val(), 
+		signadorCentralitzat.signXAdESHash( { redirectUrl: $('#idUrlRedirect').val(), 
 		                                      token: $('#tokenId').val() , 
 		                                      doc_name: $('#idNomDoc').val(), 
 		                                      document_to_sign: $('#idDoc').val() });
@@ -157,7 +157,7 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signCAdESHash( { callbackUrl: $('#idUrlCallback').val(), 
+		signadorCentralitzat.signCAdESHash( { redirectUrl: $('#idUrlRedirect').val(), 
 		                                      token: $('#tokenId').val() , 
 		                                      doc_name: $('#idNomDoc').val(), 
 		                                      document_to_sign: $('#idDoc').val()});
@@ -175,7 +175,7 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signApsaHash( { callbackUrl: $('#idUrlCallback').val(), 
+		signadorCentralitzat.signApsaHash( { redirectUrl: $('#idUrlRedirect').val(), 
 		                                     token: $('#tokenId').val(),
 		                                     doc_name: $('#idNomDoc').val(), 
 		                                     hash_a_xifrar: $('#idHash').val()});
@@ -193,7 +193,7 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 <script type="text/javascript">
 		
 	$('#idBoto').click(function(){
-		signadorCentralitzat.signApsa( { callbackUrl: $('#idUrlCallback').val(), 
+		signadorCentralitzat.signApsa( { redirectUrl: $('#idUrlRedirect').val(), 
 		                                 token: $('#tokenId').val(),
 		                                 descripcio: $('#idDescripcio').val(),
 		                                 keystore_type: $('#idKeystore').val(), 
