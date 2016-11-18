@@ -12,7 +12,7 @@ Donem suport a l'execució del *JNLP* per a ser executat en els següents sistem
  - *Ubuntu* - Versions [12.04 i superiors](https://wiki.ubuntu.com/Releases) 
  - *Windows* - Versions client [Vista i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Client_versions)
  - *Windows* - Versions servidor [Server2003 R2 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Server_versions)
- - *MAC OS X* - 
+ - *MAC OS X* - Versions [OS.X 10.9 i superiors](https://en.wikipedia.org/wiki/MacOS#Release_history)
  
 **DISCLAIMER**: Igual que en el cas dels navegadors pot funcionar en altres versions de sistemes operatius (e.g. altres distribucions de Linux com pot ser [Mint](https://www.linuxmint.com/)), però també igual que en el cas dels navegadors, aquestes altres versions no rebran suport per part nostra en cas de problemes d'execució.
  
