@@ -378,7 +378,7 @@ Si l'usuari té instal·lada l'aplicació nativa la signatura és realitzara amb
 
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
-En [l'apartat de compatibilitat](https://github.com/ConsorciAOC/signador#8-todo-compatibilitat) s'explica les compatibilitat i el funcionament d'aquests dos mètodes per a realitzar la signatura.
+En [l'apartat de compatibilitat](https://github.com/ConsorciAOC/signador#8-compatibilitat) s'explica les compatibilitat i el funcionament d'aquests dos mètodes per a realitzar la signatura.
 
 ## 5. Recuperar la signatura per part de l'aplicació
 
@@ -498,13 +498,11 @@ A banda de la **Demo** a tall d'exemple també es mostren els enllaços del **Si
 
 ## 8. Compatibilitat
 
-En aquest apartat és defineix les eines que portaran a terme la signatura en la màquina d'usuari així com la compatibilitat de les mateixes amb els diferents sistemes operatius, navegadors etc.
+En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia aplicació així com les eines que portaran a terme la signatura en la màquina d'usuari, en aquestes guies s'explica la compatibilitat del servei i de les eines pel que fa a versions de sistemes operatius, navegadors, etc que suporta:
 
-### 8.1 TODO: Sistemes operatius (JNLP/App nativa)
-### 8.2 TODO: versions java (JNLP/App nativa)
-### 8.3 TODO: Navegadors
-### 8.4 TODO: PKCS11!!!
-### 8.5 TODO: Altres?
+### [8.1 Servei del signador](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/compatibilitatSignador.md)
+### [8.2 JNLP](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/jnlp.md)
+### 8.3 Nativa TODO
 
 ## Llibreria integradors
 
