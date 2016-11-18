@@ -38,13 +38,13 @@ La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les
 
 La resposta del servei _REST_ tindrà el següent format:
 
-````json
+```json
 {
 	"status": "",
 	"token": "",
 	"message": ""
 }
-````
+```
 Els possibles valors dels camps són:
 *	**status**: **OK** o **KO** en funció de si ha anat correctament o no.
 *	**token**: El token generat pel servei necessari per a iniciar el procés de signatura.
@@ -123,12 +123,11 @@ En aquesta crida també és necessari afegir la capçalera http **Origin** amb e
 
 ### 2.1. StartSignProcess: Applet de signatura
 
-La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte per a iniciar el procés de signatura amb l'applet té la següent forma:
+La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte per a iniciar el procés de signatura amb l'applet té la següent forma. És **important remarcar** que en funció de si s'informa el camp `callbackUrl` o `redirectUrl` canviarà la gestió del flux del usuari i la recuperació de la signatura per part de l'aplicació client.
 
-````json
+```javascript
 {
-	"callbackUrl": "",
-	"redirectUrl": "",
+	"callbackUrl": "" o "redirectUrl": "", // S'ha d'informar o un o l'altre
 	"token": "",
 	"descripcio": "",
 	"responseB64": "",
@@ -187,7 +186,7 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 		}
 	}
 }
-````
+```
 
 Al següent apartat és descriu amb més detall l'ús de cadascún d'aquests camps, notis només que la gran part dels mateixos és opcional i no és necessari enviar-los per a poder iniciar el procés correctament.
 
@@ -195,12 +194,11 @@ Podeu trobar també un exemple simple en _Groovy_ de com invocar el `/startSignP
 
 ### 2.2. StartSignProcess: Applet de PSA (APSA light)
 
-Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON_ a enviar té la següent forma.
+Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON_ a enviar té la següent forma. És **important remarcar** que en funció de si s'informa el camp `callbackUrl` o `redirectUrl` canviarà la gestió del flux del usuari i la recuperació de la signatura per part de l'aplicació client.
 
-````json
+```javascript
 {
-	"callbackUrl": "",
-	"redirectUrl": "",
+	"callbackUrl": "" o "redirectUrl": "", // S'ha d'informar o un o l'altre
 	"token": "",
 	"descripcio": "",
 	"responseB64": "",
@@ -211,18 +209,18 @@ Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON
 			"signingCertificate": ""
 	}
 }
-````
+```
 
 ### 2.3. Camps comuns de la configuració
 
 Descripció dels camps _JSON_ comuns de la configuració:
-*	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp opcional**.
-* 	**redirectUrl**: Url per fer la redirecció del servei un cop ha finalitzat la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. **Camp opcional**. **Paràmetre en fase de desenvolupament**
+*	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat.
+* 	**redirectUrl**: Url per fer la redirecció del servei un cop ha finalitzat la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat.
 *	**token**: El token que ens ha retornat el servei d'inici del procés. **Camp obligatori**.
 *	**descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
 *	**responseB64**: Permet indicar si es vol que la resposta es retorni en base64 o en una URL per descarregar-la. Els possibles valors són `true` o `false`. Per defecte aquest paràmetre pren el valor `true`. No és obligatori.
 
-**Nota**: És obligatori informar el camp **callbackUrl** o el **redirectUrl**.
+**Nota: És obligatori informar el camp** `callbackUrl` **o el** `redirectUrl`, **no s'han d'informar els dos**.
 
 ### 2.4. Camps de la configuració de l'Applet
 
@@ -354,13 +352,13 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 
 La resposta del servei _REST_ a aquestes crides tindrà el següent format:
 
-````json
+```json
 {
 	"status": "OK/KO",
 	"token": "12345",
 	"message": ""
 }
-````
+```
 
 Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
@@ -376,22 +374,36 @@ Un cop s'ha aconseguit el `token` i creada la configuració de signatura vincula
 
 Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un [**JNLP**](https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html).
 
-TODO: Nativa
-
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
-## 5. Callback Resposta (**en desenvolupament**)
+TODO: Nativa
 
-Un cop el client hagi executat la signatura a través del **JNLP**, el servei del signador rebrà la signatura i en funció dels paràmetres de configuració, per si s'ha informat el paràmetre **callbackURL** o **redirectURL** realitzarà una cosa o una altre.
+## 5. Recuperar la signatura per part de l'aplicació
 
-En cas que l'usuari hagi informat el paràmetre **redirectURL**, l'aplicació realitzarà la redirecció a la URL que s'hagi informat.
+Un cop el client hagi realitzat la signatura a través del **JNLP**, el servei del signador rebrà la signatura i en funció de la configuració retornarà la signatura d'una forma o un altre. Els paràmetres que marquen la configuració del retorn són `callbackUrl` o `redirectUrl`, la diferència s'explica a continuació.
 
-En la URL de redirecció informada, afegirem el paràmetre `token_id` amb el valor del token.
+### 5.1 Opcio 1: `redirectUrl` : Redirecció *GET* 
 
-I en el cas que l'usuari hagi informat el paràmetre **callbackURL**, l'aplicació al rebre la resposta respondrà a l'aplicació client utilitzant la URL de callback que s'hagi informat en els paràmetres de configuració. El servei retornarà la resposta amb la signatura generada en cas que hagi anat bé o el motiu de l'error en cas que no.
+En cas que en el `/StartSignProcess` s'hagi informat el paràmetre `redirectUrl`, l'aplicació del signador farà una redirecció a la url informada retornant el flux a l'aplicació client. En la url de redirecció, s'afegira el paràmetre `token_id` amb el valor del token perquè l'aplicació pugui saber de quina operació és tracta, per exemple `https://applicacio/redirect?token_id=bec40de2-510f-4f19-bdfd-2a6595d708b7`.
 
-El format del _JSON_ que enviarem a l'endpoint informat será el següent:
-````json
+Un cop la aplicació client prengui el control podrà demanar la resposta de l'operació a través del servei _REST_ `/getSignature` descrit a continuació.
+
+### 5.1.1 `getSignature`: Servei _REST_ per consultar el resultat de l'operació
+
+Per tal d'obtenir la resposta de la signatura s'ha de fer una crida al servei _REST_ ubicat a la següent URL: 
+
+* Entorn PRE: https://signador-pre.aoc.cat/signador/getSignature?identificador=token
+* Entorn PRO: https://signador.aoc.cat/signador/getSignature?identificador=token
+
+La crida és simplement un _GET_ passant com a paràmetre un `identificador` amb el valor del `token` rebut en la url de redirecció, igual que la resta de crides també ha d'incloure les següents capçaleres:
+
+* **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
+* **Origin**: Nom del domini que realitzarà les peticions.
+* **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
+
+La resposta d'aquest servei tindrà el següent format.
+
+```json
 {
    "status": "OK/KO",
    "token": "id del token",
@@ -399,7 +411,34 @@ El format del _JSON_ que enviarem a l'endpoint informat será el següent:
    "type": "XML/CMS/PDF/HASH/ZIP",
    "error": "motiu de l'error"
 }
-````
+```
+Els possibles valors dels camps:
+*	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
+*	**token**: El token del procés de signatura.
+*	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
+*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/ZIP**.
+*	**error**: El motiu d'error en cas que no hagi anat correctament.
+
+En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, la resposta del servei tindrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
+
+**NOTES:** 
+* La consulta de la resposta només estarà disponible 15 dies.
+
+### 5.2 Opcio 2: `callbackUrl` : Callback *POST*
+
+A diferència de l'opció 1, en cas que l'aplicació client hagi informat el paràmetre `callbackURL`, quan l'usuari hagi finalitzat la signatura el servei respondrà a l'aplicació client utilitzant la URL de callback que s'hagi informat en els paràmetres de configuració i facilitarà la signatura en aquell endpoint via *POST*. El servei retornarà la resposta amb la signatura generada en cas que hagi anat bé o el motiu de l'error en cas que no.
+
+El format del _JSON_ que enviarem a l'endpoint informat será el següent:
+
+```json
+{
+   "status": "OK/KO",
+   "token": "id del token",
+   "signResult": "resultat de la signatura",
+   "type": "XML/CMS/PDF/HASH/ZIP",
+   "error": "motiu de l'error"
+}
+```
 Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
@@ -415,9 +454,10 @@ En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci va
 * És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
 * No hi ha política de reintents pel que fa a l'enviament de la signatura per part del signador a l'aplicació client, en cas que hi hagi algún problema amb aquest, s'haurà de tornar a iniciar l'operació.
 
-### 5.1 URL descàrrega
+### 5.2.1 URL descàrrega
 
-En cas que l'usuari hagi iniciat el procés posant en el paràmetre `responseB64` el valor `false`, rebrà en el `signResult` una URL a on es descarregarà la resposta realitzant simplement un _GET_ de la URL, a més s'han d'incloure obligatòriament les següents capçaleres http:
+Per alleugerir el pes del *POST* es possible iniciar el procés indicant en el paràmetre `responseB64` amb valor `false`, d'aquesta forma en la resposta es rebrà en el `signResult` una URL amb la qual es podrà descarregar la resposta realitzant simplement un _GET_  inclohent les següents capçaleres http:
+
 * **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
@@ -425,37 +465,9 @@ En cas que l'usuari hagi iniciat el procés posant en el paràmetre `responseB64
 **NOTES:** 
 * La descàrrega de la resposta només estarà disponible 15 dies.
 
-### 5.2 GetSignature: Servei de consulta de la resposta (**en desenvolupament**)
+### 5.3 Conclusions
 
-Per tal d'obtenir la resposta de la signatura s'ha de fer una crida al servei _REST_ ubicat a la següent URL: 
-
-* Entorn PRE: https://signador-pre.aoc.cat/signador/getSignature?identificador=token
-* Entorn PRO: https://signador.aoc.cat/signador/getSignature?identificador=token
-
-La crida és simplement un _GET_ passant com a paràmetre un `identificador` amb el valor del `token`, a més també ha d'incloure obligatòriament la següent capçalera http:
-
-* **Origin**: Nom del domini que realitzarà les peticions.
-
-La resposta del servei _REST_ tindrà el següent format:
-
-````json
-{
-   "status": "OK/KO",
-   "token": "id del token",
-   "signResult": "resultat de la signatura",
-   "type": "XML/CMS/PDF/HASH/ZIP",
-   "error": "motiu de l'error"
-}
-````
-Els possibles valors dels camps:
-*	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
-*	**token**: El token del procés de signatura.
-*	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
-*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/ZIP**.
-*	**error**: El motiu d'error en cas que no hagi anat correctament.
-
-**NOTES:** 
-* La consulta de la resposta només estarà disponible 15 dies.
+La primera solució implementada va ser la **Opcio 2: `callbackUrl` : Callback *POST***, desprès però de veure les necessitats de les aplicacions, la problemàtica que genera aquesta solució (possibles errors de timeout en el _POST_ de resposta, polling _ajax_ de l'aplicació client per tal de mantenir l'estat de l'operació, ...) i el fet de que alguns clients ens han traslladat el seu neguit al respecte s'ha decidit implementar l'altre via: **Opcio 1: `redirectUrl` : Redirecció *GET*** aquesta via és més neta, genera menys trafic i per tant té un millor rendiment, i permet un millor flux de cara a l'usuari per a la gestió de la signatura. Per tant recomanem en la mesura del possible utilitzar la opció del `redirectUrl`.
 
 ## 6. Demo / Serveis integrats
 
