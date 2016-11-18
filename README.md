@@ -16,7 +16,7 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 
 Per tal de donar context i entendre com funciona el servei a continuació és mostra un esquema del flux d'operació d'una aplicació contra el signador centralitzat per a intentar il·lustrar les crides i el funcionament del mateix:
 
-![Diagrama flux signador centralitzat](/diagrama flux.png?raw=true "Diagrama flux signador centralitzat")
+![Diagrama flux signador centralitzat](/imgs/diagrama flux.png?raw=true "Diagrama flux signador centralitzat")
 
 ## Ús del servei
 
@@ -372,11 +372,13 @@ Un cop s'ha aconseguit el `token` i creada la configuració de signatura vincula
 * Entorn PRE: https://signador-pre.aoc.cat/signador/?id=token
 * Entorn PRO: https://signador.aoc.cat/signador/?id=token
 
-Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un [**JNLP**](https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html).
+Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un [**JNLP**](https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html) o d'una **aplicació nativa** que properament estarà disponible.
+
+Si l'usuari té instal·lada l'aplicació nativa la signatura és realitzara amb aquest component, cas que no la signatura es farà a través del _JNLP_
 
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
-TODO: Nativa
+En [l'apartat de compatibilitat](https://github.com/ConsorciAOC/signador#8-todo-compatibilitat) s'explica les compatibilitat i el funcionament d'aquests dos mètodes per a realitzar la signatura.
 
 ## 5. Recuperar la signatura per part de l'aplicació
 
@@ -467,16 +469,23 @@ Per alleugerir el pes del *POST* es possible iniciar el procés indicant en el p
 
 ### 5.3 Conclusions
 
-La primera solució implementada va ser la **Opcio 2: `callbackUrl` : Callback *POST***, desprès però de veure les necessitats de les aplicacions, la problemàtica que genera aquesta solució (possibles errors de timeout en el _POST_ de resposta, polling _ajax_ de l'aplicació client per tal de mantenir l'estat de l'operació, ...) i el fet de que alguns clients ens han traslladat el seu neguit al respecte s'ha decidit implementar l'altre via: **Opcio 1: `redirectUrl` : Redirecció *GET*** aquesta via és més neta, genera menys trafic i per tant té un millor rendiment, i permet un millor flux de cara a l'usuari per a la gestió de la signatura. Per tant recomanem en la mesura del possible utilitzar la opció del `redirectUrl`.
+La primera solució implementada va ser la **Opcio 2: `callbackUrl` : Callback _POST_**, desprès però de veure les necessitats de les aplicacions, la problemàtica que genera aquesta solució (possibles errors de timeout en el _POST_ de resposta, polling _ajax_ de l'aplicació client per tal de mantenir l'estat de l'operació, ...) i el fet de que alguns clients ens han traslladat el seu neguit al respecte s'ha decidit implementar l'altre via: **Opcio 1: `redirectUrl` : Redirecció _GET_** aquesta via és més neta, genera menys trafic i per tant té un millor rendiment, i permet un millor flux de cara a l'usuari per a la gestió de la signatura. Per tant recomanem en la mesura del possible utilitzar la opció del `redirectUrl`.
 
 ## 6. Demo / Serveis integrats
 
-Podeu veure una **Demo** d'una integració del servei a les següents Urls:
+Podeu veure una **Demo** d'una integració del servei amb les dues modalitats als següents enllaços:
 
-* [Demo preproducció](https://signador-pre.aoc.cat/signador/demo)
-* [Demo producció](https://signador.aoc.cat/signador/demo)
+**Opcio 1: `redirectUrl` : Redirecció _GET_**
 
-A banda de la **Demo** a tall d'exemple també es mostren les Urls del **Signasuite** que és un servei de validació/creació de signatures etc. que properament estarà també integrat amb el servei del signador:
+* [Demo preproducció GET](https://signador-pre.aoc.cat/signador/demoGet)
+* [Demo producció GET](https://signador.aoc.cat/signador/demoGet)
+
+**Opcio 2: `callbackUrl` : Callback _POST_**
+
+* [Demo preproducció POST](https://signador-pre.aoc.cat/signador/demo)
+* [Demo producció POST](https://signador.aoc.cat/signador/demo)
+
+A banda de la **Demo** a tall d'exemple també es mostren els enllaços del **Signasuite** que és un servei de validació/creació de signatures etc. que properament estarà també integrat amb el servei del signador:
 
 * [Signasuite preproducció](http://signasuite-pre.aoc.cat/signasuite/inici)
 * [Signasuite producció](http://signasuite.aoc.cat/signasuite/inici)
@@ -487,7 +496,9 @@ A banda de la **Demo** a tall d'exemple també es mostren les Urls del **Signasu
 * Es recomanable per a l'agilitat del servei i de les pròpies aplicacions usuaris (tenint també en compte la restricció de mida dels documents a signar) signar sempre que sigui possible el resum criptogràfic del document en comptes del document sencer. D'aquesta manera el servei funcionarà de forma més àgil i els temps de resposta tant per l'aplicació client com per a l'usuari final que realitza la signatura seràn més optims. No s'ha d'oblidar també que finalment és l'aplicació client la que haurà de gestionar aquestes signatures i per qualsevol aplicació sempre serà més fàcil treballar amb signatures de pocs KB que de MB.
 * De moment no hi ha cap restricció al respecte, però s'exigirà en un futur, que les aplicacions que s'integrin amb el servei utilitzin protocol HTTPS tant en les crides com en el callback encarregat de rebre la signatura.
 
-## 8. TODO: Compatibilitat
+## 8. Compatibilitat
+
+En aquest apartat és defineix les eines que portaran a terme la signatura en la màquina d'usuari així com la compatibilitat de les mateixes amb els diferents sistemes operatius, navegadors etc.
 
 ### 8.1 TODO: Sistemes operatius (JNLP/App nativa)
 ### 8.2 TODO: versions java (JNLP/App nativa)
