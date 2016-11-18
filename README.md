@@ -14,9 +14,15 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 
 ## Diagrama de flux
 
-Per tal de donar context i entendre com funciona el servei a continuació és mostra un esquema del flux d'operació d'una aplicació contra el signador centralitzat per a intentar il·lustrar les crides i el funcionament del mateix:
+Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvi la forma en que l'aplicació recupera la signatura, ambdués formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei a continuació és mostren els diagrames de flux d'operació d'una aplicació contra el signador per a intentar il·lustrar les crides i el funcionament del mateix per als dos casos:
 
-![Diagrama flux signador centralitzat](/imgs/diagrama flux.png?raw=true "Diagrama flux signador centralitzat")
+### Diagrama de flux amb redirect
+
+![Diagrama flux signador amb redirect](/imgs/redirectFlow.png?raw=true "Diagrama flux signador amb redirect")
+
+### Diagrama de flux amb callback
+
+![Diagrama flux signador amb callback](/imgs/callbackFlow.png?raw=true "Diagrama flux signador amb callback")
 
 ## Ús del servei
 
