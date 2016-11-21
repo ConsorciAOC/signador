@@ -13,7 +13,7 @@ Els altres navegadors que suportem
  
 Donat que no disposem d'aplicació mobil per tal d'accedir al magatzem de certificats i poder realitzar la signatura, tot i que la aplicació web pot ser accedida amb navegadors mobils no donem suport als mateixos ja que no es pot finalitzar l'operació utilitzant un dispositiu mobil.
 
-**DISCLAIMER:** Si disposes d'un navegador diferent dels especificats anteriorment (e.g. *Opera*, versions antigues) es possible que l'aplicació funcioni correctament, però en cas de necessitar del nostre suport només serà disponible per a les versions/entorns específicats.
+**NOTA:** Si disposes d'un navegador diferent dels especificats anteriorment (e.g. *Opera*, o versions antigues dels especificats) es possible que l'aplicació funcioni correctament, però en cas de necessitar del nostre suport només serà disponible per a les versions/entorns específicats.
 
 <h3>Perquè només aquestes versions?</h3>
 
