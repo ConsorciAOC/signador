@@ -508,7 +508,7 @@ En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia 
 
 ### [8.1 Servei del signador](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/compatibilitatSignador.md)
 ### [8.2 JNLP](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/jnlp.md)
-### [8.3 Nativa](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/nativa.md)**en desenvolupament**
+### [8.3 Nativa](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/nativa.md) **en desenvolupament**
 
 ## Llibreria integradors
 
