@@ -14,7 +14,7 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 
 ## Diagrama de flux
 
-Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvi la forma en que l'aplicació recupera la signatura, ambdués formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei a continuació és mostren els diagrames de flux d'operació d'una aplicació contra el signador per a intentar il·lustrar les crides i el funcionament del mateix per als dos casos:
+Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvia la forma en quèwe l'aplicació recupera la signatura, ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei a continuació és mostren els diagrames de flux d'operació d'una aplicació contra el signador per a intentar il·lustrar les crides i el funcionament del mateix per als dos casos:
 
 ### Diagrama de flux amb redirect
 
@@ -508,7 +508,7 @@ En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia 
 
 ### [8.1 Servei del signador](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/compatibilitatSignador.md)
 ### [8.2 JNLP](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/jnlp.md)
-### 8.3 Nativa TODO
+### [8.3 Nativa **en desenvolupament**](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/nativa.md)
 
 ## Llibreria integradors
 
