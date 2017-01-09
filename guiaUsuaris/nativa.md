@@ -1,6 +1,6 @@
 <h2>Què necessito per utilitzar l'<i>Aplicació Nativa</i>?</h2>
 
-L'aplicació nativa és una aplicació d'escriptori que s'instal·la en la màquina del client i s'executa com a servei (en segon pla). D'aquesta manera el canvi de la versió **JNLP** a la **Nativa** és totalment transparent per l'usuari.
+L'aplicació nativa és una aplicació d'escriptori que s'instal·la en la màquina del client i s'executa com a servei (en segon pla). 
 
 <h3>Descarrega</h3>
 
@@ -52,6 +52,12 @@ En cas contrari, es mostrarà el següent error:
 **Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
 <h3>Funcionament</h3>
+
+Un cop s'ha instal·lat l'aplicació i aquesta funciona correctament, el canvi del funcionament de la versió **JNLP** a la **Nativa** és totalment transparent per l'usuari. 
+
+Els únics canvis són visuals, ja que no es descarrega el **JNLP**, a l'usuari se li mostra un llistat amb tots els certificats dels que disposa i només ha de clicar a signar. A continuació es mostra un exemple de la pantalla de funcionament del signador en cas de tenir la nativa instal·lada.
+
+![nativaSample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/nativaSample.png)
 
 <h3>Desinstal·lació</h3>
 
