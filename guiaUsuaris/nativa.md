@@ -55,7 +55,9 @@ En cas contrari, es mostrarà el següent error:
 
 Un cop s'ha instal·lat l'aplicació i aquesta funciona correctament, el canvi del funcionament de la versió **JNLP** a la **Nativa** és totalment transparent per l'usuari. 
 
-Els únics canvis són visuals, ja que no es descarrega el **JNLP**, a l'usuari se li mostra un llistat amb tots els certificats dels que disposa i només ha de clicar a signar. A continuació es mostra un exemple de la pantalla de funcionament del signador en cas de tenir la nativa instal·lada.
+Els únics canvis són visuals, ja que no es descarrega cap fitxer com en el cas de la versió **JNLP**.
+A l'usuari se li mostra un llistat dels certificats dels que disposa i només ha d'escollir el que vol per signar. 
+A continuació es mostra un exemple de la pantalla de funcionament del signador en cas de tenir la nativa instal·lada.
 
 ![nativaSample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/nativaSample.png)
 
