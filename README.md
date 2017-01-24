@@ -433,6 +433,7 @@ En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci va
 * La consulta de la resposta només estarà disponible 15 dies.
 
 ### 5.2 Opcio 2: `callbackUrl` : Callback *POST*
+<h3>@Deprecated No fer servir l'opció 2 per a noves integracions</h3>
 
 A diferència de l'opció 1, en cas que l'aplicació client hagi informat el paràmetre `callbackURL`, quan l'usuari hagi finalitzat la signatura el servei respondrà a l'aplicació client utilitzant la URL de callback que s'hagi informat en els paràmetres de configuració i facilitarà la signatura en aquell endpoint via *POST*. El servei retornarà la resposta amb la signatura generada en cas que hagi anat bé o el motiu de l'error en cas que no.
 
@@ -486,7 +487,9 @@ Podeu veure una **Demo** d'una integració del servei amb les dues modalitats al
 * [Demo preproducció GET](https://signador-pre.aoc.cat/signador/demoGet)
 * [Demo producció GET](https://signador.aoc.cat/signador/demoGet)
 
+
 **Opcio 2: `callbackUrl` : Callback _POST_**
+<h3>@Deprecated No fer servir l'opció 2 per a noves integracions</h3>
 
 * [Demo preproducció POST](https://signador-pre.aoc.cat/signador/demo)
 * [Demo producció POST](https://signador.aoc.cat/signador/demo)
