@@ -86,7 +86,7 @@ byte[] digest = mac.doFinal(dades.getBytes())
 digest.encodeBase64().toString()
 ```
 
-De la mateixa forma en **Java** (ometen `try/catch`, `main` etc):
+De la mateixa forma en **Java**:
 
 ```java
 import javax.crypto.Mac;
@@ -95,19 +95,24 @@ import java.util.Base64.Encoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-String domini = "http://ajuntament.cat";
-SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-String date = sdf.format(new Date());
-String dades = domini + "_" + date;
+public class BustiaNotificacionsController {
 
-String clau = "legalizeit";
-String algoritme = "HmacSHA256";
-Mac mac = Mac.getInstance(algoritme);
-SecretKeySpec secretKeySpec = new SecretKeySpec(clau.getBytes(), algoritme);
-mac.init(secretKeySpec);
-byte[] digest = mac.doFinal(dades.getBytes());
-Encoder encoder = java.util.Base64.getEncoder();
-encoder.encodeToString(digest);
+     public static void main(String args[]){
+          String domini = "http://ajuntament.cat";
+          SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+          String date = sdf.format(new Date());
+          String dades = domini + "_" + date;
+          
+          String clau = "legalizeit";
+          String algoritme = "HmacSHA256";
+          Mac mac = Mac.getInstance(algoritme);
+          SecretKeySpec secretKeySpec = new SecretKeySpec(clau.getBytes(), algoritme);
+          mac.init(secretKeySpec);
+          byte[] digest = mac.doFinal(dades.getBytes());
+          Encoder encoder = java.util.Base64.getEncoder();
+          System.out.println(encoder.encodeToString(digest));
+     }
+}
 ```
 
 **Nota**: La classe `java.util.Base64` existeix a partir de la versió 8 de *Java*, si es desenvolupa amb una altre versió és pot utilitzat qualsevol altre codificador en *Base64* com per exemple el [`javax.xml.bind.DatatypeConverter`](https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html) que es troba dins de la versió 6 i 7 de *Java*. O el `org.apache.commons.codec.binary.Base64` del [Apache Commons Codec](http://commons.apache.org/proper/commons-codec/), o tants d'altres.
