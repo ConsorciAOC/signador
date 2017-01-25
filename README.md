@@ -416,7 +416,7 @@ La resposta d'aquest servei tindrà el següent format.
    "status": "OK/KO",
    "token": "id del token",
    "signResult": "resultat de la signatura",
-   "type": "XML/CMS/PDF/HASH/ZIP",
+   "type": "XML/CMS/PDF/HASH/TXT/ZIP",
    "error": "motiu de l'error"
 }
 ```
@@ -424,7 +424,7 @@ Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
 *	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
-*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/ZIP**.
+*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/TXT/ZIP**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
 En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, la resposta del servei tindrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
@@ -443,7 +443,7 @@ El format del _JSON_ que enviarem a l'endpoint informat será el següent:
    "status": "OK/KO",
    "token": "id del token",
    "signResult": "resultat de la signatura",
-   "type": "XML/CMS/PDF/HASH/ZIP",
+   "type": "XML/CMS/PDF/HASH/TXT/ZIP",
    "error": "motiu de l'error"
 }
 ```
@@ -451,7 +451,7 @@ Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
 *	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
-*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/ZIP**.
+*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/TXT/ZIP**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
 Serà necessari per tant per part de l'aplicació client d'implementar un endpoint que accepti rebre un _POST_ amb el contingut del _JSON_ especificat en aquesta punt. Amb la resposta anirà la capçalera http `Content-Type: application/json`.
