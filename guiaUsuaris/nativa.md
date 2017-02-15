@@ -34,6 +34,12 @@ Per instal.lar segueixi els següents passos de l'assistent d'instal·lació:
 
 ![assistent6Sample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/assistent6Sample.png)
 
+Un cop s'hagi instal·lat i arranqui l'aplicació, en cas que ho fagis en Windows li apareixerà el següent missatge:
+
+![installCert](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/installCert.PNG)
+
+Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat.
+
 <h3>Validació</h3>
 
 Un cop s'hagi instal·lat l'aplicació nativa, es pot realitzar un simple test de funcionament per comprovar que la instal·lació s'ha realitzat correctament.
