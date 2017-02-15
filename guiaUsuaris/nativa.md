@@ -57,6 +57,44 @@ En cas contrari, es mostrarà el següent error:
 
 **Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
+<h3>Instal·lar Certificat</h3>
+
+Perquè funcioni l'aplicació nativa és obligatori que s'instal·li el certificat en el seu navegador.
+
+<h4>Windows</h4>
+
+Per instal·lar-lo en el magatzem segueix els següents passos:
+
+<h4>Firefox</h4>
+
+Per instal·lar-lo en el magatzem segueix els següents passos:
+
+Obrir Firefox --> Accedir a Opcions 
+
+![opcionsFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/opcionsFF.png)
+
+Avançat --> Certificats --> Visualitza els Certificats
+
+![visualitzaFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/visualitzaFF.png)
+
+En la pantalla de certificats, accedir a la pestanya Entitats i clicar a Importar
+
+![importCertFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/importCertFF.png)
+
+Escull el certificat a importar.
+El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·lat l'aplicació nativa, per defecte és a: 
+C:\Program Files (x86)\Signador\lib\certificate
+
+![escullCertFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/escullCertFF.png)
+
+Un cop seleccionat el certificat, marqui a confiar per identificar a llocs web
+
+![confiarCertFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/confiarCertFF.png)
+
+Torni a realitzar una validació.
+
+**Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
+
 <h3>Funcionament</h3>
 
 Un cop s'ha instal·lat l'aplicació i aquesta funciona correctament, el canvi del funcionament de la versió **JNLP** a la **Nativa** és totalment transparent per l'usuari. 
