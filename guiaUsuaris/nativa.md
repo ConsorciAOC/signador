@@ -55,7 +55,9 @@ En cas contrari, es mostrarà el següent error:
 
 ![testKOSample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/testKOSample.png)
 
-**Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
+**NOTES:** 
+* Si acabeu d'instal·lar l'aplicació nativa reviseu el següent apartat d'instal·lar el cerfiticat.
+* Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
 <h3>Instal·lar Certificat</h3>
 
@@ -63,35 +65,75 @@ Perquè funcioni l'aplicació nativa és obligatori que s'instal·li el certific
 
 <h4>Windows</h4>
 
-Per instal·lar-lo en el magatzem segueix els següents passos:
+En el magatzem de _Windows_ s'instal·la automàticament, tot i que s'ha d'acceptar el certificat. En cas que no s'hagi acceptat, per fer-ho manualment segueix els següents passos:
+
+* Cerca en el buscador de windows: _Opcions d'internet_
+
+![opcionsWIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/opcionsWIN.png)
+
+* Obre les Opcions d'internet --> accedeix a la pestanya Contingut --> Certificats
+
+![visualitzaWIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/visualitzaWIN.png)
+
+* En la pantalla de certificats, accedir a la pestanya Entitats de Certificació arrel de confiança i clicar a Importar
+
+![importCertWIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/importCertWIN.png)
+
+* En la pantalla d'assistent per la importació de certificats cliqui a següent
+
+![importCert2WIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/importCert2WIN.png)
+
+* Cliqui a examinar per escollir el certificat a Importar
+
+![importCert3WIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/importCert3WIN.png)
+
+* Escull el certificat a importar.
+El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·lat l'aplicació nativa, per defecte és a: 
+C:\Program Files (x86)\Signador\lib\certificate
+
+![escullCertWIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/escullCertWIN.png)
+
+* Un cop seleccionat el certificat cliqui a següent
+
+![importCert4WIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/importCert4WIN.png)
+
+* En la següent pantalla torni a clicar següent
+
+![importCert5WIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/importCert5WIN.png)
+
+* Cliqui a Finalitzar per importar el certificat
+
+![importCert6WIN](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/importCert6WIN.png)
+
+* Torni a realitzar una validació.
 
 <h4>Firefox</h4>
 
 Per instal·lar-lo en el magatzem segueix els següents passos:
 
-Obrir Firefox --> Accedir a Opcions 
+* Obrir Firefox --> Accedir a Opcions 
 
 ![opcionsFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/opcionsFF.png)
 
-Avançat --> Certificats --> Visualitza els Certificats
+* Avançat --> Certificats --> Visualitza els Certificats
 
 ![visualitzaFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/visualitzaFF.png)
 
-En la pantalla de certificats, accedir a la pestanya Entitats i clicar a Importar
+* En la pantalla de certificats, accedir a la pestanya Entitats i clicar a Importar
 
 ![importCertFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/importCertFF.png)
 
-Escull el certificat a importar.
+* Escull el certificat a importar.
 El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·lat l'aplicació nativa, per defecte és a: 
 C:\Program Files (x86)\Signador\lib\certificate
 
 ![escullCertFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/escullCertFF.png)
 
-Un cop seleccionat el certificat, marqui a confiar per identificar a llocs web
+* Un cop seleccionat el certificat, marqui a confiar per identificar a llocs web
 
 ![confiarCertFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/confiarCertFF.png)
 
-Torni a realitzar una validació.
+* Torni a realitzar una validació.
 
 **Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
