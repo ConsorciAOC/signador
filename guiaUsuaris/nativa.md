@@ -155,13 +155,25 @@ El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·l
 
 * Torni a realitzar una validació.
 
-**Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
-
 ### 5.3 MAC OS X
 
 Per a MAC OS X el certificat és carrega de forma automàtica però l'usuari ha de procedir a acceptar-lo manualment amb les passes que es descriuen a continuació:
 
-TODO: Process snapshots
+* Cerca en el buscador de MAC: _llaveros_
+
+![searchMAC](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/searchMAC.png)
+
+* A llaveros escull la categoria certificats, i del llistat escull _root de proves_
+
+![llistatMAC](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/llistatMAC.png)
+
+* En el certificat, escull la opció confiar sempre.
+
+![trustCertMAC](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/trustCertMAC.png)
+
+* Torni a realitzar una validació.
+
+**Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
 ## 6. Funcionament
 
