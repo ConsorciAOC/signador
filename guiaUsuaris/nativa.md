@@ -143,8 +143,8 @@ El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·l
 
 - *Windows 32 bits*  C:\Program Files (x86)\Signador\lib\certificate
 - *Windows 64 bits*  C:\Program Files\Signador\lib\certificate
-- *Linux 32 bits*   TODO: Update path
-- *Linux 64 bits*   TODO: Update path
+- *Linux 32 bits*   /usr/local/signador
+- *Linux 64 bits*   /usr/local/signador
 - *MACOSX*  /Applications/Signador.app/Contents/Resources/app/lib/certificate
 
 ![escullCertFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/escullCertFF.png)
@@ -163,7 +163,7 @@ Per a MAC OS X el certificat és carrega de forma automàtica però l'usuari ha 
 
 ![searchMAC](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/searchMAC.png)
 
-* A llaveros escull la categoria certificats, i del llistat escull _root de proves_
+* A llaveros escull la categoria certificats, i del llistat escull _root de prova_
 
 ![llistatMAC](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/llistatMAC.png)
 
