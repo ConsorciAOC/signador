@@ -8,7 +8,7 @@ El signador és una aplicació web que funciona amb els següents navegadors; en
  
 Els altres navegadors que suportem 
  
- - Safari [versió 5.1.10 i superiors](https://en.wikipedia.org/wiki/Safari_version_history) - Només sobre MAC OS X
+ - Safari [versió 7.0 i superiors](https://en.wikipedia.org/wiki/Safari_version_history) - Només sobre MAC OS X
  - Internet explorer [versio 8 i superiors](https://en.wikipedia.org/wiki/Internet_Explorer_version_history#Release_history_for_desktop_Windows_OS_version) - Només sobre Windows.
  
 Donat que no disposem d'aplicació mobil per tal d'accedir al magatzem de certificats i poder realitzar la signatura, tot i que la aplicació web pot ser accedida amb navegadors mobils no donem suport als mateixos ja que no es pot finalitzar l'operació utilitzant un dispositiu mobil.
