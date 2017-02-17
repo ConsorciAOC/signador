@@ -2,7 +2,7 @@
 
 L'aplicació nativa és una aplicació d'escriptori que s'instal·la en la màquina del client i s'executa com a servei (en segon pla). 
 
-<h3>Sistemes operatius</h3>
+## 1. Sistemes operatius
 
 Donem suport a la instal·lació i execució de l'aplicació nativa en els següents sistemes operatius:
 
@@ -13,7 +13,7 @@ Donem suport a la instal·lació i execució de l'aplicació nativa en els segü
  
 **Nota**: Igual que en el cas dels navegadors pot funcionar en altres versions de sistemes operatius (e.g. altres distribucions de Linux com pot ser [Mint](https://www.linuxmint.com/)), però també igual que en el cas dels navegadors, aquestes altres versions no rebran suport per part nostra en cas de problemes d'execució.
 
-<h3>Descarrega</h3>
+## 2. Descarrega
 
 Per poder-la utilitzar cal que alhora de donar-se d'alta al servei, s'informi que es vol utilitzar la nativa _(allow Native)_. 
 Un cop el procés d'alta s'hagi realitzat, ja es pot descarregar la versió de l'aplicació corresponent segons l'entorn que es vulgui utilitzar:
@@ -27,7 +27,7 @@ En la pàgina d'instal·lació de la nativa l'usuari pot escollir la versió del
 
 **Nota**: Per defecte el navegador detecta el Sistema Operatiu i es descarrega la versió adequada.
 
-<h3>Instal·lació</h3>
+## 3. Instal·lació
 
 Un cop descarregat l'executable procedim a realitzar la instal·lació.
 
@@ -51,7 +51,7 @@ Un cop s'hagi instal·lat i arranqui l'aplicació, en cas que ho fagis en Window
 
 Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat.
 
-<h3>Validació</h3>
+## 4. Validació
 
 Un cop s'hagi instal·lat l'aplicació nativa, es pot realitzar un simple test de funcionament per comprovar que la instal·lació s'ha realitzat correctament.
 
@@ -70,13 +70,17 @@ En cas contrari, es mostrarà el següent error:
 * Si acabeu d'instal·lar l'aplicació nativa reviseu el següent apartat d'instal·lar el cerfiticat.
 * Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
-<h3>Instal·lar Certificat</h3>
+## 5. Instal·lar Certificat
 
-Perquè funcioni l'aplicació nativa és obligatori que s'instal·li el certificat en el seu navegador.
+Perquè funcioni l'aplicació nativa és obligatori que s'instal·li el certificat en el seu navegador o sistema operatiu.
 
-<h4>Windows</h4>
+### 5.1 Windows
 
-En el magatzem de _Windows_ s'instal·la automàticament, tot i que s'ha d'acceptar el certificat. En cas que no s'hagi acceptat, per fer-ho manualment segueix els següents passos:
+La càrrega del certificat al magatzem de _Windows_ permet el correcte funcionament de l'aplicació amb Internet explorer, Edge i Chrome.
+
+A més a més en el magatzem de _Windows_ s'instal·la automàticament, tot i que s'ha d'acceptar la instal·lació del certificat mitjançant un popup que apareix durant aquesta. 
+
+En cas que no s'hagi cancel·lat l'instal·lació en aquest popup serà necessari que l'usuari ho faci manualment seguint els següents passos:
 
 * Cerca en el buscador de windows: _Opcions d'internet_
 
@@ -118,9 +122,9 @@ C:\Program Files (x86)\Signador\lib\certificate
 
 * Torni a realitzar una validació.
 
-<h4>Firefox</h4>
+### 5.2 Firefox
 
-Per instal·lar-lo en el magatzem segueix els següents passos:
+_Firefox_ disposa del seu propi magatzem de claus, per tant independentment del sistema operatiu sobre el que s'estigui executant, si vol fer servir l'aplicació amb _Firefox_ serà necessari carregar el certificat segueint els següents passos que apliquen per qualsevol sistema operatiu:
 
 * Obrir Firefox --> Accedir a Opcions 
 
@@ -136,7 +140,12 @@ Per instal·lar-lo en el magatzem segueix els següents passos:
 
 * Escull el certificat a importar.
 El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·lat l'aplicació nativa, per defecte és a: 
-C:\Program Files (x86)\Signador\lib\certificate
+
+- *Windows 32 bits*  C:\Program Files (x86)\Signador\lib\certificate
+- *Windows 64 bits*  C:\Program Files\Signador\lib\certificate
+- *Linux 32 bits*   TODO: Update path
+- *Linux 64 bits*   TODO: Update path
+- *MACOSX*  /Applications/Signador.app/Contents/Resources/app/lib/certificate
 
 ![escullCertFF](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/escullCertFF.png)
 
@@ -148,7 +157,13 @@ C:\Program Files (x86)\Signador\lib\certificate
 
 **Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
-<h3>Funcionament</h3>
+### 5.3 MAC OS X
+
+Per a MAC OS X el certificat és carrega de forma automàtica però l'usuari ha de procedir a acceptar-lo manualment amb les passes que es descriuen a continuació:
+
+TODO: Process snapshots
+
+## 6. Funcionament
 
 Un cop s'ha instal·lat l'aplicació i aquesta funciona correctament, el canvi del funcionament de la versió **JNLP** a la **Nativa** és totalment transparent per l'usuari. 
 
@@ -158,7 +173,7 @@ A continuació es mostra un exemple de la pantalla de funcionament del signador 
 
 ![nativaSample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/nativaSample.png)
 
-<h3>Desinstal·lació</h3>
+## 7. Desinstal·lació
 
 En cas que es vulgui desinstal·lar, s'ha d'accedir a la carpeta a on s'hagi instal·lat la aplicació, executar el fitxer _uninstall.exe_ i seguir els següents passos:
 
