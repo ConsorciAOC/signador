@@ -2,6 +2,17 @@
 
 L'aplicació nativa és una aplicació d'escriptori que s'instal·la en la màquina del client i s'executa com a servei (en segon pla). 
 
+<h3>Sistemes operatius</h3>
+
+Donem suport a la instal·lació i execució de l'aplicació nativa en els següents sistemes operatius:
+
+ - *Ubuntu* - Versions [12.04 i superiors](https://wiki.ubuntu.com/Releases) 
+ - *Windows* - Versions client [Vista i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Client_versions)
+ - *Windows* - Versions servidor [Server2003 R2 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Server_versions)
+ - *MAC OS X* - Versions [OS.X 10.9 i superiors](https://en.wikipedia.org/wiki/MacOS#Release_history)
+ 
+**Nota**: Igual que en el cas dels navegadors pot funcionar en altres versions de sistemes operatius (e.g. altres distribucions de Linux com pot ser [Mint](https://www.linuxmint.com/)), però també igual que en el cas dels navegadors, aquestes altres versions no rebran suport per part nostra en cas de problemes d'execució.
+
 <h3>Descarrega</h3>
 
 Per poder-la utilitzar cal que alhora de donar-se d'alta al servei, s'informi que es vol utilitzar la nativa _(allow Native)_. 
