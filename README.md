@@ -262,10 +262,10 @@ En cas que es vulgui signar més d'un document o hash el servei ho permet, posan
 Els possibles valors acceptats del **keystore_type** són:
 *	0: Generic_keystore.
 *	1: MS_keystore.
-*	2: PKCS12_keystore.
+*	2: PKCS12_keystore. *No soportat*
 *	3: Smartcard_keystore.
 *	4: Mozilla_keystore.
-*	5: Java_keystore.
+*	5: Java_keystore. *No soportat*
 *	6: MacOSX_keystore.
 
 Els possibles valors acceptats del **signature_mode** són:
