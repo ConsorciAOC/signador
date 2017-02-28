@@ -10,7 +10,7 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 *	Imatge amb el logo de l'aplicació usuaria. Mida màxima 300 width x 100 height.
 *	Imatge amb el logo que apareixerà a l'applet. Mida màxima 300 width x 100 height. *No obligatori*.
 *	Clau per a identificar l'aplicació com usuaria del servei.
-*	Allow Native, per si es permet el funcionament del servei amb l'aplicació nativa. **en desenvolupament**
+*	Allow Native, per si es permet el funcionament del servei amb l'aplicació nativa. 
 
 ## Diagrama de flux
 
@@ -170,7 +170,8 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 			"selected_CN": "",
 			"subject_Text": "",
 			"required_nif": "",
-			"psis_validation": ""
+			"psis_validation": "",
+			"keyUsage": ""
 		},
 		"xml_cfg": {
 			"n_enveloping": "",
@@ -312,6 +313,7 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**subject_Text**: Permet filtrar per una cadena de text que ha d'estar present dins de qualsevol dels camps del _SubjectDistinguishedName_ del certificat. El filtre és _case insensitive_. Exemple: `“Director General”`
 * 	**required_nif**: Aquest paràmetre no permet el filtrage a priori, sinó que el que fa és realitzar una comprovació contra [PSIS](http://web.aoc.cat/blog/serveis/validador/) previa a la realització de la signatura, validant que el certificat seleccionat per l'usuari és correspon amb el _NIF_ indicat en aquest camp. Cas que no sigui així l'applet no continuarà amb l'operació de signatura i mostrarà el missatge d'error corresponent. 
 * 	**psis_validation**: Igual que el paràmetre **required_nif** aquest paràmetre fa una validació previa del certificat abans de realitzar la signatura. Simplement valida que el certificat sigui reconegut per [PSIS](http://web.aoc.cat/blog/serveis/validador/).
+* 	**keyUsage**: Permet filtrar per l'ús de la clau del certificat. Els possibles valors són FD (Firma digital) i NR (Non repudiation). Es poden indicar múltiples entrades separades per punts i comes `;`. El filtre es _case insensitive_. Per defecte filtra per les dos opcions. Exemple: `"NR; FD"`.
 
 ### 2.8. Aparença i configuració de sigantures PDF: **pdf_cfg**
 * 	**pdf_visible_signature**: Permet indicar a l'applet que la signatura que es crearà al document PDF sigui invisible (valor a `false`). Per defecte el valor és `true` (visible). Si hi ha camps de signatura, aquest paràmetre no té afectació i es signarà en els camp/s buits de signatura.
