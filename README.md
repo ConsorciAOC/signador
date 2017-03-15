@@ -1,8 +1,6 @@
-# Signador Centralitzat - En *Beta*
+# Signador Centralitzat
 
-**La següent documentació està en construcció i és susceptible de patir canvis**
-
-###Documentació del projecte del Signador centralitzat
+### Documentació del projecte del Signador centralitzat
 
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
@@ -10,7 +8,7 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 *	Imatge amb el logo de l'aplicació usuaria. Mida màxima 300 width x 100 height.
 *	Imatge amb el logo que apareixerà a l'applet. Mida màxima 300 width x 100 height. *No obligatori*.
 *	Clau per a identificar l'aplicació com usuaria del servei.
-*	Allow Native, per si es permet el funcionament del servei amb l'aplicació nativa. 
+*	Allow Native, per si es permet el funcionament del servei amb l'aplicació nativa. *Activat* per defecte, només cal indicar-ho en cas que no és vulgui activar (no recomanat).
 
 ## Diagrama de flux
 
@@ -520,7 +518,7 @@ En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia 
 
 ### [8.1 Servei del signador](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/compatibilitatSignador.md)
 ### [8.2 JNLP](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/jnlp.md)
-### [8.3 Nativa](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/nativa.md) **en desenvolupament**
+### [8.3 Nativa](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/nativa.md)
 
 ## Llibreria integradors
 
