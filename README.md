@@ -244,7 +244,7 @@ Descripció dels camps _JSON_ de la configuració de l'applet:
 *	**pkcs11_files**: Indica la ruta dels drivers necessaris d'un o varis dispositius _PKCS11_ per a que l'aplicació carregui les claus d'aquests. Les rutes dels drivers s'han d’especificar de la següent forma: _pathDriver1,ID1;pathDriver2,ID2;..._. El _pathDriver_ és la ruta absoluta del controlador del dispositiu _PKCS11_. L'_ID_ és una cadena de text arbitrària que l'aplicació utilitza internament per a diferenciar els diferents dispositius. Aquest _ID_ també és el que es mostrarà al popup que demana el PIN amb el text: *Introduïu el PIN per a (ID):*. 
 També és poden especificar rutes mútuament excloents, per exemple en el cas que un mateix dispositiu _PKCS11_ pugui tenir diferents versions de controladors (amb diferents rutes) o és vulgui donar suport a diferents sistemes operatius; en aquest cas es pot especificar de la següent forma _[pathDriverAVersio1,pathDriverAVersio2,pathDriverAVersioN,pathDriverASistemaOperatiu2],IDA_. En aquest cas l'aplicació anirà provant de carregar els drivers especificades entre `[ ]` en el ordre establert fins que en pugui carregar una, un cop carregada la resta ja no es provaran. Per a la configuració es poden combinar les dues formes, per exemple: _[pathDriverAVersio1,pathDriverAVersio2],IDA;pathB,IDB_. Camp no obligatori.
 
-En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `document_to_sign`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir.
+En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `document_to_sign`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir. Els noms dels documents no poden coincidir.
 
 ### 2.5. Camps de la configuració de l'APSA
 
@@ -254,7 +254,7 @@ Descripció dels camps _JSON_ de la configuració de l'apsa:
 *	**hash_a_xifrar**: hash a signar. **Camp obligatori**.
 *	**signingCertificate**: Certificat per signar en base64. Camp no obligatori.
 
-En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `hash_a_xifrar`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir.
+En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `hash_a_xifrar`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir. Els noms dels documents no poden coincidir.
 
 ### 2.6. Possibles valors dels camps de configuració:
 
