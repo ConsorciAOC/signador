@@ -1,6 +1,6 @@
 <h1> Preguntes freqüents </h1>
 
-<h3> Quines connectivitats necessito per a fer ús del signador </h3>
+<h3> Quines connectivitats necessito per a fer ús del signador?</h3>
 
 * `https://signador.aoc.cat` (port per defecte 443)
 * `https://nativa.aoclocal.cat` (ports del 9090 al 9095)
