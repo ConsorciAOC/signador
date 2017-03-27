@@ -294,8 +294,8 @@ Els possibles valors acceptats del **signature_mode** són:
 *	28: CAdES_T_in_PDF.
 
 Els possibles valors acceptats del **doc_type** són:
-*       1: allFilesInDir
-*       2: singleFile
+*	1: allFilesInDir
+*	2: singleFile
 *	3: hashDoc.
 *	4: B64fileContent.
 *	6: urlFile.
