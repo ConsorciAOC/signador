@@ -121,7 +121,7 @@ Podeu trobar també un exemple complet en _Groovy_ de com invocar el `/initProce
 
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
-Un cop és diposa del `token` per a l'operació de signatura, es pot iniciar el porcés. Per tal de fer-ho es necessari associar la configuració de signatura que realitzarà l'usuari amb el `token` d'operació obtingut.
+Un cop és diposa del `token` per a l'operació de signatura, es pot iniciar el procés. Per tal de fer-ho es necessari associar la configuració de signatura que realitzarà l'usuari amb el `token` d'operació obtingut.
 
 Per a fer-ho, s'ha de realitzar una crida al servei _REST_ al següent endpoint:
 
