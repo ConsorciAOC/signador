@@ -7,7 +7,7 @@ Per tal de facilitar la integració amb el servei de signatura s'ha creat una ll
 Les llibreries _Javascript_ pels diferents entorns són les següents:
 
 * [Entorn PRE](https://github.com/lcamps01/signador/blob/master/integracioJS/SignadorCentralitzat_PRE.js)
-* [Entorn PRO] (https://github.com/lcamps01/signador/blob/master/integracioJS/SignadorCentralitzat_PRO.js)
+* [Entorn PRO](https://github.com/lcamps01/signador/blob/master/integracioJS/SignadorCentralitzat_PRO.js)
 
 ## Ús de la llibreria
 
