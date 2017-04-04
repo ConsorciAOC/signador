@@ -85,9 +85,53 @@ Descripció dels camps _JSON_:
 
 ### 3. Exemples d'ús
 
-Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jquery* i la pròpia llibreria de l'aplicació com a recurs en la plana *HTML* on es vulgui utilitzar.
+Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jquery* (versió mínima _1.6.1_) i la pròpia llibreria de l'aplicació com a recurs en la plana *HTML* on es vulgui utilitzar.
 
-### 3.1 `signadorCentralitzat.sign( json )`
+### 3.1 HTML de proves
+
+El HTML de proves podria tenir una estructura similar a:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Prova concepte integració signador via JS</title>
+<script language="javascript" src="./jquery-1.12.4.js"></script>
+<script language="javascript" src="./SignadorCentralitzat.js"></script>
+<script language="javascript">
+	$(function() {
+		$('#signarBtn').click(function(){
+			var json = {
+				"doc_name" : "doc_prova",
+				"document_to_sign" : "JVBERi0xLjQNJeLjz9MNC....",
+				"token" : $('#token').val(),
+				"redirectUrl" : ""
+			};
+			signadorCentralitzat.signPDF(json);	
+		});
+		
+	});
+</script>
+</head>
+	<body>
+		<div>
+			TOKEN: <input type="text" id="token" maxlength="100"></input>
+			<input type="button" id="signarBtn" value="Signar"></input>
+		</div>
+	</body>
+</html>
+```
+
+### 3.2 API
+
+Els mètodes disponibles del objecte `signadorCentralitzat` són:
+
+#### 3.2.1 `signadorCentralitzat.sign( json[,openNewWindow] )`
+
+Permet realitzat una signatura especificant tots els paràmetres de la configuració desitjants al argument `json`, opcionalment és pot específicar també l'argument `openNewWindow` si es desitja que l'operació s'obri en una nova finestra, per defecte si no s'informa pren el valor `false` i la redirecció al signador es realitza en la finestra actual.
+
+#### Exemple
 
 ```javascript
 <script type="text/javascript" src="%PATH%/jquery.js"></script> 
@@ -112,7 +156,11 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 </script>
 ```
 
-### 3.2 `signadorCentralitzat.signPDF( params )`
+#### 3.2.2 `signadorCentralitzat.signPDF( params [,openNewWindow] )`
+
+Permet realitzat una signatura PDF per defecte especificant només els paràmetres impresindibles de la configuració per a signar en aquesta modalitat en l'argument `json`, opcionalment és pot específicar també l'argument `openNewWindow` si es desitja que l'operació s'obri en una nova finestra, per defecte si no s'informa pren el valor `false` i la redirecció al signador es realitza en la finestra actual.
+
+#### Exemple
 
 ```javascript
 <script type="text/javascript" src="%PATH%/jquery.js"></script> 
@@ -130,7 +178,11 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 </script>
 ```
 
-### 3.3 `signadorCentralitzat.signXAdESHash( params )`
+#### 3.2.3 `signadorCentralitzat.signXAdESHash( params [,openNewWindow] )`
+
+Permet realitzat una signatura XAdES sobre un HASH per defecte especificant només els paràmetres impresindibles de la configuració per a signar en aquesta modalitat en l'argument `json`, opcionalment és pot específicar també l'argument `openNewWindow` si es desitja que l'operació s'obri en una nova finestra, per defecte si no s'informa pren el valor `false` i la redirecció al signador es realitza en la finestra actual.
+
+#### Exemple
 
 ```javascript
 <script type="text/javascript" src="%PATH%/jquery.js"></script> 
@@ -148,7 +200,11 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 </script>
 ```
 
-### 3.4 `signadorCentralitzat.signCAdESHash( params )`
+#### 3.2.4 `signadorCentralitzat.signCAdESHash( params [,openNewWindow] )`
+
+Permet realitzat una signatura CAdES sobre un HASH per defecte especificant només els paràmetres impresindibles de la configuració per a signar en aquesta modalitat en l'argument `json`, opcionalment és pot específicar també l'argument `openNewWindow` si es desitja que l'operació s'obri en una nova finestra, per defecte si no s'informa pren el valor `false` i la redirecció al signador es realitza en la finestra actual.
+
+#### Exemple
 
 ```javascript
 <script type="text/javascript" src="%PATH%/jquery.js"></script> 
@@ -166,7 +222,11 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 </script>
 ```
 
-### 3.5 `signadorCentralitzat.signApsaHash( params )`
+#### 3.2.5 `signadorCentralitzat.signApsaHash( params [,openNewWindow] )`
+
+Permet realitzat una signatura Apsa sobre un HASH per defecte especificant només els paràmetres impresindibles de la configuració per a signar en aquesta modalitat en l'argument `json`, opcionalment és pot específicar també l'argument `openNewWindow` si es desitja que l'operació s'obri en una nova finestra, per defecte si no s'informa pren el valor `false` i la redirecció al signador es realitza en la finestra actual.
+
+#### Exemple
 
 ```javascript
 <script type="text/javascript" src="%PATH%/jquery.js"></script> 
@@ -184,7 +244,11 @@ Per fer ús de la llibreria és tant simple com incloure la depèndencia de *Jqu
 </script>
 ```
 
-### 3.6 `signadorCentralitzat.signApsa( params )`
+#### 3.2.6 `signadorCentralitzat.signApsa( params )`
+
+Permet realitzat una signatura especificant tots els paràmetres de la configuració desitjants al argument `json` en la modalitat APSA, opcionalment és pot específicar també l'argument `openNewWindow` si es desitja que l'operació s'obri en una nova finestra, per defecte si no s'informa pren el valor `false` i la redirecció al signador es realitza en la finestra actual.
+
+#### Exemple
 
 ```javascript
 <script type="text/javascript" src="%PATH%/jquery.js"></script> 
