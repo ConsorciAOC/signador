@@ -1,7 +1,12 @@
 /**
- * Objecte js necessari per invocar i poder utilitzar el signador centralitzat
+
+ * Objecte js d'exemple per a facilitar la generació d'operacions simples
+ * predefinides contra el signador centralitzat.
+ *
+ *	Requereix versions de JQuery 1.6.1 o superiors
+ *	Requereix de la generació previa d'un token d'operació
  *  
- * @version 0.0.0.2 
+ * @version 0.0.0.3 
  * @author albciff 
  * @author lcamps
  */
@@ -16,9 +21,23 @@ var signadorCentralitzat = (function (jQry){
 		   };
 	};
 
+	var checkJqueryVersion = function(version){
+		if(typeof version == undefined){ return false; }
+		
+		var versions = version.split('.');	
+		
+		if(versions[0] > 1 || versions[0] == 1 && versions[1] >= 6){
+			return true;
+		}
+	
+		return false;
+	}
 	// comprovem que ens han passat un objecte
 	if(!jQry){
 		throw signadorCentralitzatException('jQuery es obligatori');
+	// comprovem la versió correcte
+	}else if (!checkJqueryVersion(jQry.fn.jquery)){
+		throw('Requereix una versió 1.6.1 o superior de jQuery');
 	}
 	
 	if( !console ) { console = {}; console.log = function(){};}
@@ -168,7 +187,7 @@ var signadorCentralitzat = (function (jQry){
 				documentToSign = dts;
 			}
 			
-			console.log('[setDocumentToSign] arg: ' + dts + ' documentToSign : ' + documentToSign);
+			// console.log('[setDocumentToSign] arg: ' + dts + ' documentToSign : ' + documentToSign);
 			return this;
 		};
 		
@@ -291,7 +310,7 @@ var signadorCentralitzat = (function (jQry){
 	 * provocat per l'usuari mai forçat des de JS, per evitar el tema del
 	 * bloqueig de popups.
 	 */
-	sc.signar = function (data) {
+	sc.signar = function (data, openNewWindow) {
 		
 		// obrim la finestra aqui pq si ho fem dins del redirect
 		// de la crida ajax el context canvi i tot i que l'acció vingui
@@ -311,12 +330,12 @@ var signadorCentralitzat = (function (jQry){
 					window.close();
 				}
 			}
-		}(newWindow);
+		}(newWindow || window);
 		
 		var errorFn = function (window) {
 			return function (jqXHR, textStatus, errorThrown){
 					alert("Error a l'iniciar el procés" + textStatus + " " + errorThrown);
-					window.close();
+					if(window){window.close();}
 			}
 		}(newWindow);
 		
@@ -360,7 +379,7 @@ var signadorCentralitzat = (function (jQry){
 	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: PDF a signar en UTF-8 codificat en base64.
 	 */
-	sc.signPDF	= function( params ){
+	sc.signPDF	= function( params, openNewWindow ){
 		var cfg = this.cfg.setSignatureMode( this.signMode.CADES_BES_IN_PDF )
 			.setDocumentType( this.docType.B64FILECONTENT )
 				.setDocumentName( params.doc_name )
@@ -369,7 +388,7 @@ var signadorCentralitzat = (function (jQry){
 							.setRedirectUrl( params.redirectUrl );
 		
 		// invoke
-		sc.signar( cfg.createConfig() );
+		sc.signar( cfg.createConfig(), openNewWindow );
 	};
 	
 	/**
@@ -384,7 +403,7 @@ var signadorCentralitzat = (function (jQry){
 	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: HASH a signar codificat en base64.
 	 */
-	sc.signXAdESHash = function( params ){
+	sc.signXAdESHash = function( params, openNewWindow ){
 		var cfg = this.cfg.setSignatureMode( this.signMode.XADES_BES_DETACHED_HASH )
 			.setDocumentType( this.docType.HASHDOC )
 				.setDocumentName( params.doc_name )
@@ -393,7 +412,7 @@ var signadorCentralitzat = (function (jQry){
 							.setRedirectUrl( params.redirectUrl );
 				
 		// invoke
-		sc.signar( cfg.createConfig() );
+		sc.signar( cfg.createConfig(), openNewWindow );
 	};
 	
 	/**
@@ -408,7 +427,7 @@ var signadorCentralitzat = (function (jQry){
 	 *  - doc_name: Nom del document.
 	 * 	- document_to_sign: HASH a signar codificat en base64.
 	 */
-	sc.signCAdESHash = function( params ){
+	sc.signCAdESHash = function( params, openNewWindow ){
 		var cfg = this.cfg.setSignatureMode( this.signMode.CADES_BES_DETACHED_HASH )
 			.setDocumentType( this.docType.HASHDOC )
 				.setDocumentName( params.doc_name )
@@ -417,7 +436,7 @@ var signadorCentralitzat = (function (jQry){
 							.setRedirectUrl( params.redirectUrl );
 				
 		// invoke
-		sc.signar( cfg.createConfig() );
+		sc.signar( cfg.createConfig(), openNewWindow );
 	};
 	
 	/**
@@ -430,14 +449,14 @@ var signadorCentralitzat = (function (jQry){
 	 *  - doc_name: Nom del document.
 	 * 	- hash_a_xifrar: HASH a signar codificat en base64.
 	 */
-	sc.signApsaHash = function( params ){
+	sc.signApsaHash = function( params, openNewWindow ){
 		var cfg = this.cfg.setDocumentName( params.doc_name )
 				.setDocumentToSign( params.hash_a_xifrar )
 					.setToken( params.token )
 						.setRedirectUrl( params.redirectUrl );
 			
 		// invoke
-		sc.signar( cfg.createApsaConfig() );
+		sc.signar( cfg.createApsaConfig(), openNewWindow );
 	};
 	
 	/**
@@ -446,9 +465,9 @@ var signadorCentralitzat = (function (jQry){
 	 * Aquest mètode és totalment configurable i accepta tots els paràmetres permesos per l'applet. 
 	 * Els paràmetre d'entrada ha de ser l'objecte JSON amb els paràmetres permesos per l'applet.
 	 */
-	sc.sign = function( json ){				
+	sc.sign = function( json, openNewWindow ){				
 		// invoke
-		sc.signar( json );
+		sc.signar( json, openNewWindow );
 	};
 	
 	/**
@@ -466,7 +485,7 @@ var signadorCentralitzat = (function (jQry){
 	 * 	- hash_a_xifrar: Hash a signar codificat en base64.
 	 *	- signingCertificate: Certificat per signar.
 	 */
-	sc.signApsa = function( params ){
+	sc.signApsa = function( params, openNewWindow ){
 		var cfg = this.cfg.setRedirectUrl( params.redirectUrl )
 					.setToken( params.token )
 					.setDescripcio( params.descripcio )
@@ -477,7 +496,7 @@ var signadorCentralitzat = (function (jQry){
 					.setSigningCertificate( params.signingCertificate );
 				
 		// invoke
-		sc.signar( cfg.createApsaConfig() );
+		sc.signar( cfg.createApsaConfig(), openNewWindow );
 	};
 	
 	return sc;
