@@ -119,7 +119,6 @@ var signadorCentralitzat = (function (jQry){
 		
 		// apsa certificat
 		var signingCertificate; // opcional
-
 		/**
 		 * 
 		 */
@@ -214,7 +213,7 @@ var signadorCentralitzat = (function (jQry){
 			console.log('[setRedirectUrl] arg: ' + cb + ' redirectUrl : ' + redirectUrl);
 			return this;
 		};
-				
+			
 		/**
 		 * 
 		 */
@@ -392,7 +391,7 @@ var signadorCentralitzat = (function (jQry){
 							.setRedirectUrl( params.redirectUrl );
 		
 		// invoke
-		sc.signar( cfg.createConfig(), openNewWindow);
+		sc.signar( cfg.createConfig(), openNewWindow );
 	};
 	
 	/**
@@ -500,7 +499,7 @@ var signadorCentralitzat = (function (jQry){
 					.setSigningCertificate( params.signingCertificate );
 				
 		// invoke
-		sc.signar( cfg.createApsaConfig(),openNewWindow );
+		sc.signar( cfg.createApsaConfig(), openNewWindow );
 	};
 	
 	return sc;

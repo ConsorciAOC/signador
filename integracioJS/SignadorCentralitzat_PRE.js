@@ -1,5 +1,4 @@
 /**
-
  * Objecte js d'exemple per a facilitar la generació d'operacions simples
  * predefinides contra el signador centralitzat.
  *
@@ -20,7 +19,6 @@ var signadorCentralitzat = (function (jQry){
 		      return this.value + this.message;
 		   };
 	};
-
 	var checkJqueryVersion = function(version){
 		if(typeof version == undefined){ return false; }
 		
@@ -214,7 +212,6 @@ var signadorCentralitzat = (function (jQry){
 			console.log('[setRedirectUrl] arg: ' + cb + ' redirectUrl : ' + redirectUrl);
 			return this;
 		};
-		
 		/**
 		 * 
 		 */
@@ -312,10 +309,14 @@ var signadorCentralitzat = (function (jQry){
 	 */
 	sc.signar = function (data, openNewWindow) {
 		
-		// obrim la finestra aqui pq si ho fem dins del redirect
-		// de la crida ajax el context canvi i tot i que l'acció vingui
-		// del onclick del user tindriem problemes amb el bloqueig de popups
-		var newWindow = window.open();
+		var newWindow;
+		
+		if(openNewWindow){
+			// obrim la finestra aqui pq si ho fem dins del redirect
+			// de la crida ajax el context canvi i tot i que l'acció vingui
+			// del onclick del user tindriem problemes amb el bloqueig de popups
+			newWindow = window.open();
+		}
 		
 		// URL en funció del entorn
 		var url = 'https://signador-pre.aoc.cat/signador/startSignProcess';
