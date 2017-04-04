@@ -244,7 +244,7 @@ Permet realitzat una signatura Apsa sobre un HASH per defecte especificant nomé
 </script>
 ```
 
-#### 3.2.6 `signadorCentralitzat.signApsa( params )`
+#### 3.2.6 `signadorCentralitzat.signApsa( params [,openNewWindow] )`
 
 Permet realitzat una signatura especificant tots els paràmetres de la configuració desitjants al argument `json` en la modalitat APSA, opcionalment és pot específicar també l'argument `openNewWindow` si es desitja que l'operació s'obri en una nova finestra, per defecte si no s'informa pren el valor `false` i la redirecció al signador es realitza en la finestra actual.
 
