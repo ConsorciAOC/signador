@@ -35,7 +35,7 @@ Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_ ubicat al
 * Entorn PRE: https://signador-pre.aoc.cat/signador/initProcess
 * Entorn PRO: https://signador.aoc.cat/signador/initProcess
 
-La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les següents capçaleres http:
+La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les següents **capçaleres http** (No confondre amb els paràmetres del _GET_):
 * **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
