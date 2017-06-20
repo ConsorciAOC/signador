@@ -12,7 +12,7 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 
 ## Diagrama de flux
 
-Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvia la forma en quèwe l'aplicació recupera la signatura, ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei a continuació és mostren els diagrames de flux d'operació d'una aplicació contra el signador per a intentar il·lustrar les crides i el funcionament del mateix per als dos casos:
+Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvia la forma en quèwe l'aplicació recupera la signatura, ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei a continuació és mostren els diagrames de flux d'operació d'una aplicació contra el signador per a intentar il·lustrar les crides i el funcionament del mateix per ambdòs casos:
 
 ### Diagrama de flux amb redirect
 
@@ -315,7 +315,7 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 	* 	FD : Firma digital.
 	* 	NR : Non repudiation.
 	
-	Es poden indicar múltiples entrades separades per punts i comes `;`. El filtre es _case insensitive_. Per defecte filtra per les dos opcions. Exemple: `"NR; FD"`.
+	Es poden indicar múltiples entrades separades per punts i comes `;`. El filtre es _case insensitive_. Per defecte filtra per les dues opcions. Exemple: `"NR; FD"`.
 
 ### 2.8. Aparença i configuració de sigantures PDF: **pdf_cfg**
 * 	**pdf_visible_signature**: Permet indicar a l'applet que la signatura que es crearà al document PDF sigui invisible (valor a `false`). Per defecte el valor és `true` (visible). Si hi ha camps de signatura, aquest paràmetre no té afectació i es signarà en els camp/s buits de signatura.
