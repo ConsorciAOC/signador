@@ -20,7 +20,7 @@ Donat que no disposem d'aplicació mobil per tal d'accedir al magatzem de certif
 Molts dels nostres usuaris encara utilitzen versions antigues d'Internet explorer, per això hem de donar suport a les mateixes. En canvi per a les distribucions més modernes de navegadors; creiem que donar suport només a les ultimes versions té els següent avantatges:
 
  - Optimitzar els nostres recursos a l'hora de corregir/reproduïr bugs incidències.
- - El teu PC serà més segur i tindrà menys riscos de patir un atac.
+ - El teu PC serà més segur i tindrà menys riscos de patir un atac (no et convenç, revisa [les vulnerabilitats del teu navegador](https://www.ssllabs.com/ssltest/viewMyClient.html))
  - Gaudiràs d'un millor experiència d'usuari i veuràs més característiques en les aplicacions web (no només el **Signador**).
  
 Des dels següents enllaços pots baixar-te les ultimes versions estables dels nostres navegadors preferits tant per Windows, Linux o MAC:
