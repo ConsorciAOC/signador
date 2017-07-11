@@ -117,7 +117,7 @@ public class BustiaNotificacionsController {
 
 Proveïm aquests codis a tall d'exemple, per veure exemples en altres llenguatges de programació de com calcular el _HMAC_ podeu consultar el següent [recurs](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
 
-Podeu trobar també un exemple complet en _Groovy_ de com invocar el `/initProcess` per aconseguir el _token_ de l'operació [aqui](https://github.com/albciff/groovy-scripts/blob/master/scripts/HTTPBuilder_get_initProcess_signador.groovy)
+Podeu trobar també un exemple complet en _Groovy_ de com invocar el `/initProcess` per aconseguir el _token_ de l'operació [aqui](https://github.com/albciff/groovy-scripts/blob/master/scripts/HTTPBuilderSamples/HTTPBuilder_get_initProcess_signador.groovy)
 
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
@@ -200,7 +200,7 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 
 Al següent apartat és descriu amb més detall l'ús de cadascún d'aquests camps, notis només que la gran part dels mateixos és opcional i no és necessari enviar-los per a poder iniciar el procés correctament.
 
-Podeu trobar també un exemple simple en _Groovy_ de com invocar el `/startSignProcess` passant una configuració de signatura d'exemple [aqui](https://github.com/albciff/groovy-scripts/blob/master/scripts/HTTPBuilder_post_startSignProcess_signador.groovy)
+Podeu trobar també un exemple simple en _Groovy_ de com invocar el `/startSignProcess` passant una configuració de signatura d'exemple [aqui](https://github.com/albciff/groovy-scripts/blob/master/scripts/HTTPBuilderSamples/HTTPBuilder_post_startSignProcess_signador.groovy)
 
 ### 2.2. StartSignProcess: Applet de PSA (APSA light)
 
