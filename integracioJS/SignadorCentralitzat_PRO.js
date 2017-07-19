@@ -5,7 +5,7 @@
  *	Requereix versions de JQuery 1.6.1 o superiors
  *	Requereix de la generació previa d'un token d'operació
  *  
- * @version 0.0.0.3 
+ * @version 0.0.0.4
  * @author albciff 
  * @author lcamps
  */
@@ -119,6 +119,19 @@ var signadorCentralitzat = (function (jQry){
 		
 		// apsa certificat
 		var signingCertificate; // opcional
+		var modeFuncionament = "SIGNATURA";
+		
+		/**
+		*
+		*/
+		cfg.setModeFuncionament = function (mf) {
+			if(mf){
+			  modeFuncionament = mf;
+			}
+			console.log('[setModeFuncionament] arg: ' + mf + ' modeFuncionament : ' + modeFuncionament);
+			return this;
+		}
+		
 		/**
 		 * 
 		 */
@@ -291,10 +304,11 @@ var signadorCentralitzat = (function (jQry){
 				descripcio : descripcio,
 				responseB64 : responseB64,
 				applet_apsa_cfg :	{ 	keystore_type : keystoreType,
-										doc_name : documentName,
-										hash_a_xifrar : documentToSign,
-										signingCertificate : signingCertificate
-									}
+								doc_name : documentName,
+								hash_a_xifrar : documentToSign,
+							 	modeFuncionament : modeFuncionament,
+								signingCertificate : signingCertificate
+							}
 			};
 		};
 		
@@ -458,6 +472,20 @@ var signadorCentralitzat = (function (jQry){
 					.setToken( params.token )
 						.setRedirectUrl( params.redirectUrl );
 			
+		// invoke
+		sc.signar( cfg.createApsaConfig(), openNewWindow );
+	};
+	
+	/**
+	* Permet extreure el certificat amb l'APSA.
+	**/
+	sc.getCertApsa = function( params, openNewWindow ){
+				var cfg = this.cfg.setDocumentName( params.doc_name )
+				.setDocumentToSign( params.hash_a_xifrar )
+				.setToken( params.token )
+				.setRedirectUrl( params.redirectUrl )
+				.setModeFuncionament("CERTIFICAT");
+
 		// invoke
 		sc.signar( cfg.createApsaConfig(), openNewWindow );
 	};
