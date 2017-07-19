@@ -476,7 +476,6 @@ var signadorCentralitzat = (function (jQry){
 	**/
 	sc.getCertApsa = function( params, openNewWindow ){
 				var cfg = this.cfg.setDocumentName( params.doc_name )
-				.setDocumentToSign( params.hash_a_xifrar )
 				.setToken( params.token )
 				.setRedirectUrl( params.redirectUrl )
 				.setModeFuncionament("CERTIFICAT");
