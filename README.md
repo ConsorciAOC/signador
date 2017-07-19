@@ -206,6 +206,8 @@ Podeu trobar també un exemple simple en _Groovy_ de com invocar el `/startSignP
 
 Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON_ a enviar té la següent forma. És **important remarcar** que en funció de si s'informa el camp `callbackUrl` o `redirectUrl` canviarà la gestió del flux del usuari i la recuperació de la signatura per part de l'aplicació client.
 
+L'Applet de PSA, també disposa de dos modes de funcionament. Un mode per a recuperar un certificat de clau pública que és retornarà en base64, o el mode de signatura de hashos. El camp que indica quina operació és vol realitzar és el camp **modeFuncionament**.
+
 ```javascript
 {
 	"callbackUrl": "" o "redirectUrl": "", // S'ha d'informar o un o l'altre
@@ -214,7 +216,8 @@ Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON
 	"responseB64": "",
 	"applet_apsa_cfg": {
 			"keystore_type": "",
-			"doc_name": "",							
+			"doc_name": "",
+			"modeFuncionament":"",
 			"hash_a_xifrar": "",
 			"signingCertificate": ""
 	}
@@ -252,6 +255,7 @@ Descripció dels camps _JSON_ de la configuració de l'apsa:
 *	**keystore_type**: Tipus de keystore. **Camp obligatori**.
 *	**doc_name**: Nom del document. **Camp obligatori**.
 *	**hash_a_xifrar**: hash a signar. **Camp obligatori**.
+*	**modeFuncionament**: Indica el mode de funcionament, per si és vol extreure el certificat de signatura o si es vol signar un hash. Els valors possibles són *SIGNATURA* o *CERTIFICAT*. Per defecte si no s'informa pren el valor *SIGNATURA*. Camp no obligatori.
 *	**signingCertificate**: Certificat per signar en base64. Camp no obligatori.
 
 En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `hash_a_xifrar`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir. Els noms dels documents no poden coincidir.
@@ -425,7 +429,7 @@ La resposta d'aquest servei tindrà el següent format.
    "status": "OK/KO",
    "token": "id del token",
    "signResult": "resultat de la signatura",
-   "type": "XML/CMS/PDF/HASH/TXT/ZIP",
+   "type": "XML/CMS/PDF/HASH/TXT/ZIP/CERT",
    "error": "motiu de l'error"
 }
 ```
@@ -433,10 +437,12 @@ Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
 *	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
-*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/TXT/ZIP**.
+*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/TXT/ZIP/CERT**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
 En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, la resposta del servei tindrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
+
+L'altre cas singular, és el de l'Applet de PSA en mode *CERTIFICAT*, en el qual el *type* tindrà el valor *CERT* i en el *signResult* recuperarem el certificat seleccionat per l'usuari en base64.
 
 **NOTES:** 
 * La consulta de la resposta només estarà disponible 15 dies.
@@ -452,7 +458,7 @@ El format del _JSON_ que enviarem a l'endpoint informat será el següent:
    "status": "OK/KO",
    "token": "id del token",
    "signResult": "resultat de la signatura",
-   "type": "XML/CMS/PDF/HASH/TXT/ZIP",
+   "type": "XML/CMS/PDF/HASH/TXT/ZIP/CERT",
    "error": "motiu de l'error"
 }
 ```
@@ -460,7 +466,7 @@ Els possibles valors dels camps:
 *	**status**: **OK** o **KO** en funció que si ha anat correctament o no.
 *	**token**: El token del procés de signatura.
 *	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
-*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/TXT/ZIP**.
+*	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/TXT/ZIP/CERT**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 
 Serà necessari per tant per part de l'aplicació client d'implementar un endpoint que accepti rebre un _POST_ amb el contingut del _JSON_ especificat en aquesta punt. Amb la resposta anirà la capçalera http `Content-Type: application/json`.
