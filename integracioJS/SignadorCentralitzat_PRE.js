@@ -5,7 +5,7 @@
  *	Requereix versions de JQuery 1.6.1 o superiors
  *	Requereix de la generació previa d'un token d'operació
  *  
- * @version 0.0.0.4 
+ * @version 0.0.0.5 
  * @author albciff 
  * @author lcamps
  */
@@ -137,9 +137,9 @@ var signadorCentralitzat = (function (jQry){
 					keystoreType = kt;
 				else if(typeof kt === 'string'){
 					kt = kt.toLowerCase();
-					if(kt.indexOf('win')){
+					if(kt.indexOf('win') != -1){
 						keystoreType = sc.keyType.MS_KEYSTORE; // windows keystore
-					}else if(kt.indexOf('fire')){
+					}else if(kt.indexOf('fire') != -1){
 						keystoreType = sc.keyType.MOZILLA_KEYSTORE; // firefox keystore
 					}
 				}
