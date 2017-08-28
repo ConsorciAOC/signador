@@ -193,3 +193,6 @@ En cas que es vulgui desinstal·lar, s'ha d'accedir a la carpeta a on s'hagi ins
 
 ![desinstalar2Sample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/desinstalar2Sample.png)
 
+## 8. Troubleshooting
+
+En cas de problemes amb l'execució de l'aplicació nativa podeu obrir una petició a través del nostre [portal de suport](https://www.aoc.cat/suport/) fent una descripció del problema, i afegint la següent informació: *sistema operatiu*, *navegador*, i si és possible els fitxers amb els logs de l'execució que podeu trobar en el path de la instal·lació de la nativa a `$SIGNADOR_HOME/log/webappTemp.log` i `$SIGNADOR_HOMER/error.log`.
