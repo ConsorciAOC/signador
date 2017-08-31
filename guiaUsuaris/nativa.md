@@ -13,6 +13,10 @@ Donem suport a la instal·lació i execució de l'aplicació nativa en els segü
  
 **Nota**: Igual que en el cas dels navegadors pot funcionar en altres versions de sistemes operatius (e.g. altres distribucions de Linux com pot ser [Mint](https://www.linuxmint.com/)), però també igual que en el cas dels navegadors, aquestes altres versions no rebran suport per part nostra en cas de problemes d'execució.
 
+### 1.1 Connectivitat
+
+L'aplicació nativa és una aplicació en segon pla que respon les crides que el navegador realitza contra el domini `nativa.aoclocal.cat`. En els nostres servidors de DNS aquesta adreça resol contra `127.0.0.1 (localhost)`. En cas d'entorns corporatius amb firewall, proxies, etc s'hauria de validar la resolució correcte d'aquest domini ja que d'altra manera el servei no podrà conectar amb l'aplicació nativa i sempre presentarà el JNLP com a opció per a realitzar la signatura.
+
 ## 2. Descarrega
 
 Per poder-la utilitzar cal que alhora de donar-se d'alta al servei, s'informi que es vol utilitzar la nativa _(allow Native)_. 
