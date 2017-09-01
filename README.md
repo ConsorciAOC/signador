@@ -36,7 +36,7 @@ Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_ ubicat al
 * Entorn PRO: https://signador.aoc.cat/signador/initProcess
 
 La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les següents **capçaleres http** (No confondre amb els paràmetres del _GET_):
-* **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
+* **Authorization**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
 
@@ -58,7 +58,7 @@ Es comprovarà que la data proporcionada a la capçalera **Date** estigui dins d
 
 **Nota**: Donat que es tracta d'una autenticació aquesta crida no suporta el _CORS_ i per tant la crida s'ha de fer des del backend.
 
-### 1.1. http-header: Authoritzation - HMAC SHA256
+### 1.1. http-header: Authorization - HMAC SHA256
 
 Per a calcular la capçalera d'autorització es fa servir el *Message Authentication Code* (MAC) basat en una funció de resum criptogràfic (*HMAC*), en aquest cas com a funció de *Hash* farem servir *SHA256*. 
 
@@ -418,7 +418,7 @@ Per tal d'obtenir la resposta de la signatura s'ha de fer una crida al servei _R
 
 La crida és simplement un _GET_ passant com a paràmetre un `identificador` amb el valor del `token` rebut en la url de redirecció, igual que la resta de crides també ha d'incloure les següents capçaleres:
 
-* **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
+* **Authorization**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
 
@@ -481,7 +481,7 @@ En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci va
 
 Per alleugerir el pes del *POST* es possible iniciar el procés indicant en el paràmetre `responseB64` amb valor `false`, d'aquesta forma en la resposta es rebrà en el `signResult` una URL amb la qual es podrà descarregar la resposta realitzant simplement un _GET_  inclohent les següents capçaleres http:
 
-* **Authoritzation**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
+* **Authorization**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
 
