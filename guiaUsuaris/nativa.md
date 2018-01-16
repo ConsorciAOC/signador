@@ -51,7 +51,7 @@ Per instal.lar segueixi els següents passos de l'assistent d'instal·lació:
 
 Un cop s'hagi instal·lat i arranqui l'aplicació, en cas que ho fagis en Windows li apareixerà el següent missatge:
 
-![installCert](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/installCert.PNG)
+![installCert](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/installCertificate.PNG)
 
 Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat.
 
