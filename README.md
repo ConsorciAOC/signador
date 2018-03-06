@@ -403,7 +403,7 @@ En [l'apartat de compatibilitat](https://github.com/ConsorciAOC/signador#8-compa
 
 Un cop el client hagi realitzat la signatura a través del **JNLP**, el servei del signador rebrà la signatura i en funció de la configuració retornarà la signatura d'una forma o un altre. Els paràmetres que marquen la configuració del retorn són `callbackUrl` o `redirectUrl`, la diferència s'explica a continuació.
 
-### 5.1 Opcio 1: `redirectUrl` : Redirecció *GET* 
+### 5.1 Opció 1: `redirectUrl` : Redirecció *GET* 
 
 En cas que en el `/StartSignProcess` s'hagi informat el paràmetre `redirectUrl`, l'aplicació del signador farà una redirecció a la url informada retornant el flux a l'aplicació client. En la url de redirecció, s'afegira el paràmetre `token_id` amb el valor del token perquè l'aplicació pugui saber de quina operació és tracta, per exemple `https://applicacio/redirect?token_id=bec40de2-510f-4f19-bdfd-2a6595d708b7`.
 
@@ -447,7 +447,7 @@ L'altre cas singular, és el de l'Applet de PSA en mode *CERTIFICAT*, en el qual
 **NOTES:** 
 * La consulta de la resposta només estarà disponible 15 dies.
 
-### 5.2 Opcio 2: `callbackUrl` : Callback *POST*
+### 5.2 Opció 2: `callbackUrl` : Callback *POST*
 
 A diferència de l'opció 1, en cas que l'aplicació client hagi informat el paràmetre `callbackURL`, quan l'usuari hagi finalitzat la signatura el servei respondrà a l'aplicació client utilitzant la URL de callback que s'hagi informat en els paràmetres de configuració i facilitarà la signatura en aquell endpoint via *POST*. El servei retornarà la resposta amb la signatura generada en cas que hagi anat bé o el motiu de l'error en cas que no.
 
@@ -477,18 +477,20 @@ En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci va
 * És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
 * No hi ha política de reintents pel que fa a l'enviament de la signatura per part del signador a l'aplicació client, en cas que hi hagi algún problema amb aquest, s'haurà de tornar a iniciar l'operació.
 
-### 5.2.1 URL descàrrega
+### 5.3 URL descàrrega
 
-Per alleugerir el pes del *POST* es possible iniciar el procés indicant en el paràmetre `responseB64` amb valor `false`, d'aquesta forma en la resposta es rebrà en el `signResult` una URL amb la qual es podrà descarregar la resposta realitzant simplement un _GET_  inclohent les següents capçaleres http:
+Per alleugerir el pes de la response a `getSignature` per l'opció 1: `redirectUrl`, o del *POST* en el cas de l'opció 2: `callbackUrl` és possible iniciar el procés indicant en el paràmetre `responseB64` amb valor `false`, d'aquesta forma en la resposta de l'operació es rebrà en el `signResult` una URL en comptes del resultat en _Base64_, amb la qual es podrà descarregar la resposta realitzant simplement un _GET_ incloent les següents capçaleres http:
 
 * **Authorization**:  SC \<Codi d'autenticació generat amb un algoritme HMAC codificat en base64\>
 * **Origin**: Nom del domini que realitzarà les peticions.
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
 
+D'aquesta forma és podrà reduïr en els casos necessaris el pes de la resposta i agilitzar la comunicació.
+
 **NOTES:** 
 * La descàrrega de la resposta només estarà disponible 15 dies.
 
-### 5.3 Conclusions
+### 5.4 Conclusions
 
 La primera solució implementada va ser la **Opcio 2: `callbackUrl` : Callback _POST_**, desprès però de veure les necessitats de les aplicacions, la problemàtica que genera aquesta solució (possibles errors de timeout en el _POST_ de resposta, polling _ajax_ de l'aplicació client per tal de mantenir l'estat de l'operació, ...) i el fet de que alguns clients ens han traslladat el seu neguit al respecte s'ha decidit implementar l'altre via: **Opcio 1: `redirectUrl` : Redirecció _GET_** aquesta via és més neta, genera menys trafic i per tant té un millor rendiment, i permet un millor flux de cara a l'usuari per a la gestió de la signatura. Per tant recomanem en la mesura del possible utilitzar la opció del `redirectUrl`.
 
