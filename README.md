@@ -525,9 +525,9 @@ A banda de la **Demo** a tall d'exemple també es mostren els enllaços del **Si
 
 En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia aplicació així com les eines que portaran a terme la signatura en la màquina d'usuari, en aquestes guies s'explica la compatibilitat del servei i de les eines pel que fa a versions de sistemes operatius, navegadors, etc que suporta:
 
-### [8.1 Servei del signador](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/compatibilitatSignador.md)
-### [8.2 JNLP](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/jnlp.md)
-### [8.3 Nativa](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/nativa.md)
+### [8.1 Servei del signador](guiaUsuaris/compatibilitatSignador.md)
+### [8.2 JNLP](guiaUsuaris/jnlp.md)
+### [8.3 Nativa](guiaUsuaris/nativa.md)
 
 ## Llibreria integradors
 
