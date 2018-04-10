@@ -16,11 +16,11 @@ Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en
 
 ### Diagrama de flux amb redirect
 
-![Diagrama flux signador amb redirect](/imgs/redirectFlow.png?raw=true "Diagrama flux signador amb redirect")
+![Diagrama flux signador amb redirect](imgs/redirectFlow.png?raw=true "Diagrama flux signador amb redirect")
 
 ### Diagrama de flux amb callback
 
-![Diagrama flux signador amb callback](/imgs/callbackFlow.png?raw=true "Diagrama flux signador amb callback")
+![Diagrama flux signador amb callback](imgs/callbackFlow.png?raw=true "Diagrama flux signador amb callback")
 
 ## Ús del servei
 
