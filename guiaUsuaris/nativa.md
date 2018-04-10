@@ -37,13 +37,13 @@ Un cop descarregat l'executable procedim a realitzar la instal·lació.
 
 Per instal.lar segueixi els següents passos de l'assistent d'instal·lació:
 
-![assistent1Sample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/assistent1Sample.png)
+![assistent1Sample](guiaUsuaris/imgs/assistent1Sample.png)
 
-![assistent2Sample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/assistent2Sample.png)
+![assistent2Sample](guiaUsuaris/imgs/assistent2Sample.png)
 
-![assistent3Sample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/assistent3Sample.png)
+![assistent3Sample](guiaUsuaris/imgs/assistent3Sample.png)
 
-![assistent4Sample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/assistent4Sample.png)
+![assistent4Sample](guiaUsuaris/imgs/assistent4Sample.png)
 
 ![assistent5Sample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/assistent5Sample.png)
 
