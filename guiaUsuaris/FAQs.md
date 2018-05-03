@@ -17,8 +17,6 @@ En cas d'entorns corporatius on les instal·lacions de l'aplicació nativa les h
 
 De moment la versió actual de l'aplicació nativa no permet indicar si es volen o no fer comprovacions de l'actualització per tant en cas que aquestes es vulguin controlar el que es pot fer es bloquejar la següent _URL_:
 
-`https://signador.aoc.cat/signador/updates`
+* `https://signador.aoc.cat/signador/updates`
 
 Aquesta és la _URL_ on és connecta l'aplicació nativa per tal de comprovar si hi ha actualitzacions disponibles, per tant si la _URL_ es bloqueja l'aplicació no indicarà en cap cas que hi ha actualitzacions. S'ha d'anar amb compte però de blocar només la _URL_ i no el domini ja que si es bloqueja completament el domini `https://signador.aoc.cat` no es podrà utilitzar la plana per tal de signar.
-
-
