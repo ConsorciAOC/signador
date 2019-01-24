@@ -397,7 +397,7 @@ Si l'usuari té instal·lada l'aplicació nativa la signatura és realitzara amb
 
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
-En [l'apartat de compatibilitat](https://github.com/ConsorciAOC/signador#8-compatibilitat) s'explica les compatibilitat i el funcionament d'aquests dos mètodes per a realitzar la signatura.
+En [l'apartat de compatibilitat](#8-compatibilitat) s'explica les compatibilitat i el funcionament d'aquests dos mètodes per a realitzar la signatura.
 
 ## 5. Recuperar la signatura per part de l'aplicació
 

@@ -6,8 +6,8 @@ L'aplicació nativa és una aplicació d'escriptori que s'instal·la en la màqu
 
 Donem suport a la instal·lació i execució de l'aplicació nativa en els següents sistemes operatius:
 
- - *Ubuntu* - Versions [12.04 i superiors](https://wiki.ubuntu.com/Releases) 
- - *Windows* - Versions client [Vista i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Client_versions)
+ - *Ubuntu* - Versions [14.04 i superiors](https://wiki.ubuntu.com/Releases) 
+ - *Windows* - Versions client [7 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Client_versions)
  - *Windows* - Versions servidor [Server2003 R2 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Server_versions)
  - *MAC OS X* - Versions [OS.X 10.9 i superiors](https://en.wikipedia.org/wiki/MacOS#Release_history)
  
@@ -35,6 +35,8 @@ En la pàgina d'instal·lació de la nativa l'usuari pot escollir la versió del
 
 Un cop descarregat l'executable procedim a realitzar la instal·lació.
 
+## 3.1 Windows & MACOSX
+
 Per instal.lar segueixi els següents passos de l'assistent d'instal·lació:
 
 ![assistent1Sample](imgs/assistent1Sample.png)
@@ -54,6 +56,52 @@ Un cop s'hagi instal·lat i arranqui l'aplicació, en cas que ho fagis en Window
 ![installCert](imgs/installCertificate.PNG)
 
 Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat.
+
+## 3.2 Instal·lació Ubuntu
+
+La operació d'instal·lació a Ubuntu s'ha de fer amb l'usuari que utilitzarà l'aplicació i el que tingui les claus amb les que desitja signar carregades al magatzem de claus del firefox.
+
+Amb l'usuari amb el que volem fer la instal·lació i amb el que hagim descarregat l'instal·lador, cerquem l'instal·lador i donem permissos d'execució:
+
+`chmod 754 AppNativaSignador-x64.sh`
+
+Ara ja podem executar l'instal·lador:
+
+`./AppNativaSignador-x64.sh`
+
+A partir d'aqui podràs instal·lar l'aplicatiu seguint les passes de l'instal·lador:
+
+![ubuntu_install_1](imgs/ubuntu/install/1.png)
+
+![ubuntu_install_2](imgs/ubuntu/install/2.png)
+
+Proposa l'instal·lació en la `/home` de l'usuari:
+
+![ubuntu_install_3](imgs/ubuntu/install/3.png)
+
+Permet desactivar la comprovació d'actualitzacions a l'iniciar l'aplicació:
+
+![ubuntu_install_4](imgs/ubuntu/install/4.png)
+
+La selecció d'aquesta ruta és important, s'ha de seleccionar el directori d'instal·lació on es troba el firefox, d'altre manera l'aplicació no serà capaç de carregar els certificats d'aquest magatzem:
+
+![ubuntu_install_5](imgs/ubuntu/install/5.png)
+
+![ubuntu_install_6](imgs/ubuntu/install/6.png)
+
+![ubuntu_install_6](imgs/ubuntu/install/7.png)
+
+![ubuntu_install_6](imgs/ubuntu/install/8.png)
+
+Un cop instal·lat, l'instal·lador no arrenca l'aplicatiu de la nativa. Per tal de fer-ho caldrà anar al directori de l'instal·lació (per defecte $HOME/Signador) i arrencar l'aplicació. Ho podeu fer amb la següent comanda:
+
+`$HOME/Signador/Signador`
+
+Cada cop que arrenqueu el sistema i vulgueu fer ús de la nativa, haureu d'arrencar-la amb aquesta comanda.
+
+La primera vegada que l'aplicació s'executa genera les claus necessaries per al seu funcionament, aquest procés només és fa el primer cop que arrenca, la resta de vegades aprofita les claus ja generades.
+
+Abans de fer la validació, en el cas d'Ubuntu, serà necessari carrega la clau generada al magatzem de confiança del navegador, aquesta pasa només és necessari fer-la una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
 
 ## 4. Validació
 
@@ -147,8 +195,8 @@ El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·l
 
 - *Windows 32 bits*  C:\Program Files (x86)\Signador\lib\certificate
 - *Windows 64 bits*  C:\Program Files\Signador\lib\certificate
-- *Linux 32 bits*   /usr/local/signador
-- *Linux 64 bits*   /usr/local/signador
+- *Linux 32 bits*   $HOME/Signador/lib/certificate
+- *Linux 64 bits*   $HOME/Signador/lib/Certificate
 - *MACOSX*  /Applications/Signador.app/Contents/Resources/app/lib/certificate
 
 ![escullCertFF](imgs/escullCertFF.png)
@@ -199,6 +247,8 @@ En cas que es vulgui desinstal·lar, s'ha d'accedir a la carpeta a on s'hagi ins
 
 ## 8. Troubleshooting
 
-En cas de problemes amb l'execució de l'aplicació nativa podeu obrir una petició a través del nostre [portal de suport](https://www.aoc.cat/suport/) fent una descripció del problema, i afegint la següent informació: *sistema operatiu*, *navegador*, i si és possible els fitxers amb els logs de l'execució que podeu trobar en el path de la instal·lació de la nativa a `$SIGNADOR_HOME/log/webappTemp.log` i `$SIGNADOR_HOMER/error.log`.
+En cas de problemes amb l'execució de l'aplicació nativa podeu obrir una petició a través del nostre [portal de suport](https://www.aoc.cat/suport/) fent una descripció del problema, i afegint la següent informació: *sistema operatiu*, *navegador*, i si és possible els fitxers amb els logs de l'execució que podeu trobar en el path de la instal·lació de la nativa a `$SIGNADOR_HOME/log/webappTemp.log` i `$SIGNADOR_HOME/error.log`.
 
 En el cas de sistemes operatius Windows, seguint la instal·lació per defecte, la variable `$SIGNADOR_HOME` pren el valor `C:\Program Files (x86)\Signador` per a l'instal·lable de _32-bit_ i `C:\Program Files\Signador` per al de _64-bit_. Per tant els fitxers de logs els trobareu a `C:\Program Files (x86)\Signador\log\webappTemp.log`,`C:\Program Files (x86)\Signador\error.log` i `C:\Program Files\Signador\log\webappTemp.log` i `C:\Program Files\Signador\error.log` respectivament.
+
+En el cas de sistema operatiu Ubuntu, la variable `$SIGNADOR_HOME` en la instal·lació per defecte pren el valor `$HOME\Signador` i podeu accedir a la carpeta dels logs amb la comanda `cd $HOME\Signador\` per a trobar el fitxer `error.log` i la comanda `cd $HOME\Sigandor\log` per a accedir al fitxer `webappTemp.log`.
