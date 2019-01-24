@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) [2018-2019] [Consorci Administració oberta de catalunya]
+Copyright (c) 2018-2019 Consorci Administració Oberta de Catalunya
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
