@@ -93,7 +93,7 @@ La selecció d'aquesta ruta és important, s'ha de seleccionar el directori d'in
 
 ![ubuntu_install_6](imgs/ubuntu/install/8.png)
 
-Un cop instal·lat, l'instal·lador no arrenca l'aplicatiu de la nativa. Per tal de fer-ho caldrà anar al directori de l'instal·lació (per defecte $HOME/Signador) i arrencar l'aplicació. Ho podeu fer amb la següent comanda:
+Un cop instal·lat, l'instal·lador no arrenca l'aplicatiu de la nativa. Per tal de fer-ho caldrà anar al directori de l'instal·lació (per defecte `$HOME/Signador`) i arrencar l'aplicació. Ho podeu fer amb la següent comanda:
 
 `$HOME/Signador/Signador`
 
@@ -101,7 +101,7 @@ Cada cop que arrenqueu el sistema i vulgueu fer ús de la nativa, haureu d'arren
 
 La primera vegada que l'aplicació s'executa genera les claus necessaries per al seu funcionament, aquest procés només és fa el primer cop que arrenca, la resta de vegades aprofita les claus ja generades.
 
-Abans de fer la validació, en el cas d'Ubuntu, serà necessari carrega la clau generada al magatzem de confiança del navegador, aquesta pasa només és necessari fer-la una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
+Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau generada al magatzem de confiança del navegador, aquesta pasa només és necessari fer-la una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
 
 ## 4. Validació
 
@@ -196,7 +196,7 @@ El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·l
 - *Windows 32 bits*  C:\Program Files (x86)\Signador\lib\certificate
 - *Windows 64 bits*  C:\Program Files\Signador\lib\certificate
 - *Linux 32 bits*   $HOME/Signador/lib/certificate
-- *Linux 64 bits*   $HOME/Signador/lib/Certificate
+- *Linux 64 bits*   $HOME/Signador/lib/certificate
 - *MACOSX*  /Applications/Signador.app/Contents/Resources/app/lib/certificate
 
 ![escullCertFF](imgs/escullCertFF.png)
@@ -251,4 +251,4 @@ En cas de problemes amb l'execució de l'aplicació nativa podeu obrir una petic
 
 En el cas de sistemes operatius Windows, seguint la instal·lació per defecte, la variable `$SIGNADOR_HOME` pren el valor `C:\Program Files (x86)\Signador` per a l'instal·lable de _32-bit_ i `C:\Program Files\Signador` per al de _64-bit_. Per tant els fitxers de logs els trobareu a `C:\Program Files (x86)\Signador\log\webappTemp.log`,`C:\Program Files (x86)\Signador\error.log` i `C:\Program Files\Signador\log\webappTemp.log` i `C:\Program Files\Signador\error.log` respectivament.
 
-En el cas de sistema operatiu Ubuntu, la variable `$SIGNADOR_HOME` en la instal·lació per defecte pren el valor `$HOME\Signador` i podeu accedir a la carpeta dels logs amb la comanda `cd $HOME\Signador\` per a trobar el fitxer `error.log` i la comanda `cd $HOME\Sigandor\log` per a accedir al fitxer `webappTemp.log`.
+En el cas de sistema operatiu Ubuntu, la variable `$SIGNADOR_HOME` en la instal·lació per defecte pren el valor `$HOME\Signador` i podeu accedir a la carpeta dels logs amb la comanda `cd $HOME\Signador\` per a trobar el fitxer `error.log` i la comanda `cd $HOME\Sigandor\log` per a trobar el fitxer `webappTemp.log`.
