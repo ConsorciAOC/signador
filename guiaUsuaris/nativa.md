@@ -2,6 +2,8 @@
 
 L'aplicació nativa és una aplicació d'escriptori que s'instal·la en la màquina del client i s'executa com a servei (en segon pla). 
 
+L'aplicació de la nativa es distribueix sota el termes de la llicencia del [MIT](LICENSE.MD)
+
 ## 1. Sistemes operatius
 
 Donem suport a la instal·lació i execució de l'aplicació nativa en els següents sistemes operatius:
