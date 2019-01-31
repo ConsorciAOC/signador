@@ -385,6 +385,8 @@ Descripció dels camps _JSON_ de la configuració del servei de signatura múlti
 *	**doc_name**: Nom del document. **Camp obligatori**.
 *	**document_to_sign**: Document original a signar amb el format establert segons el camp doc_type del procés de signatura. **Camp obligatori**.
 
+En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida és fa des de *Javascript* utilitzant domini registrat els pròpis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
+
 
 ## 4. StartSignProcess: Resposta
 
