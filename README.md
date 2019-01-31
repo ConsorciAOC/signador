@@ -370,7 +370,7 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**signature_policy_hash_algorithm**: Algoritme de resum criptogràfic emprat per a calcular el **signature_policy_hash**. Els possibles valors són: `SHA-1`, `SHA-256`, `SHA-512`.
 
 ## 3. AddDocumentToSign: Signatura múltiple
-Aquesta crida permet afegir documents a processos de signatura de tipus Applet inicialitzats amb el flag multiple = "true" pels quals **encara no s'ha efectuat la signatura**. El procés de signatura pot contenir més d'un document, especificat durant la inicialització o bé afegit amb "addDocumentToSign". El nou document a afegir haurà de respectar el format indicat al camp doc_type especificat a la inicialització del procés de signatura, i ha de ser de tipus DOC_TYPE_HASH, DOC_TYPE_B64_FILE_CONTENT o DOC_TYPE_URL_FILE. Aquest servei pot ser executat múltiples vegades mentre no es realitzi la signatura. La crida consisteix en un *PUT* on s'envia un objecte _JSON_ amb la següent forma:
+Aquesta crida permet afegir documents a processos de signatura de tipus Applet inicialitzats amb el flag multiple = "true" pels quals **encara no s'ha efectuat la signatura**. El procés de signatura pot contenir més d'un document, especificat durant la inicialització o bé afegit amb "addDocumentToSign". El nou document a afegir haurà de respectar el format indicat al camp doc_type especificat a la inicialització del procés de signatura, que només pot ser per a aquests casos _3_(hashDoc), _4_ (B64fileContent) o _6_ urlFile. Aquest servei pot ser executat múltiples vegades mentre no es realitzi la signatura. La crida consisteix en un *PUT* on s'envia un objecte _JSON_ amb la següent forma:
 
 ```javascript
 {
