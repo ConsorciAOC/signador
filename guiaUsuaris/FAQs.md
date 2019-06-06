@@ -20,3 +20,13 @@ De moment la versió actual de l'aplicació nativa no permet indicar si es volen
 * `https://signador.aoc.cat/signador/updates`
 
 Aquesta és la _URL_ on és connecta l'aplicació nativa per tal de comprovar si hi ha actualitzacions disponibles, per tant si la _URL_ es bloqueja l'aplicació no indicarà en cap cas que hi ha actualitzacions. S'ha d'anar amb compte però de blocar només la _URL_ i no el domini ja que si es bloqueja completament el domini `https://signador.aoc.cat` no es podrà utilitzar la plana per tal de signar.
+
+## Problemes amb la càrrega de claus en altres dispositius via PKCS11 (targes/smartCards)
+
+Si l'aplicació que ha realitzat la integració, no especifica la ruta a les llibreries amb els drivers de la tarja o la smartcard amb la que es vol signar, potser que les claus contingudes dins d'aquest dispositiu no apareguin per a ser seleccionades per a signar. En aquest cas l'usuari pot especificar la ruta a la llibreria destijada de la següent forma. En el directori d'instal·lació de l'aplicació nativa trobareu el següent fitxer: *Signador.vmoptions*. Heu d'editar aquest fitxer i afegir la següent propietat a les ja existents:
+
+```
+-Duser.pkcs11.path=/path/al/teu/pkcs11.so
+```
+
+Un cop fet, al tornar a realitzar la operació de signatura, si s'ha especificat correctament la clau d'aquest dispositiu apareixerà en el requadre de selecció.
