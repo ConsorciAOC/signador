@@ -32,7 +32,7 @@ Aquest enpoint retornarà una resposta amb la següent forma:
 	"aliasList" : 	[
 				{
 				"alias" : "alias del certificat",
-				"aliasEncoded" : "alias del certificat en base64"
+				"aliasEncoded" : "alias del certificat en base64",
 				"certificat" : "clau pública en base64"
 				},
 				...
@@ -62,7 +62,7 @@ La resposta en aquest cas té la següent forma:
 ```json
 {
 	"status" : "OK/KO",
-	"signResult" : "zip codificat en base64 amb la signatura resultant"
+	"signResult" : "zip codificat en base64 amb la signatura resultant",
 	"error" : "Possible missatge d'error"
 }
 ```
