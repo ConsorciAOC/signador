@@ -1,0 +1,145 @@
+<!--
+Exemple d'integració directe amb la nativa, que recupera la llista de certificats disponibles del keystore del client, els pinta 
+per pantalla per a poder-los seleccionar i realitza una segona crida per a signar, recupera el fitxer zip amb les respostes 
+i el deixa descarregar. 
+Es necessari tenir l'aplicació nativa arrencada i desplegada al port 9090.
+-->
+<html>
+<script   src="https://code.jquery.com/jquery-1.12.4.js"   integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="   crossorigin="anonymous"></script>
+<script language="javascript">
+
+var urlNativa = "https://nativa.aoclocal.cat:9090";
+var certificatesUrl = urlNativa + "/getCertificate";
+var signatura = urlNativa + "/signature";
+
+// "?" + AppletSignatura.BROWSER + "=" + browser;
+
+var peticioObtenirCertificats = {
+	"applet_cfg":{
+		"keystore_type": "0",
+		"signature_mode": "16", // (XAdES_T_detached_hash)
+		"doc_type": "3", // hash			
+		"document_to_sign": "gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA="
+	}
+};
+
+var peticioSignatura = {
+	"applet_cfg":{
+		"keystore_type": "0",
+		"signature_mode": "16", // (XAdES_T_detached_hash)
+		"doc_type": "3", // hash				
+		"document_to_sign": "gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA="
+	}
+};
+
+function getCertificates(){
+
+	$.ajax({
+		headers: { 
+        	'Accept': 'application/json',
+        	'Content-Type': 'application/json' 
+    	},
+    	type: 'POST',
+    	'url': certificatesUrl,
+    	'data': JSON.stringify(peticioObtenirCertificats),
+    	'dataType': 'json',
+    	'success': pintarCertificats,
+	    'error' : errorObtenintCertificats
+	});
+}
+
+function errorObtenintCertificats(){
+	alert("ERROR OBTENINT CERTIFICATS");
+}
+
+function pintarCertificats(resposta){
+	var certificats = resposta.aliasList;
+	
+	for(var i=0;i<certificats.length;i++){
+		var cert = certificats[i];
+		$('#certificats').append('<option value="'+ cert.aliasEncoded +'">' + cert.alias + '</option>');
+		$('#div').show();
+	}
+}
+
+function doSignatura(){
+
+	var url = signatura + "?alias=" + $('#certificats option:selected').val();
+		
+	$.ajax({
+		headers: { 
+        	'Accept': 'application/json',
+        	'Content-Type': 'application/json' 
+    	},
+    	type: 'POST',
+    	'url': url,
+    	'data': JSON.stringify(peticioSignatura),
+    	'dataType': 'json',
+    	'success': signaturaOk,
+	    'error' : signautraError
+	});
+}
+
+function signautraError(){
+	alert("ERROR REALITZANT LA SIGNATURA");
+}
+
+function signaturaOk(resposta){
+	if(resposta.status == "OK"){
+		alert("signatura generada correctament...");
+		var zipResult = base64ToBlob(resposta.signResult);
+		descarrega('signatura.zip',zipResult);
+		
+		alert(resposta.signResult);
+	}else{
+		alert("ERROR GENERANT LA SIGNATURA!!!!....");
+		alert( resposta.error);
+	}	
+}
+
+function base64ToBlob(base64) {
+    let binaryString =  window.atob(base64);
+    let binaryLen = binaryString.length;
+
+    let ab = new ArrayBuffer(binaryLen);
+    let ia = new Uint8Array(ab);
+    for (let i = 0; i < binaryLen; i++) {
+       ia[i] = binaryString.charCodeAt(i);
+    }
+
+    let bb = new Blob([ab]);
+    bb.lastModifiedDate = new Date();
+    bb.name = "signatura.zip";
+    bb.type = "zip";
+
+    return bb;
+}
+
+function descarrega(filename, data) {
+    var blob = new Blob([data], {type: 'application/zip'});
+    if(window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveBlob(blob, filename);
+    }
+    else{
+        var elem = window.document.createElement('a');
+        elem.href = window.URL.createObjectURL(blob);
+        elem.download = filename;        
+        document.body.appendChild(elem);
+        elem.click();        
+        document.body.removeChild(elem);
+    }
+}
+
+
+</script>
+
+<body>
+	<input type="button" onclick="getCertificates();" value="Obté els certificats"></input>
+	
+	<div id="div" style="display:none">
+		<select id="certificats"></select>
+		<input type="button" onclick="doSignatura();" value="Signa"></input>
+	</div>
+
+</body>
+</html>
