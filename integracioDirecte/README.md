@@ -71,6 +71,9 @@ La resposta en aquest cas té la següent forma:
 * `signResult` : Retorna un `zip` codificat en base64 que conté les n signatures que s'hagin generat. Per establir l'ordre del document/hash enviat a signar, i la resposta, el nom dels documents dins del `zip` és númeric respectant l'ordre d'entrada de `0..n`.
 * `errror` : Missatge d'error en cas de que el `status` sigui `KO`.
 
+# Exemple
+
+Aqui podeu trobar un [exemple](integracioDirecteExemple.html) de la integració amb les crides definides fetes en un `html` amb `js`. L'exemple d'integració directe amb la nativa, recupera la llista de certificats disponibles del client, els pinta en un `<select>` per pantalla, per a que l'usuari pugui triar amb quin vol signar, i un cop seleccionat realitza la segona crida per a signar. Recupera el fitxer `zip` amb les signatures dels documents i el descarrega.
 
 
 
