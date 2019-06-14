@@ -461,7 +461,7 @@ Els possibles valors dels camps:
 *	**signResult**: El resultat de la signatura en base64, o una _URL_ per descarregar la resposta.
 *	**type**: El tipus del resultat que retornem. Els possibles valors son: **XML/CMS/PDF/HASH/TXT/ZIP/CERT**.
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
-*       **urlRedirect** : La url de redirecció on s'ha enviat la signatura resultat amb el paràmetre del `token` informat.
+*	**urlRedirect** : La url de redirecció on s'ha enviat la signatura resultat amb el paràmetre del `token` informat.
 
 En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, la resposta del servei tindrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
 
