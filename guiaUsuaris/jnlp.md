@@ -31,7 +31,7 @@ Si teniu problemes executant el _JNLP_ del signador podeu revisar la [FAQ oficia
 
 Per comprovar que teniu tot correctament instal·lat podeu fer una prova [executant un _JNLP_ oficial d'Oracle d'exemple](https://docs.oracle.com/javase/tutorialJWS/samples/deployment/dynamictree_webstartJWSProject/dynamictree_webstart.jnlp), que en cas d'executar-se correctament mostra el següent pop-up:
 
-![JNLPSample](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/imgs/JNLPSample.png)
+![JNLPSample](imgs/JNLPSample.png)
 
 Podeu veure aquest exemple i un altre [aqui](https://docs.oracle.com/javase/tutorial/deployment/webstart/examplesIndex.html).
 
