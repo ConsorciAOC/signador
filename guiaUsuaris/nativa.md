@@ -255,7 +255,7 @@ En cas que fent ús del signador a través del magatzem de Firefox, el signador 
 
 Per tal de fer-ho, cal afegir la ruta amb el _.so (linux) o la .dll (windows)_ de la llibreria nativa del dispositiu PKCS11 al fitxer `$SIGNADOR_HOME/Signador.vmoptions`, mitjançant el següent paràmetre: `-Duser.pkcs11.path=/path/al/teu/pkcs11.so`.
 
-El fitxer té `Signador.vmoptions` té un contingut similar a:
+El fitxer `Signador.vmoptions` té un contingut similar a:
 
 ```
 -Duser.firefox.dir=/usr/lib/firefox
