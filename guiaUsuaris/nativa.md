@@ -247,7 +247,32 @@ En cas que es vulgui desinstal·lar, s'ha d'accedir a la carpeta a on s'hagi ins
 
 ![desinstalar2Sample](imgs/desinstalar2Sample.png)
 
-## 8. Troubleshooting
+## 8. Configuració avançada
+
+### 8.1 PKCS11 addicionals
+
+En cas que fent ús del signador a través del magatzem de Firefox, el signador no detecti algun certificat carregat en un dispositiu PKCS11, es pot intentar indicar al signador a través d'un paràmetre de configuració la llibreria d'aquest per tal de que la carregui.
+
+Per tal de fer-ho, cal afegir la ruta amb el _.so (linux) o la .dll (windows)_ de la llibreria nativa del dispositiu PKCS11 al fitxer `$SIGNADOR_HOME/Signador.vmoptions`, mitjançant el següent paràmetre: `-Duser.pkcs11.path=/path/al/teu/pkcs11.so`.
+
+El fitxer té `Signador.vmoptions` té un contingut similar a:
+
+```
+-Duser.firefox.dir=/usr/lib/firefox
+-Djava.net.useSystemProxies=true
+-Djavax.net.ssl.trustStore=/home/albert/Signador/lib/certificate/cacerts
+```
+
+Només caldria afegir doncs una línia extra indicant la ruta a la llibreria de la següent forma:
+
+```
+-Duser.pkcs11.path=/path/al/teu/pkcs11.so << AQUEST ÉS EL PARÀMETRE
+-Duser.firefox.dir=/usr/lib/firefox
+-Djava.net.useSystemProxies=true
+-Djavax.net.ssl.trustStore=/home/albert/Signador/lib/certificate/cacerts
+```
+
+## 9. Troubleshooting
 
 En cas de problemes amb l'execució de l'aplicació nativa podeu obrir una petició a través del nostre [portal de suport](https://www.aoc.cat/suport/) fent una descripció del problema, i afegint la següent informació: *sistema operatiu*, *navegador*, i si és possible els fitxers amb els logs de l'execució que podeu trobar en el path de la instal·lació de la nativa a `$SIGNADOR_HOME/log/webappTemp.log` i `$SIGNADOR_HOME/error.log`.
 
