@@ -39,11 +39,11 @@ Podeu veure aquest exemple i un altre [aqui](https://docs.oracle.com/javase/tuto
 
 <h3>Problemes específics per a MAC OS X</h3>
 
-No disposem de les claus per tal de signar el _JNLP_ que distribuïm com a desenvolupador identificat d'Apple. Per això ens podem trobar que en un primer moment, a l'hora d'anar a executar el fitxer, se'ns bloquegi l'execució mostrant el següent missatge:
+En el cas de voler executar el _JNLP_ en un sistema operatiu _MAC OS X_ podem tenir alguna dificultat addicional ja que no disposem de les claus per tal de signar el fitxer _JNLP_ que distribuïm per a tal que ens reconeguin com a desenvolupadors identificats d'Apple. Per aquest motiu ens podem trobar que en un primer moment a l'hora d'anar a executar el fitxer, se'ns bloquegi l'execució mostrant el següent missatge:
 
 ![JNLPMACOSXBlock](imgs/jnlp/macosx/mac_jnlp_block.png)
 
-Per tant, serà necessari seguir les següents passes per tal de poder executar el _JNLP_.
+Aleshores, serà necessari seguir les següents passes per tal de poder executar el _JNLP_ correctament.
 
 Anar al `menú d'Apple` i seleccionar `Preferències del sistema`:
 
