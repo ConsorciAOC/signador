@@ -3,31 +3,33 @@
 Per tal de poder realitzar l'operació de signatura en si, un cop accedit al servei del **Signador** es descarregarà un fitxer amb extensió *.jnlp*. 
 Per tal de dur a terme la signatura serà necessari executar aquest fitxer.
 
-A diferència de l'applet de signatura el *JNLP* s'executa fora del context del navegador, per tant en aquest sentit hauria de funcionar independentment de amb quin navegador s'hagi descarregat el fitxer *.jnlp*.
+A diferència de l'applet de signatura el *JNLP* s'executa fora del context del navegador, per tant en aquest sentit hauria de funcionar independentment del navegador amb el que s'hagi descarregat el fitxer amb extensió *.jnlp*.
 
 <h3>Sistemes operatius</h3>
 
 Donem suport a l'execució del *JNLP* per a ser executat en els següents sistemes operatius:
 
- - *Ubuntu* - Versions [12.04 i superiors](https://wiki.ubuntu.com/Releases) 
- - *Windows* - Versions client [Vista i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Client_versions)
- - *Windows* - Versions servidor [Server2003 R2 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Server_versions)
- - *MAC OS X* - Versions [OS.X 10.9 i superiors](https://en.wikipedia.org/wiki/MacOS#Release_history)
+ - *Ubuntu* - Versions [14.04 LTS i superiors](https://wiki.ubuntu.com/Releases) 
+ - *Windows* - Versions client [7 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Client_versions)
+ - *Windows* - Versions servidor [Server 2008 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Server_versions)
+ - *MAC OS X* - Versions [OS.X 10.12 i superiors](https://en.wikipedia.org/wiki/MacOS#Release_history)
  
+Indicar que aquest llistat s'anirà actualitzant, però no es donarà suport sobre sistemes operatius les versions dels quals hagin estat declarades obsoletes - [*EOL*](https://en.wikipedia.org/wiki/End-of-life_(product)) - per el propi fabricant.
+
 **Nota**: Igual que en el cas dels navegadors pot funcionar en altres versions de sistemes operatius (e.g. altres distribucions de Linux com pot ser [Mint](https://www.linuxmint.com/)), però també igual que en el cas dels navegadors, aquestes altres versions no rebran suport per part nostra en cas de problemes d'execució.
  
 <h3>Requeriments</h3>
 
-És necessari tenir instal·lada una versió de la Java JRE en l'ordinador on volem executar el *.jnlp*. 
+És necessari tenir instal·lada una versió de la Java JRE en l'ordinador on volem executar el fitxer *.jnlp*. 
 Donem suport fins a _tres versions anteriors_ a l'actual de JRE.
 
-Pots descarregar-te [l'última versió de la JRE d'Oracle aqui](https://www.java.com/es/download/).
+Pots descarregar-te [l'última versió de la JRE d'Oracle aquí](https://www.java.com/es/download/).
 
-**Nota**: Si disposes d'un entorn/versió diferent dels especificats anteriorment es possible que igualment tot et funcioni correctament, però en cas de necessitar de suport només serà disponible per a les versions/entorns específicats.
+**Nota**: Si disposes d'un entorn/versió diferent dels especificats anteriorment es possible que igualment tot et funcioni correctament, però en cas de necessitar de suport només serà disponible per a les versions/entorns especificats.
 
 <h3>Com utilitzar-ho</h3>
 
-Si teniu problemes executant el _JNLP_ del signador podeu revisar la [FAQ oficial d'Oracle de com executar _JNLP_ aqui.](https://www.java.com/es/download/faq/java_webstart.xml)
+Si teniu problemes executant el _JNLP_ del signador podeu revisar la [FAQ oficial d'Oracle de com executar _JNLP_ aquí.](https://www.java.com/es/download/faq/java_webstart.xml)
 
 Per comprovar que teniu tot correctament instal·lat podeu fer una prova [executant un _JNLP_ oficial d'Oracle d'exemple](https://docs.oracle.com/javase/tutorialJWS/samples/deployment/dynamictree_webstartJWSProject/dynamictree_webstart.jnlp), que en cas d'executar-se correctament mostra el següent pop-up:
 
@@ -35,4 +37,18 @@ Per comprovar que teniu tot correctament instal·lat podeu fer una prova [execut
 
 Podeu veure aquest exemple i un altre [aqui](https://docs.oracle.com/javase/tutorial/deployment/webstart/examplesIndex.html).
 
+<h3>Problemes específics per a MAC OS X</h3>
 
+No disposem de les claus per tal de signar el _JNLP_ que distribuïm com a desenvolupador identificat d'Apple. Per això ens podem trobar que en un primer moment, a l'hora d'anar a executar el fitxer, se'ns bloquegi l'execució mostrant el següent missatge:
+
+![JNLPMACOSXBlock](imgs/jnlp/macosx/mac_jnlp_block.png)
+
+Per tant, serà necessari seguir les següents passes per tal de poder executar el _JNLP_.
+
+Anar al `menú d'Apple` i seleccionar `Preferències del sistema`:
+
+![JNLPMACOSXSystemPrefs](imgs/jnlp/macosx/mac_system_preferences.png)
+
+Seleccionar `Seguretat i privacitat`, i revisar la pestanya `General` d'aquesta pantalla. Si apareix el botó `Obrir de tota manera`, simplement s'ha de clicar. Sinó, també potser que aparegui una opció addicional indicant l'execució d'aplicacions desconegudes, en aquest cas farà falta tocar el cadenat per a permetre la modificació i seleccionar aquesta opció. Un cop fet això, podem tornar a executar el _JNLP_ per a que es pugui executar correctament:
+
+![JNLPMACOSXAllowExec](imgs/jnlp/macosx/mac_jnlp_allow_execution.png)
