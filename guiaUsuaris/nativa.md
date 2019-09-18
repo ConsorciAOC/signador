@@ -80,7 +80,7 @@ En aquesta pantalla podrem seleccionar si desitgem accesos directes o la creaci�
 
 ![assistent6Sample](imgs/nativa/windows/assitentInstall6.png)
 
-Aquest és el missatge final del instal·lador, un cop fem clic a `Finalitzar` arrencara l'aplicació.
+Aquest és el missatge final del instal·lador, un cop fem clic a `Finalitzar` arrencarà l'aplicació.
 
 ![assistent7Sample](imgs/nativa/windows/assitentInstall7.png)
 
@@ -118,7 +118,7 @@ En aquesta pantalla apareixen l'opció d'ndicar si es desitja que cada vegada qu
 
 ![installMac6](imgs/nativa/macosx/installMac6.png)
 
-Aquest és el missatge final del instal·lador, un cop fem clic a `Finalitzar` arrencara l'aplicació.
+Aquest és el missatge final del instal·lador, un cop fem clic a `Finalitzar` arrencarà l'aplicació.
 
 ![installMac7](imgs/nativa/macosx/installMac7.png)
 
@@ -308,11 +308,27 @@ A continuació es mostra un exemple de la pantalla de funcionament del signador 
 
 ## 7. Desinstal·lació
 
-En cas que es vulgui desinstal·lar, s'ha d'accedir a la carpeta a on s'hagi instal·lat la aplicació, executar el fitxer _uninstall.exe_ i seguir les següents passes:
+A continuació és mostren les passes necessaries per a desinstal·lar l'aplicació depenent del sistems operatiu.
+
+### 7.1 Windows
+
+En cas que es vulgui desinstal·lar, es pot accedir a la carpeta a on s'hagi instal·lat la aplicació (per defecte `C:\Program Files (x86)\Signador` o `C:\Program Files\Signador`), executar el fitxer _uninstall.exe_:
+
+![uninstallWinPrevi](imgs/nativa/windows/uninstallWinPrevi.PNG)
+
+I seguir les següents passes.
 
 ![desinstalar1Sample](imgs/desinstalar1Sample.png)
 
 ![desinstalar2Sample](imgs/desinstalar2Sample.png)
+
+Si disposeu d'un sistema operatiu Windows 10, podeu utilitzar la tecla <kbd>![Windows Key](imgs/nativa/windows/winlogo.png)</kbd> i directament escriure `uninstall`, obrir el `Desinstal·lador de APP nativa signador` i seguir les mateixes passes de desinstal·lació.
+
+![uninstallWin10](imgs/uninstallWin10.png)
+
+### 7.2 MAC OS X
+
+# TODO
 
 ## 8. Configuració avançada
 
