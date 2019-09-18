@@ -45,7 +45,7 @@ En el cas de voler executar el _JNLP_ en un sistema operatiu _MAC OS X_ podem te
 
 Aleshores, serà necessari seguir les següents passes per tal de poder executar el _JNLP_ correctament.
 
-Anar al `menú d'Apple` i seleccionar `Preferències del sistema`:
+Anar al `menú d'Apple` --> seleccionar `Preferències del sistema`:
 
 ![JNLPMACOSXSystemPrefs](imgs/jnlp/macosx/mac_system_preferences.png)
 
