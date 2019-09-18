@@ -94,7 +94,35 @@ Si a més a més es vol fer servir la nativa en Windows sobre _Firefox_ cal carr
 
 ## 3.2 MAC OS X
 
-# TODO
+Un cop descarregat l'instal·lable per a *MAC OS X* només cal fer obrir el `.dmg`, fer clic sobre l'aplicació i seguir les següents passes de l'assistent d'instal·lació:
+
+![installMac1](imgs/nativa/macosx/installMac1.png)
+
+Panell de carrega previ a la instal·lació:
+
+![installMac2](imgs/nativa/macosx/installMac2.png)
+
+En aquest punt ens demana la contrasenya del usuari per tal de poder instal·lar l'aplicació. En el prompt indica que *Install4j* és un problema amb el software amb el que generem l'instal·lable, però és correcte.
+
+![installMac3](imgs/nativa/macosx/installMac3.png)
+
+Pantalla de benvinguda de l'instal·lador, amb una breu descripció, fem clic a `Següent>` per continuar el procés:
+
+![installMac4](imgs/nativa/macosx/installMac4.png)
+
+Indica la carpeta per defecte on s'instal·larà la aplicació, en cas que volguem seleccionar-ne una de diferent podem fer-ho mitjançant el botó `Explorar`, en cas que ja ens sembli bé la ruta proposada fem clic a `Següent>`
+
+![installMac5](imgs/nativa/macosx/installMac5.png)
+
+En aquesta pantalla apareixen l'opció d'ndicar si es desitja que cada vegada que el PC arrenqui es comprovi si existeix una nova versió de l'aplicació nativa. Hi ha alguns entorns on el control/permisos de la instal·lació no las té el propi usuari sinó un usuari administrador, amb el que és molest que aparegui el missatge d'actualització quan en realitat no es diposa de permisos per dur-la a terme, en aquests casos, es possible que l'usuari vulgui evitar les comprovacions de les actualitzacions i ho pot fer desactivant aquesta opció. Per a la resta de casos recomanem tenir l'opció d'actualitzacions seleccionada.
+
+![installMac6](imgs/nativa/macosx/installMac6.png)
+
+Aquest és el missatge final del instal·lador, un cop fem clic a `Finalitzar` arrencara l'aplicació.
+
+![installMac7](imgs/nativa/macosx/installMac7.png)
+
+Un cop finalitzada la instal·lació per al correcte funcionament de l'aplicació serà necessari instal·lar el certificat al magatzem de claus propi de MAC OS X, per a utilitzar l'aplicació amb _Safari_ o _Chrome_, podeu veure les instruccions al apartat [5.3 MAC OS X](#53-MAC-OS-X). O en cas de voler utilitzar _Firefox_ instal·lar el certificat al magatzem d'aquest navegador, podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
 
 ## 3.3 Ubuntu
 
@@ -238,7 +266,7 @@ El certificat a instal·lar, `root.crt`, es troba a la carpeta a on s'ha instal�
 - *Linux 64 bits*   $HOME/Signador/lib/certificate
 - *MACOSX*  /Applications/Signador.app/Contents/Resources/app/lib/certificate
 
-*En el cas de Linux en cas de no trobar el `root.crt`, recordeu que aquest es genera quan s'arrenca l'aplicació per primer cop, per tant si no el trobeu, recordeu arrencar l'aplicació tal i com s'indica en els [pases de la instal·lació](#33-ubuntu)*
+**En el cas de Linux en cas de no trobar el `root.crt`, recordeu que aquest es genera quan s'arrenca l'aplicació per primer cop, per tant si no el trobeu, recordeu arrencar l'aplicació tal i com s'indica en els [pases de la instal·lació](#33-ubuntu)**
 
 ![escullCertFF](imgs/escullCertFF.png)
 
