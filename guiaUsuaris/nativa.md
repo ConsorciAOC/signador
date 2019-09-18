@@ -314,7 +314,7 @@ A continuació és mostren les passes necessaries per a desinstal·lar l'aplicac
 
 En cas que es vulgui desinstal·lar, es pot accedir a la carpeta a on s'hagi instal·lat la aplicació (per defecte `C:\Program Files (x86)\Signador` o `C:\Program Files\Signador`), executar el fitxer _uninstall.exe_:
 
-![uninstallWinPrevi](imgs/nativa/windows/uninstallWinPrevi.PNG)
+![uninstallWinPrevi](imgs/nativa/windows/uninstallexeWin.png)
 
 I seguir les següents passes.
 
@@ -324,7 +324,7 @@ I seguir les següents passes.
 
 Si disposeu d'un sistema operatiu Windows 10, podeu utilitzar la tecla <kbd>![Windows Key](imgs/nativa/windows/winlogo.png)</kbd> i directament escriure `uninstall`, obrir el `Desinstal·lador de APP nativa signador` i seguir les mateixes passes de desinstal·lació.
 
-![uninstallWin10](imgs/uninstallWin10.png)
+![uninstallWin10](imgs/nativa/windows/uninstallWin10.png)
 
 ### 7.2 MAC OS X
 
