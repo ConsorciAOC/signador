@@ -1,6 +1,6 @@
 <h2>Què necessito per utilitzar l'<i>Aplicació Nativa</i>?</h2>
 
-L'aplicació nativa és una aplicació d'escriptori que s'instal·la en la màquina del client i s'executa com a servei (en segon pla). 
+L'aplicació nativa és una aplicació d'escriptori que s'instal·la en la màquina del client i s'executa com a servei (en segon pla).
 
 L'aplicació de la nativa es distribueix sota el termes de la [llicencia del MIT](../LICENSE.MD)
 
@@ -10,18 +10,20 @@ Donem suport a la instal·lació i execució de l'aplicació nativa en els segü
 
  - *Ubuntu* - Versions [14.04 i superiors](https://wiki.ubuntu.com/Releases) 
  - *Windows* - Versions client [7 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Client_versions)
- - *Windows* - Versions servidor [Server2003 R2 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Server_versions)
- - *MAC OS X* - Versions [OS.X 10.9 i superiors](https://en.wikipedia.org/wiki/MacOS#Release_history)
+ - *Windows* - Versions servidor [Server2008 i superiors](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions#Server_versions)
+ - *MAC OS X* - Versions [OS.X 10.12 i superiors](https://en.wikipedia.org/wiki/MacOS#Release_history)
+ 
+Indicar que aquest llistat s'anirà actualitzant, però no es donarà suport sobre sistemes operatius les versions dels quals hagin estat declarades obsoletes - [*EOL*](https://en.wikipedia.org/wiki/End-of-life_(product)) - per el propi fabricant.
  
 **Nota**: Igual que en el cas dels navegadors pot funcionar en altres versions de sistemes operatius (e.g. altres distribucions de Linux com pot ser [Mint](https://www.linuxmint.com/)), però també igual que en el cas dels navegadors, aquestes altres versions no rebran suport per part nostra en cas de problemes d'execució.
 
 ### 1.1 Connectivitat
 
-L'aplicació nativa és una aplicació en segon pla que respon les crides que el navegador realitza contra el domini `nativa.aoclocal.cat`. En els nostres servidors de DNS aquesta adreça resol contra `127.0.0.1 (localhost)`. En cas d'entorns corporatius amb firewall, proxies, etc s'hauria de validar la resolució correcte d'aquest domini ja que d'altra manera el servei no podrà conectar amb l'aplicació nativa i sempre presentarà el JNLP com a opció per a realitzar la signatura.
+L'aplicació nativa és una aplicació en segon pla que respon a les crides que el navegador realitza contra el domini `nativa.aoclocal.cat`. En els nostres servidors de DNS d'aquesta adreça resol contra `127.0.0.1 (localhost)`. En cas d'entorns corporatius amb firewall, proxies, etc s'hauria de validar la resolució correcte d'aquest domini ja que d'altra manera el servei no podrà conectar amb l'aplicació nativa i sempre presentarà el _JNLP_ com a opció per a realitzar la signatura.
 
 ## 2. Descarrega
 
-Per poder-la utilitzar cal que alhora de donar-se d'alta al servei, s'informi que es vol utilitzar la nativa _(allow Native)_. 
+Per poder-la utilitzar cal que a l'hora de donar-se d'alta al servei, s'informi que es vol utilitzar la nativa _(allow Native)_. 
 Un cop el procés d'alta s'hagi realitzat, ja es pot descarregar la versió de l'aplicació corresponent segons l'entorn que es vulgui utilitzar:
 
 - Entorn [PRE](https://signador-pre.aoc.cat/signador/installNativa)
@@ -33,11 +35,17 @@ En la pàgina d'instal·lació de la nativa l'usuari pot escollir la versió del
 
 **Nota**: Per defecte el navegador detecta el Sistema Operatiu i es descarrega la versió adequada.
 
+**Nota 2**: En aquest enllaç https://github.com/ConsorciAOC/signador/releases podeu trobar en alguns casos release de proves que encara no s'han publicat al web (però que ho faran en breu) i que en alguns casos poden resoldré alguna causística o problema concret. Cal tenir en compte també que de vegades aquestes versions poden necessitar d'un canvi al web que encara no s'ha produït i poden no funcionar, en les _notes_ de la release trobareu l'avís si és el cas.
+
 ## 3. Instal·lació
 
-Un cop descarregat l'executable procedim a realitzar la instal·lació.
+Un cop descarregat l'executable procedim a realitzar la instal·lació. A continuació trobareu la instal·lació per a cadascún dels sistemes operatius suportats:
 
-## 3.1 Windows & MACOSX
+* [3.1 Windows](#31-windows)
+* [3.2 MACOSX](#32-macosx)
+* [3.3 Ubuntu](#33-ubuntu)
+
+## 3.1 Windows 
 
 Per instal.lar segueixi els següents passos de l'assistent d'instal·lació:
 
@@ -57,9 +65,15 @@ Un cop s'hagi instal·lat i arranqui l'aplicació, en cas que ho fagis en Window
 
 ![installCert](imgs/installCertificate.PNG)
 
-Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat.
+Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat. En el cas de Windows això permetra utilitzar l'aplicació des del _Chrome_, _Edge_, i _Explorer_.
 
-## 3.2 Instal·lació Ubuntu
+Si a més a més es voleu fer servir la nativa en Windows sobre _Firefox_ carregar la clau generada al magatzem de confiança del propi _Firefox_, aquest pas només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox).
+
+## 3.2 MACOSX
+
+# TODO
+
+## 3.3 Ubuntu
 
 La operació d'instal·lació a Ubuntu s'ha de fer amb l'usuari que utilitzarà l'aplicació i el que tingui les claus amb les que desitja signar carregades al magatzem de claus del firefox.
 
@@ -103,7 +117,7 @@ Cada cop que arrenqueu el sistema i vulgueu fer ús de la nativa, haureu d'arren
 
 La primera vegada que l'aplicació s'executa genera les claus necessaries per al seu funcionament, aquest procés només és fa el primer cop que arrenca, la resta de vegades aprofita les claus ja generades.
 
-Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau generada al magatzem de confiança del navegador, aquesta pasa només és necessari fer-la una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
+Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau generada al magatzem de confiança del navegador, aquest pas només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
 
 ## 4. Validació
 
