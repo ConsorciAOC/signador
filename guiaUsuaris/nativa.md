@@ -66,7 +66,7 @@ En aquesta pantalla apareixen les següents opcions:
 
 Us apareixerà aquesta pantalla només en cas d'haver seleccionat l'opció per a signar des de _Firefox_ emprant els certificats del navegador, és necessari indicar la ruta on aquest està instal·lat per tal de que es puguin accedir a les llibreries necessàries corresponents a la versió del navegador de l'usuari per evitar errors durant les carregues. Tingueu en compte que si esteu duent a terme la instal·lació de la nativa de 32/64 bits, la ruta de _Firefox_ que indiqueu s'ha de correspondre. En aquest mateix pas es farà la comprovació pertinent, en cas que la versió de la nativa i de _Firefox_ no és correspongui mostrarà el següent error: 
 
-![assistent6Sample](imgs/nativa/windows/assitentInstall5_error.png)
+![assistent5Sample_error](imgs/nativa/windows/assistentInstall5_error.png)
 
 En cas que això us passi, haureu d'instal·lar la versió de la nativa amb l'arquitectura que és correspongui a la vostra versió de _Firefox_.
 
@@ -220,13 +220,15 @@ _Firefox_ disposa del seu propi magatzem de claus, per tant independentment del 
 ![importCertFF](imgs/importCertFF.png)
 
 * Escull el certificat a importar.
-El certificat a instal·lar, root.crt, es troba a la carpeta a on s'ha instal·lat l'aplicació nativa, per defecte és a: 
+El certificat a instal·lar, `root.crt`, es troba a la carpeta a on s'ha instal·lat l'aplicació nativa, per defecte és a: 
 
 - *Windows 32 bits*  C:\Program Files (x86)\Signador\lib\certificate
 - *Windows 64 bits*  C:\Program Files\Signador\lib\certificate
 - *Linux 32 bits*   $HOME/Signador/lib/certificate
 - *Linux 64 bits*   $HOME/Signador/lib/certificate
 - *MACOSX*  /Applications/Signador.app/Contents/Resources/app/lib/certificate
+
+*En el cas de Linux en cas de no trobar el `root.crt`, recordeu que aquest es genera quan s'arrenca l'aplicació per primer cop, per tant si no el trobeu, recordeu arrencar l'aplicació tal i com s'indica en els [pases de la instal·lació](#33-ubuntu) *
 
 ![escullCertFF](imgs/escullCertFF.png)
 
