@@ -42,34 +42,47 @@ En la pàgina d'instal·lació de la nativa l'usuari pot escollir la versió del
 Un cop descarregat l'executable procedim a realitzar la instal·lació. A continuació trobareu la instal·lació per a cadascún dels sistemes operatius suportats:
 
 * [3.1 Windows](#31-windows)
-* [3.2 MACOSX](#32-macosx)
+* [3.2 MACOSX](#32-mac-os-x)
 * [3.3 Ubuntu](#33-ubuntu)
 
 ## 3.1 Windows 
 
-Per instal.lar segueixi els següents passos de l'assistent d'instal·lació:
+Un cop descarregat l'instal·lable per a Windows només cal fer doble clic sobre el mateix i seguir els següents passos de l'assistent d'instal·lació:
 
-![assistent1Sample](imgs/assistent1Sample.png)
+![assistent1Sample](imgs/nativa/windows/assitentInstall1.png)
 
-![assistent2Sample](imgs/assistent2Sample.png)
+![assistent2Sample](imgs/nativa/windows/assitentInstall2.png)
 
-![assistent3Sample](imgs/assistent3Sample.png)
+![assistent3Sample](imgs/nativa/windows/assitentInstall3.png)
 
-![assistent4Sample](imgs/assistent4Sample.png)
+![assistent4Sample](imgs/nativa/windows/assitentInstall4.png)
 
-![assistent5Sample](imgs/assistent5Sample.png)
+En aquesta pantalla apareixen les següents opcions:
 
-![assistent6Sample](imgs/assistent6Sample.png)
+* La primera permet indicar si es desitja que cada vegada que el PC arrenqui es comprovi si existeix una nova versió de l'aplicació nativa. Hi ha alguns entorns on el control/permisos de la instal·lació no las té el propi usuari sinó un usuari administrador, amb el que és molest que aparegui el missatge d'actualització quan en realitat no es diposa de permisos per dur-la a terme, en aquests casos, es possible que l'usuari vulgui evitar les comprovacions de les actualitzacions i ho pot fer desactivant aquesta opció. Per a la resta de casos recomanem tenir l'opció d'actualitzacions seleccionada.
+* La segona opció permet indicar si es desitja signar des de _Firefox_ emprant els certificats del propi navegador, en cas que només es vulgui signar fent servir els certificats del propi sistema operatiu podem deixar l'opció desmarcada.
 
-Un cop s'hagi instal·lat i arranqui l'aplicació, en cas que ho fagis en Windows li apareixerà el següent missatge:
+![assistent5Sample](imgs/nativa/windows/assitentInstall5.png)
+
+Us apareixerà aquesta pantalla només en cas d'haver seleccionat l'opció per a signar des de _Firefox_ emprant els certificats del navegador, és necessari indicar la ruta on aquest està instal·lat per tal de que es puguin accedir a les llibreries necessàries corresponents a la versió del navegador de l'usuari per evitar errors durant les carregues. Tingueu en compte que si esteu duent a terme la instal·lació de la nativa de 32/64 bits, la ruta de _Firefox_ que indiqueu s'ha de correspondre. En aquest mateix pas es farà la comprovació pertinent, en cas que la versió de la nativa i de _Firefox_ no és correspongui mostrarà el següent error: 
+
+![assistent6Sample](imgs/nativa/windows/assitentInstall5_error.png)
+
+En cas que això us passi, haureu d'instal·lar la versió de la nativa amb l'arquitectura que és correspongui a la vostra versió de _Firefox_.
+
+![assistent6Sample](imgs/nativa/windows/assitentInstall6.png)
+
+![assistent7Sample](imgs/nativa/windows/assitentInstall7.png)
+
+Un cop s'hagi instal·lat i arrenqui l'aplicació, en cas que ho faci en Windows li apareixerà el següent missatge:
 
 ![installCert](imgs/installCertificate.PNG)
 
-Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat. En el cas de Windows això permetra utilitzar l'aplicació des del _Chrome_, _Edge_, i _Explorer_.
+Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat. En aquest cas això permetra utilitzar l'aplicació des del _Chrome_, _Edge_, i _Explorer_.
 
-Si a més a més es voleu fer servir la nativa en Windows sobre _Firefox_ carregar la clau generada al magatzem de confiança del propi _Firefox_, aquest pas només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox).
+Si a més a més es vol fer servir la nativa en Windows sobre _Firefox_ cal carregar la clau generada al magatzem de confiança del propi _Firefox_, aquest pas només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox).
 
-## 3.2 MACOSX
+## 3.2 MAC OS X
 
 # TODO
 
