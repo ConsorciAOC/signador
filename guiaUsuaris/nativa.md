@@ -47,30 +47,40 @@ Un cop descarregat l'executable procedim a realitzar la instal·lació. A contin
 
 ## 3.1 Windows 
 
-Un cop descarregat l'instal·lable per a Windows només cal fer doble clic sobre el mateix i seguir els següents passos de l'assistent d'instal·lació:
+Un cop descarregat l'instal·lable per a Windows només cal fer doble clic sobre el mateix i seguir les següents passes de l'assistent d'instal·lació:
+
+En aquesta primera pantalla, fa la carrega necessaria per a començar el procés d'instal·lació:
 
 ![assistent1Sample](imgs/nativa/windows/assitentInstall1.png)
 
+Pantalla de benvinguda de l'instal·lador, amb una breu descripció, fem clic a `Següent>` per continuar el procés:
+
 ![assistent2Sample](imgs/nativa/windows/assitentInstall2.png)
 
-![assistent3Sample](imgs/nativa/windows/assitentInstall3.png)
+Indica la carpeta per defecte on s'instal·larà la aplicació, en cas que volguem seleccionar-ne una de diferent podem fer-ho mitjançant el botó `Explorar`, en cas que ja ens sembli bé la ruta proposada fem clic a `Següent>`
 
-![assistent4Sample](imgs/nativa/windows/assitentInstall4.png)
+![assistent3Sample](imgs/nativa/windows/assitentInstall3.png)
 
 En aquesta pantalla apareixen les següents opcions:
 
 * La primera permet indicar si es desitja que cada vegada que el PC arrenqui es comprovi si existeix una nova versió de l'aplicació nativa. Hi ha alguns entorns on el control/permisos de la instal·lació no las té el propi usuari sinó un usuari administrador, amb el que és molest que aparegui el missatge d'actualització quan en realitat no es diposa de permisos per dur-la a terme, en aquests casos, es possible que l'usuari vulgui evitar les comprovacions de les actualitzacions i ho pot fer desactivant aquesta opció. Per a la resta de casos recomanem tenir l'opció d'actualitzacions seleccionada.
 * La segona opció permet indicar si es desitja signar des de _Firefox_ emprant els certificats del propi navegador, en cas que només es vulgui signar fent servir els certificats del propi sistema operatiu podem deixar l'opció desmarcada.
 
+![assistent4Sample](imgs/nativa/windows/assitentInstall4.png)
+
+Us apareixerà aquesta pantalla només en cas d'haver seleccionat l'opció per a signar des de _Firefox_ emprant els certificats del navegador, és necessari indicar la ruta on aquest està instal·lat per tal de que es puguin accedir a les llibreries necessàries corresponents a la versió del navegador de l'usuari per evitar errors durant les carregues.
+
 ![assistent5Sample](imgs/nativa/windows/assitentInstall5.png)
 
-Us apareixerà aquesta pantalla només en cas d'haver seleccionat l'opció per a signar des de _Firefox_ emprant els certificats del navegador, és necessari indicar la ruta on aquest està instal·lat per tal de que es puguin accedir a les llibreries necessàries corresponents a la versió del navegador de l'usuari per evitar errors durant les carregues. Tingueu en compte que si esteu duent a terme la instal·lació de la nativa de 32/64 bits, la ruta de _Firefox_ que indiqueu s'ha de correspondre. En aquest mateix pas es farà la comprovació pertinent, en cas que la versió de la nativa i de _Firefox_ no és correspongui mostrarà el següent error: 
+Tingueu en compte que si esteu duent a terme la instal·lació de la nativa de 32/64 bits, la ruta de _Firefox_ que indiqueu s'ha de correspondre amb aquesta arquitectura. En aquesta mateixa passa es farà la comprovació pertinent, en cas que la versió de la nativa i de _Firefox_ no és correspongui mostrarà el següent error. En cas que això us passi, haureu d'instal·lar la versió de la nativa amb l'arquitectura que és correspongui a la vostra versió de _Firefox_.
 
 ![assistent5Sample_error](imgs/nativa/windows/assistentInstall5_error.png)
 
-En cas que això us passi, haureu d'instal·lar la versió de la nativa amb l'arquitectura que és correspongui a la vostra versió de _Firefox_.
+En aquesta pantalla podrem seleccionar si desitgem accesos directes o la creació d'un menu d'inici, en qualsevol cas seleccionem la configuració desitjada i fem clic a `Següent>`:
 
 ![assistent6Sample](imgs/nativa/windows/assitentInstall6.png)
+
+Aquest és el missatge final del instal·lador, un cop fem clic a `Finalitzar` arrencara l'aplicació.
 
 ![assistent7Sample](imgs/nativa/windows/assitentInstall7.png)
 
@@ -80,7 +90,7 @@ Un cop s'hagi instal·lat i arrenqui l'aplicació, en cas que ho faci en Windows
 
 Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat. En aquest cas això permetra utilitzar l'aplicació des del _Chrome_, _Edge_, i _Explorer_.
 
-Si a més a més es vol fer servir la nativa en Windows sobre _Firefox_ cal carregar la clau generada al magatzem de confiança del propi _Firefox_, aquest pas només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox).
+Si a més a més es vol fer servir la nativa en Windows sobre _Firefox_ cal carregar la clau generada al magatzem de confiança del propi _Firefox_, aquesta passa només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox).
 
 ## 3.2 MAC OS X
 
@@ -130,7 +140,7 @@ Cada cop que arrenqueu el sistema i vulgueu fer ús de la nativa, haureu d'arren
 
 La primera vegada que l'aplicació s'executa genera les claus necessaries per al seu funcionament, aquest procés només és fa el primer cop que arrenca, la resta de vegades aprofita les claus ja generades.
 
-Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau generada al magatzem de confiança del navegador, aquest pas només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
+Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau generada al magatzem de confiança del navegador, aquesta passa només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
 
 ## 4. Validació
 
@@ -161,7 +171,7 @@ La càrrega del certificat al magatzem de _Windows_ permet el correcte funcionam
 
 A més a més en el magatzem de _Windows_ s'instal·la automàticament, tot i que s'ha d'acceptar la instal·lació del certificat mitjançant un popup que apareix durant aquesta. 
 
-En cas que no s'hagi cancel·lat l'instal·lació en aquest popup serà necessari que l'usuari ho faci manualment seguint els següents passos:
+En cas que no s'hagi cancel·lat l'instal·lació en aquest popup serà necessari que l'usuari ho faci manualment seguint les següents passes:
 
 * Cerca en el buscador de windows: _Opcions d'internet_
 
@@ -205,7 +215,7 @@ C:\Program Files (x86)\Signador\lib\certificate
 
 ### 5.2 Firefox
 
-_Firefox_ disposa del seu propi magatzem de claus, per tant independentment del sistema operatiu sobre el que s'estigui executant, si vol fer servir l'aplicació amb _Firefox_ serà necessari carregar el certificat segueint els següents passos que apliquen per qualsevol sistema operatiu:
+_Firefox_ disposa del seu propi magatzem de claus, per tant independentment del sistema operatiu sobre el que s'estigui executant, si vol fer servir l'aplicació amb _Firefox_ serà necessari carregar el certificat segueint les següents passes que apliquen per qualsevol sistema operatiu:
 
 * Obrir Firefox --> Accedir a Opcions 
 
@@ -228,7 +238,7 @@ El certificat a instal·lar, `root.crt`, es troba a la carpeta a on s'ha instal�
 - *Linux 64 bits*   $HOME/Signador/lib/certificate
 - *MACOSX*  /Applications/Signador.app/Contents/Resources/app/lib/certificate
 
-*En el cas de Linux en cas de no trobar el `root.crt`, recordeu que aquest es genera quan s'arrenca l'aplicació per primer cop, per tant si no el trobeu, recordeu arrencar l'aplicació tal i com s'indica en els [pases de la instal·lació](#33-ubuntu) *
+*En el cas de Linux en cas de no trobar el `root.crt`, recordeu que aquest es genera quan s'arrenca l'aplicació per primer cop, per tant si no el trobeu, recordeu arrencar l'aplicació tal i com s'indica en els [pases de la instal·lació](#33-ubuntu)*
 
 ![escullCertFF](imgs/escullCertFF.png)
 
@@ -270,7 +280,7 @@ A continuació es mostra un exemple de la pantalla de funcionament del signador 
 
 ## 7. Desinstal·lació
 
-En cas que es vulgui desinstal·lar, s'ha d'accedir a la carpeta a on s'hagi instal·lat la aplicació, executar el fitxer _uninstall.exe_ i seguir els següents passos:
+En cas que es vulgui desinstal·lar, s'ha d'accedir a la carpeta a on s'hagi instal·lat la aplicació, executar el fitxer _uninstall.exe_ i seguir les següents passes:
 
 ![desinstalar1Sample](imgs/desinstalar1Sample.png)
 
