@@ -324,7 +324,7 @@ I seguir les següents passes.
 
 ![desinstalar2Sample](imgs/desinstalar2Sample.png)
 
-Si disposeu d'un sistema operatiu Windows 10, podeu utilitzar la tecla <kbd>![Windows Key](imgs/nativa/windows/winlogo.png)</kbd> i directament escriure `uninstall`, obrir el `Desinstal·lador de APP nativa signador` i seguir les mateixes passes de desinstal·lació.
+Si disposeu d'un sistema operatiu Windows 10, podeu utilitzar la tecla <kbd><img src="imgs/nativa/windows/winlogo.png"></img></kbd> i directament escriure `uninstall`, obrir el `Desinstal·lador de APP nativa signador` i seguir les mateixes passes de desinstal·lació.
 
 ![uninstallWin10](imgs/nativa/windows/uninstallWin10.png)
 
