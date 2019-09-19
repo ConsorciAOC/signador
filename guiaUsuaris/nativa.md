@@ -94,6 +94,8 @@ Si a més a més es vol fer servir la nativa en Windows sobre _Firefox_ cal carr
 
 ## 3.2 MAC OS X
 
+:warning: En cas que us bloquegi la instal·lació, seguiu primer [aquestes passes](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/jnlp.md#problemes-espec%C3%ADfics-per-a-mac-os-x) abans de continuar amb l'instal·lació (són del bloqueig amb _JNLP_ però és el mateix que succeeix amb la nativa).
+
 Un cop descarregat l'instal·lable per a *MAC OS X* només cal fer obrir el `.dmg`, fer clic sobre l'aplicació i seguir les següents passes de l'assistent d'instal·lació:
 
 ![installMac1](imgs/nativa/macosx/installMac1.png)
@@ -328,7 +330,11 @@ Si disposeu d'un sistema operatiu Windows 10, podeu utilitzar la tecla <kbd>![Wi
 
 ### 7.2 MAC OS X
 
-# TODO
+En aquest cas, només cal anar a `Aplicacions` des del `Finder` i arrosegar el `Signador.app` a la paperera, demanarà la contrasenya d'usuari per a confirmar l'esborrat:
+
+![uninstallMac1](imgs/nativa/macosx/uninstallMac1.png)
+
+![uninstallMac2](imgs/nativa/macosx/uninstallMac2.png)
 
 ## 8. Configuració avançada
 
