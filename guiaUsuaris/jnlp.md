@@ -37,7 +37,7 @@ Per comprovar que teniu tot correctament instal·lat podeu fer una prova [execut
 
 Podeu veure aquest exemple i un altre [aqui](https://docs.oracle.com/javase/tutorial/deployment/webstart/examplesIndex.html).
 
-## Problemes específics per a MAC OS X
+### Problemes específics per a MAC OS X
 
 En el cas de voler executar el _JNLP_ en un sistema operatiu _MAC OS X_ podem tenir alguna dificultat addicional ja que no disposem de les claus per tal de signar el fitxer _JNLP_ que distribuïm per a tal que ens reconeguin com a desenvolupadors identificats d'Apple. Per aquest motiu ens podem trobar que en un primer moment a l'hora d'anar a executar el fitxer, se'ns bloquegi l'execució mostrant el següent missatge:
 
