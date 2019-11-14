@@ -539,7 +539,7 @@ A banda de la **Demo** a tall d'exemple també es mostren els enllaços del **Si
 
 ## 8. Recomanacions/Restriccions
 
-* El servei té una restricció del número de documents a signar a màxim `25` per petició.
+* El servei té una restricció del número de documents a signar, com a màxim `25` per operació de signatura, o fins un màxim de `50` en cas que aquest siguin resums criptogràfics (`doc_type=3`).
 * El servei té una restricció de mida pel que respecta a les peticions, els frontals estan configurats per no acceptar missatges de mida superior a `7MB`. Per tant s'ha de tenir en compte aquesta restricció a l'hora de passar documents grans codificats en base64 dins del camp `document_to_sign`.
 * Es recomanable per a l'agilitat del servei i de les pròpies aplicacions usuaris (tenint també en compte la restricció de mida dels documents a signar) signar sempre que sigui possible el resum criptogràfic del document en comptes del document sencer. D'aquesta manera el servei funcionarà de forma més àgil i els temps de resposta tant per l'aplicació client com per a l'usuari final que realitza la signatura seràn més optims. No s'ha d'oblidar també que finalment és l'aplicació client la que haurà de gestionar aquestes signatures i per qualsevol aplicació sempre serà més fàcil treballar amb signatures de pocs KB que de MB.
 * De moment no hi ha cap restricció al respecte, però s'exigirà en un futur, que les aplicacions que s'integrin amb el servei utilitzin protocol HTTPS tant en les crides com en el callback encarregat de rebre la signatura.
