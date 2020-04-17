@@ -5,9 +5,11 @@ i el deixa descarregar.
 Es necessari tenir l'aplicació nativa arrencada i desplegada al port 9090.
 -->
 <html>
+<meta charset="UTF-8">
 <script   src="https://code.jquery.com/jquery-1.12.4.js"   integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="   crossorigin="anonymous"></script>
 <script language="javascript">
 
+// els ports poden anar del 9090 a 9095 per a l'exemple posem el 9090...
 var urlNativa = "https://nativa.aoclocal.cat:9090";
 var certificatesUrl = urlNativa + "/getCertificate";
 var signatura = urlNativa + "/signature";
@@ -18,8 +20,7 @@ var peticioObtenirCertificats = {
 	"applet_cfg":{
 		"keystore_type": "0",
 		"signature_mode": "16", // (XAdES_T_detached_hash)
-		"doc_type": "3", // hash			
-		"document_to_sign": "gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA="
+		"doc_type": "3" // hash			
 	}
 };
 
@@ -27,13 +28,18 @@ var peticioSignatura = {
 	"applet_cfg":{
 		"keystore_type": "0",
 		"signature_mode": "16", // (XAdES_T_detached_hash)
-		"doc_type": "3", // hash				
-		"document_to_sign": "gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA="
+		"doc_type": "3" // hash				
 	}
 };
 
+var addDocumentToSign = function (jsonRequest) {
+	jsonRequest.applet_cfg.document_to_sign = $('#hashsASignar').val();
+	return jsonRequest;
+}
+
 function getCertificates(){
 
+	//console.log(addDocumentToSign(peticioObtenirCertificats));
 	$.ajax({
 		headers: { 
         	'Accept': 'application/json',
@@ -41,7 +47,7 @@ function getCertificates(){
     	},
     	type: 'POST',
     	'url': certificatesUrl,
-    	'data': JSON.stringify(peticioObtenirCertificats),
+    	'data': JSON.stringify(addDocumentToSign(peticioObtenirCertificats)),
     	'dataType': 'json',
     	'success': pintarCertificats,
 	    'error' : errorObtenintCertificats
@@ -73,10 +79,12 @@ function doSignatura(){
     	},
     	type: 'POST',
     	'url': url,
-    	'data': JSON.stringify(peticioSignatura),
+    	'data': JSON.stringify(addDocumentToSign(peticioSignatura)),
     	'dataType': 'json',
     	'success': signaturaOk,
-	    'error' : signautraError
+	    'error' : signautraError,
+		// en ms (0 no timeout)
+		'timeout' : 0
 	});
 }
 
@@ -134,6 +142,9 @@ function descarrega(filename, data) {
 </script>
 
 <body>
+	<p>L'exemple càrrega 3 hashs, pots anar afegint hashos separats per ; (per a l'exemple sha1 codificat en base64)</p>
+	<input type="text" id="hashsASignar" style="width:70%" value="gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA=;gYbYj9w6DofPvCfwqKKwXitsErA=;"></input>
+	</br>
 	<input type="button" onclick="getCertificates();" value="Obté els certificats"></input>
 	
 	<div id="div" style="display:none">
