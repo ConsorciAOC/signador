@@ -1,4 +1,4 @@
-:warning:`No es dona suport a aquest tipus d'integració. És només per al GEEC i l'aplicació de la intranet de la ORGT.`
+:warning:`No es dona suport a aquest tipus d'integració. És només per al GEEC, l'aplicació de la intranet de la ORGT i la intranet de la DIBA.`
 
 # Integració directe aplicació nativa
 
