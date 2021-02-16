@@ -280,13 +280,14 @@ El certificat a instal·lar, `root.crt`, es troba a la carpeta a on s'ha instal�
 
 ### 5.3 MAC OS X
 
-Per a MAC OS X el certificat és carrega de forma automàtica però l'usuari ha de procedir a acceptar-lo manualment amb les passes que es descriuen a continuació:
+Per a MAC OS X es carreguen dos certificat de forma automàtica però l'usuari ha de procedir a acceptar-los manualment amb les passes que es descriuen a continuació:
 
 * Cerca en el buscador de MAC: _llaveros_
 
 ![searchMAC](imgs/searchMAC.png)
 
-* A llaveros escull la categoria certificats, i del llistat escull _root de prova_
+* A _llaveros_ escull la categoria certificats. En el llistat aparèixen dos certificats amb els noms:_Aplicació nativa - AOC_ i _natica.aocloca.cat_.
+Escollim _nativa.aoclocal.cat_.
 
 ![llistatMAC](imgs/llistatMAC.png)
 
