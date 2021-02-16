@@ -293,10 +293,12 @@ Escull _nativa.aoclocal.cat_.
 
 * En el certificat, escull la opció "Confiar sempre".
 
-![trustCertMAC](imgs/trustCertMAC.png)
+![trustCertMAC](imgs/nativa.aoclocal.cat.png)
 
 * Repetir el pas anterior pel certificat _Aplicació nativa - AOC_.
 Torna a la categoria _Certificats_, escull el certificat _Aplicació nativa - AOC_, i per últim escull "Confiar sempre".
+
+![trustCertMAC](imgs/trustCertMAC.png)
 
 * Torni a realitzar una validació.
 
