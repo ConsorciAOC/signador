@@ -286,14 +286,17 @@ Per a MAC OS X es carreguen dos certificat de forma automàtica però l'usuari h
 
 ![searchMAC](imgs/searchMAC.png)
 
-* A _llaveros_ escull la categoria certificats. En el llistat aparèixen dos certificats amb els noms: _Aplicació nativa - AOC_ i _natica.aoclocal.cat_.
-Escollim _nativa.aoclocal.cat_.
+* A _Llaveros_ escull la categoria _Certificats_. En el llistat aparèixen dos certificats amb els noms: _Aplicació nativa - AOC_ i _natica.aoclocal.cat_.
+Escull _nativa.aoclocal.cat_.
 
-![llistatMAC](imgs/llistatMAC.png)
+![llistatMAC](imgs/llavero_certs.jpg)
 
-* En el certificat, escull la opció confiar sempre.
+* En el certificat, escull la opció "Confiar sempre".
 
 ![trustCertMAC](imgs/trustCertMAC.png)
+
+* Repetir el pas anterior pel certificat _Aplicació nativa - AOC_.
+Torna a la categoria _Certificats_, escull el certificat _Aplicació nativa - AOC_, i per últim escull "Confiar sempre".
 
 * Torni a realitzar una validació.
 
