@@ -302,7 +302,13 @@ Torna a la categoria _Certificats_, escull el certificat _Aplicació nativa - AO
 
 * Torni a realitzar una validació.
 
-**Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
+### Firefox
+Si fa servir Firefox, podria ser que aquest no confïi per defecte en els certificats del sistema. Per tal de que confiïi en els certificats a _Llaveros_, cal configurar Firefox de la següent manera:
+* Escriure "about:config" en la barra de cerca de Firefox. Acceptar el risc i continuar.
+* Cercar "security.enterprise_roots.enabled", i posar-ho a "true".
+D'aquesta manera Firefox confiarà en els certificats instal·lats al Sistema (_Llaveros_).
+
+Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
 ## 6. Funcionament
 
