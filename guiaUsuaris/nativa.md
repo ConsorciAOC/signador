@@ -383,4 +383,4 @@ En el cas de sistemes operatius Windows, seguint la instal·lació per defecte, 
 En el cas de sistema operatiu Ubuntu, la variable `$SIGNADOR_HOME` en la instal·lació per defecte pren el valor `$HOME\Signador` i podeu accedir a la carpeta dels logs amb la comanda `cd $HOME\Signador\` per a trobar el fitxer `error.log` i la comanda `cd $HOME\Sigandor\log` per a trobar el fitxer `webappTemp.log`.
 
 En el cas de sistema operatiu Mac OS X, trobarem els logs del Signador en la següent carpeta relativa al directori d'instal·lació del Signador:
-
+![logMac1](imgs/nativa/macosx/mac_nativa_log.png)
