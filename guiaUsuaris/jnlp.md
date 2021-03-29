@@ -53,6 +53,7 @@ Seleccionar `Seguretat i privacitat`, i revisar la pestanya `General` d'aquesta 
 
 ![JNLPMACOSXAllowExec](imgs/jnlp/macosx/mac_jnlp_allow_execution.png)
 
+#### Logs de la JVM en MAC OS X
 Per poder veure els logs de la JVM en MAC OS X, caldrà seguir els següents passos:
 1. Activar les següents opcions del panell de control de java: 
 
@@ -63,7 +64,7 @@ Anar al directori home -> menú view -> show view options, i activar el checkbox
 
 ![JNLPMACOSXLF](imgs/jnlp/macosx/mac_showlf.png)
 
-Els logs els tindrem en la següent ruta relativa a la home:
+3. Els logs els tindrem en la següent ruta relativa a la home:
 
-Library/Application Support/Oracle/Java/Deployment/log
+_Library/Application Support/Oracle/Java/Deployment/log_
 
