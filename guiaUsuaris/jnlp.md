@@ -52,3 +52,14 @@ Anar al `menú d'Apple` --> seleccionar `Preferències del sistema`:
 Seleccionar `Seguretat i privacitat`, i revisar la pestanya `General` d'aquesta pantalla. Si apareix el botó `Obrir de tota manera`, simplement s'ha de clicar. Sinó, també potser que aparegui una opció addicional indicant l'execució d'aplicacions desconegudes, en aquest cas farà falta tocar el cadenat per a permetre la modificació i seleccionar aquesta opció. Un cop fet això, podem tornar a executar el _JNLP_ per a que es pugui executar correctament:
 
 ![JNLPMACOSXAllowExec](imgs/jnlp/macosx/mac_jnlp_allow_execution.png)
+
+Per poder veure els logs de la JVM en MAC OS X, caldrà seguir els següents passos:
+1. Activar les següents opcions del panell de control de java: 
+![JNLPMACOSXJCP](imgs/jnlp/macosx/mac_jcp.png)
+2. Donar visibilitat al directori Library en el Finder.
+Anar al directori home -> menú view -> show view options, i activar el checkbox de "Show library folder".
+![JNLPMACOSXLF](imgs/jnlp/macosx/mac_showlf.png)
+Els logs els tindrem en la següent ruta relativa a la home:
+Library/Application Support/Oracle/Java/Deployment/log
+4. 
+5.
