@@ -21,7 +21,7 @@ Indicar que aquest llistat s'anirà actualitzant, però no es donarà suport sob
 <h3>Requeriments</h3>
 
 És necessari tenir instal·lada una versió de la Java JRE en l'ordinador on volem executar el fitxer *.jnlp*. 
-Donem suport fins a _tres versions anteriors_ a l'actual de JRE.
+Donem suport a les versions de JVM 8 (a partir de l'update 121), versió 9, i versió 10. A partir de la versió 11, Oracle ha retirat el suport en la tecnologia que es recolza el JNLP per a funcionar ([Més info sobre l'eliminació de Java Web Start en la release 11](https://www.oracle.com/java/technologies/javase/11-relnote-issues.html))
 
 Pots descarregar-te [l'última versió de la JRE d'Oracle aquí](https://www.java.com/es/download/).
 
