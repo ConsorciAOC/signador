@@ -1,6 +1,4 @@
-# Llibreria integradors - En *Beta*
-
-**La següent documentació està en construcció i és susceptible de patir canvis**
+# Llibreria integradors
 
 Per tal de facilitar la integració amb el servei de signatura s'ha creat una llibreria _Javascript_ que conté uns mètodes simples per a generació de signatures de forma generiques i uns altres més customitzables. L'objectiu és facilitar el procés d'integració amb el servei.
 
