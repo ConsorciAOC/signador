@@ -4,7 +4,7 @@
 * `Intranet de la DIBA`
 * `Aplicació ACA`
 
-# Integració directe aplicació nativa
+# Integració directa aplicació nativa
 
 La nativa quan arrenca intenta utilitzar el primer port lliure del rang 9090-9095. Podeu revisar la [guia d'instal·lació de la nativa](../guiaUsuaris/nativa.md#11-connectivitat) per veure els temes relacionats amb la connectivitat i la instal·lació de la mateixa.
 
