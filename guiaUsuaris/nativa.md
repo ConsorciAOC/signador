@@ -286,7 +286,7 @@ Per a MAC OS X es carreguen dos certificat de forma automàtica però l'usuari h
 
 ![searchMAC](imgs/searchMAC.png)
 
-* A _Llaveros_ escull la categoria _Certificats_. En el llistat aparèixen dos certificats amb els noms: _Aplicació nativa - AOC_ i _natica.aoclocal.cat_.
+* A _Llaveros_ escull la categoria _Certificats_. En el llistat aparèixen dos certificats amb els noms: _Aplicació nativa - AOC_ i _nativa.aoclocal.cat_.
 Escull _nativa.aoclocal.cat_.
 
 ![llistatMAC](imgs/llavero_certs.jpg)
