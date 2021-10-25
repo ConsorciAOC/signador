@@ -41,7 +41,7 @@ La crida és simplement un _GET_ amb el qual s'han d'enviar obligatòriament les
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
 
 La resposta del servei _REST_ tindrà el següent format:
-
+ 
 ```json
 {
 	"status": "",
