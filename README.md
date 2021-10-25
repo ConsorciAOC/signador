@@ -407,7 +407,7 @@ Els possibles valors dels camps:
 
 ## 5. Signatura per part de l'usuari
 
-Un cop s'ha aconseguit el `token` i creada la configuració de signatura vinculada al mateix, l'aplicació client ha de redirigir l'usuari a la web del signador centralitzat per tal de que aquest pugui acabar realitzant la signatura. Per tal de fer-ho s'ha de realitzar un _GET_ passant com a paràmetre un `id` amd el valor del `token` a la següent URL:
+Un cop s'ha aconseguit el `token` i creada la configuració de signatura vinculada al mateix, l'aplicació client ha de redirigir l'usuari a la web del Signador per tal de que aquest pugui acabar realitzant la signatura. Per tal de fer-ho s'ha de realitzar un _GET_ passant com a paràmetre un `id` amd el valor del `token` a la següent URL:
 
 * Entorn PRE: https://signador-pre.aoc.cat/signador/?id=token
 * Entorn PRO: https://signador.aoc.cat/signador/?id=token
