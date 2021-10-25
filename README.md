@@ -12,15 +12,15 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 
 ## Diagrama de flux
 
-Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvia la forma en quèwe l'aplicació recupera la signatura, ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei a continuació és mostren els diagrames de flux d'operació d'una aplicació contra el signador per a intentar il·lustrar les crides i el funcionament del mateix per ambdòs casos:
+Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvia la forma en quèwe l'aplicació recupera la signatura, ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei a continuació és mostren els diagrames de flux d'operació d'una aplicació contra el Signador per a intentar il·lustrar les crides i el funcionament del mateix per ambdòs casos:
 
 ### Diagrama de flux amb redirect
 
-![Diagrama flux signador amb redirect](imgs/redirectFlow.png?raw=true "Diagrama flux signador amb redirect")
+![Diagrama flux signador amb redirect](imgs/redirectFlow.png?raw=true "Diagrama flux Signador amb redirect")
 
 ### Diagrama de flux amb callback
 
-![Diagrama flux signador amb callback](imgs/callbackFlow.png?raw=true "Diagrama flux signador amb callback")
+![Diagrama flux signador amb callback](imgs/callbackFlow.png?raw=true "Diagrama flux Signador amb callback")
 
 ## Ús del servei
 
@@ -28,7 +28,7 @@ Per a utilizar el servei de signatura serà necessari la realització de les seg
 
 ## 1. InitProcess: Servei per iniciar el procés de signatura
 
-Cada operació de signatura requerirà d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron per tant aquest `token` servirà per lligar després la signatura resultant amb el procés intern que l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de signador centralitzat per tal de poder per exemple gestionar els errors si fos el cas, etc.
+Cada operació de signatura requerirà d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron per tant aquest `token` servirà per lligar després la signatura resultant amb el procés intern que l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de Signador per tal de poder per exemple gestionar els errors si fos el cas, etc.
 
 Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_ ubicat al següent endpoint:
 
