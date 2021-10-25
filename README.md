@@ -1,6 +1,7 @@
-# Valid - Servei de Signatura Electrònica basada en certificats digitals
+# Valid - Signador
+Servei de Signatura Electrònica basada en certificats digitals
 
-### Documentació del projecte del Servei de Signatura Electrònica basada en certificats digitals
+### Documentació del projecte Signador
 
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
