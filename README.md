@@ -13,7 +13,7 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 
 ## Diagrama de flux
 
-Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvia la forma en quèwe l'aplicació recupera la signatura, ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei a continuació és mostren els diagrames de flux d'operació d'una aplicació contra el Signador per a intentar il·lustrar les crides i el funcionament del mateix per ambdòs casos:
+Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvia la forma en què l'aplicació recupera la signatura. Ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei, a continuació es mostren els diagrames de flux d'operació d'una aplicació contra el Signador per a intentar il·lustrar les crides i el funcionament del mateix per ambdós casos:
 
 ### Diagrama de flux amb redirect
 
