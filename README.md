@@ -255,7 +255,7 @@ En cas que es vulgui signar més d'un document o hash el servei ho permet, posan
 ### 2.5. Camps de la configuració de l'APSA
 
 Descripció dels camps _JSON_ de la configuració de l'apsa:
-*	**keystore_type**: Tipus de keystore. **Camp obligatori**.
+*	**keystore_type**: Tipus de keystore. **Camp obligatori**. 
 *	**doc_name**: Nom del document. **Camp obligatori**.
 *	**hash_a_xifrar**: hash a signar. **Camp obligatori**.
 *	**modeFuncionament**: Indica el mode de funcionament, per si és vol extreure el certificat de signatura o si es vol signar un hash. Els valors possibles són *SIGNATURA* o *CERTIFICAT*. Per defecte si no s'informa pren el valor *SIGNATURA*. Camp no obligatori.
