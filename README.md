@@ -1,7 +1,7 @@
 # Signador
-Servei de Signatura Electrònica basada en certificats digitals
+Servei de Signatura Electrònica basada en certificats digitals.
 
-### Documentació del projecte Signador
+### Documentació del servei Signador
 
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
@@ -9,19 +9,19 @@ Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a 
 *	Imatge amb el logo de l'aplicació usuària. Mida màxima 300 width x 100 height.
 *	Imatge amb el logo que apareixerà a l'applet. Mida màxima 300 width x 100 height. *No obligatori*.
 *	Clau per a identificar l'aplicació com usuària del servei.
-*	Allow Native, per si es permet el funcionament del servei amb l'aplicació nativa. *Activat* per defecte, només cal indicar-ho en cas que no és vulgui activar (no recomanat).
+*	Allow Native, per si es permet el funcionament del servei amb l'aplicació nativa. *Activat* per defecte, només cal indicar-ho en cas que no es vulgui activar (no recomanat).
 
 ## Diagrama de flux
 
-Existeixen dues formes d'integrar-se amb el servei, la part inicial és comú en ambdues, només canvia la forma en què l'aplicació recupera la signatura. Ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei, a continuació es mostren els diagrames de flux d'operació d'una aplicació contra el Signador per a intentar il·lustrar les crides i el funcionament del mateix per ambdós casos:
+Existeixen dues formes d'integrar-se amb el servei. La part inicial és comú en ambdues. Només canvia la forma en què l'aplicació recupera la signatura. Ambdues formes es descriuen més avall en aquest mateix document. Per tal de donar context i entendre els dos mètodes de funcionament del servei, a continuació es mostren els diagrames de flux d'operació d'una aplicació contra el Signador per a intentar il·lustrar les crides i el funcionament del mateix per ambdós casos:
 
 ### Diagrama de flux amb redirect
 
-![Diagrama flux signador amb redirect](imgs/redirectFlow.png?raw=true "Diagrama flux Signador amb redirect")
+![Diagrama flux Signador amb redirect](imgs/redirectFlow.png?raw=true "Diagrama flux Signador amb redirect")
 
 ### Diagrama de flux amb callback
 
-![Diagrama flux signador amb callback](imgs/callbackFlow.png?raw=true "Diagrama flux Signador amb callback")
+![Diagrama flux Signador amb callback](imgs/callbackFlow.png?raw=true "Diagrama flux Signador amb callback")
 
 ## Ús del servei
 
@@ -29,7 +29,7 @@ Per a utilizar el servei de signatura serà necessari la realització de les seg
 
 ## 1. InitProcess: Servei per iniciar el procés de signatura
 
-Cada operació de signatura requerirà d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron per tant aquest `token` servirà per lligar després la signatura resultant amb el procés intern que l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de Signador per tal de poder per exemple gestionar els errors si fos el cas, etc.
+Cada operació de signatura requerirà d'un `token` per tal de poder iniciar el procés. El procés de signatura des del punt de vista de l'aplicació client és un procès asíncron. Per tant aquest `token` servirà per lligar després la signatura resultant amb el procés intern que l'ha requerit dins de l'aplicació client. Aquest `token` també identificarà la signatura a nivell intern del servei de Signador per tal de poder, per exemple, gestionar els errors si fos el cas, etc.
 
 Per tal d'aconseguir el `token` s'ha de fer una crida al servei _REST_ ubicat al següent endpoint:
 
@@ -65,7 +65,7 @@ Per a calcular la capçalera d'autorització es fa servir el *Message Authentica
 
 En aquest cas les dades a processar serà el mateix *nom del domini* tal i com s'ha especificat a l'alta, concatenat amb el caràcter underscore `_` i la *data* proporcionada a la capçalera date (exemple `http://ajuntament.cat_28/05/2016 13:21`). El secret per a procesar aquesta dada amb l'algoritme `HMAC_SHA256` serà la *clau* que s'ha triat també durant el procés d'alta. 
 
-A continuació és mostra un exemple simplificat de com es podria generar la capçalera d'autenticació amb **Groovy**:
+A continuació es mostra un exemple simplificat de com es podria generar la capçalera d'autenticació amb **Groovy**:
 
 ```java
 import javax.crypto.Mac
@@ -114,26 +114,26 @@ public class BustiaNotificacionsController {
 }
 ```
 
-**Nota**: La classe `java.util.Base64` existeix a partir de la versió 8 de *Java*, si es desenvolupa amb una altre versió és pot utilitzat qualsevol altre codificador en *Base64* com per exemple el [`javax.xml.bind.DatatypeConverter`](https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html) que es troba dins de la versió 6 i 7 de *Java*. O el `org.apache.commons.codec.binary.Base64` del [Apache Commons Codec](http://commons.apache.org/proper/commons-codec/), o tants d'altres.
+**Nota**: La classe `java.util.Base64` existeix a partir de la versió 8 de *Java*, si es desenvolupa amb una altre versió es pot utilitzat qualsevol altre codificador en *Base64* com per exemple el [`javax.xml.bind.DatatypeConverter`](https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html) que es troba dins de la versió 6 i 7 de *Java*. O el `org.apache.commons.codec.binary.Base64` del [Apache Commons Codec](http://commons.apache.org/proper/commons-codec/), o tants d'altres.
 
-Proveïm aquests codis a tall d'exemple, per veure exemples en altres llenguatges de programació de com calcular el _HMAC_ podeu consultar el següent [recurs](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
+Proveïm aquests codis a tall d'exemple. Per veure exemples en altres llenguatges de programació de com calcular el _HMAC_ podeu consultar el següent [recurs](http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/)
 
 Podeu trobar també un exemple complet en _Groovy_ de com invocar el `/initProcess` per aconseguir el _token_ de l'operació [aqui](https://github.com/albciff/groovy-scripts/blob/master/scripts/HTTPBuilderSamples/HTTPBuilder_get_initProcess_signador.groovy)
 
 ## 2. StartSignProcess: Servei per realitzar el procés de signatura de l'applet o de l'apsa segons la configuració
 
-Un cop és diposa del `token` per a l'operació de signatura, es pot iniciar el procés. Per tal de fer-ho es necessari associar la configuració de signatura que realitzarà l'usuari amb el `token` d'operació obtingut.
+Un cop es diposa del `token` per a l'operació de signatura, es pot iniciar el procés. Per tal de fer-ho és necessari associar la configuració de signatura que realitzarà l'usuari amb el `token` d'operació obtingut.
 
 Per a fer-ho, s'ha de realitzar una crida al servei _REST_ al següent endpoint:
 
 * Entorn PRE: https://signador-pre.aoc.cat/signador/startSignProcess
 * Entorn PRO: https://signador.aoc.cat/signador/startSignProcess
  
-En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida és fa des de *Javascript* utilitzant domini registrat els pròpis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
+En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida es fa des de *Javascript* utilitzant domini registrat, els propis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
 
 ### 2.1. StartSignProcess: Applet de signatura
 
-La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte per a iniciar el procés de signatura amb l'applet té la següent forma. És **important remarcar** que en funció de si s'informa el camp `callbackUrl` o `redirectUrl` canviarà la gestió del flux del usuari i la recuperació de la signatura per part de l'aplicació client.
+La crida consisteix en un *POST* on s'envia un objecte _JSON_. Aquest objecte per a iniciar el procés de signatura amb l'applet té la següent forma. És **important remarcar** que en funció de si s'informa el camp `callbackUrl` o `redirectUrl` canviarà la gestió del flux del usuari i la recuperació de la signatura per part de l'aplicació client.
 
 ```javascript
 {
@@ -201,7 +201,7 @@ La crida consisteix en un *POST* on s'envia un objecte _JSON_, aquest objecte pe
 }
 ```
 
-Al següent apartat és descriu amb més detall l'ús de cadascún d'aquests camps, notis només que la gran part dels mateixos és opcional i no és necessari enviar-los per a poder iniciar el procés correctament.
+Al següent apartat es descriu amb més detall l'ús de cadascún d'aquests camps. Destacar que la gran part dels mateixos és opcional i no és necessari enviar-los per a poder iniciar el procés correctament.
 
 Podeu trobar també un exemple simple en _Groovy_ de com invocar el `/startSignProcess` passant una configuració de signatura d'exemple [aqui](https://github.com/albciff/groovy-scripts/blob/master/scripts/HTTPBuilderSamples/HTTPBuilder_post_startSignProcess_signador.groovy)
 
@@ -209,7 +209,7 @@ Podeu trobar també un exemple simple en _Groovy_ de com invocar el `/startSignP
 
 Per al cas d'iniciar el procés per a carregar l'applet de PSA, l' objecte _JSON_ a enviar té la següent forma. És **important remarcar** que en funció de si s'informa el camp `callbackUrl` o `redirectUrl` canviarà la gestió del flux del usuari i la recuperació de la signatura per part de l'aplicació client.
 
-L'Applet de PSA, també disposa de dos modes de funcionament. Un mode per a recuperar un certificat de clau pública que és retornarà en base64, o el mode de signatura de hashos. El camp que indica quina operació és vol realitzar és el camp **modeFuncionament**.
+L'Applet de PSA, també disposa de dos modes de funcionament. Un mode per a recuperar un certificat de clau pública que es retornarà en base64, o el mode de signatura de hashos. El camp que indica quina operació es vol realitzar és el camp **modeFuncionament**.
 
 ```javascript
 {
@@ -230,8 +230,8 @@ L'Applet de PSA, també disposa de dos modes de funcionament. Un mode per a recu
 ### 2.3. Camps comuns de la configuració
 
 Descripció dels camps _JSON_ comuns de la configuració:
-*	**callbackUrl**: Url del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat.
-* 	**redirectUrl**: Url per fer la redirecció del servei un cop ha finalitzat la operació de signatura. La url no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. La url si ho requereix la aplicació que gestiona el redirect pot contenir [`query strings`](https://en.wikipedia.org/wiki/Query_string).
+*	**callbackUrl**: URL del servei a on es realitzarà la crida per informar del resultat de la operació de signatura. La URL no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat.
+* 	**redirectUrl**: URL per fer la redirecció del servei un cop ha finalitzat la operació de signatura. La URL no ha d'incloure el domini, ja que aquest paràmetre s'encadenarà amb el domini registrat. La URL, si ho requereix la aplicació que gestiona el redirect, pot contenir [`query strings`](https://en.wikipedia.org/wiki/Query_string).
 *	**token**: El token que ens ha retornat el servei d'inici del procés. **Camp obligatori**.
 *	**descripció**: Camp de text amb la descripció del procés de signatura. No és obligatori.
 *	**responseB64**: Permet indicar si es vol que la resposta es retorni en base64 o en una URL per descarregar-la. Els possibles valors són `true` o `false`. Per defecte aquest paràmetre pren el valor `true`. No és obligatori.
@@ -241,14 +241,14 @@ Descripció dels camps _JSON_ comuns de la configuració:
 ### 2.4. Camps de la configuració de l'Applet
 
 Descripció dels camps _JSON_ de la configuració de l'applet:
-*	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura. Per garantir la compatibilitat amb totes els sistemes es recomana informar com a valor `0`. **Camp obligatori**.
+*	**keystore_type**: Tipus de keystore a utilitzar per a realitzar la signatura. Per garantir la compatibilitat amb tots els sistemes es recomana informar com a valor `0`. **Camp obligatori**.
 *	**signature_mode**: Mode de signatura. **Camp obligatori**.
 *	**doc_type**: Tipus de document. **Camp obligatori**.
 *	**doc_name**: Nom del document. **Camp obligatori**.
 *	**document_to_sign**: Document original a signar en format UTF-8 i codificat en base64. **Camp obligatori**.
-*	**hash_algorithm**: Algoritme de hash. Per defecte `SHA-1`. Altres possibles valors: `SHA-256` i `SHA-512`. Camp no obligatori.
+*	**hash_algorithm**: Algorisme de hash. Per defecte `SHA-1`. Altres possibles valors: `SHA-256` i `SHA-512`. Camp no obligatori.
 *	**`pkcs11_files`**: Indica la ruta dels drivers necessaris d'un o varis dispositius _PKCS11_ per a que l'aplicació carregui les claus d'aquests. Les rutes dels drivers s'han d’especificar de la següent manera: _pathDriver1,ID1;pathDriver2,ID2;..._. El _pathDriver_ és la ruta absoluta del controlador del dispositiu _PKCS11_. L'_ID_ és una cadena de text arbitrària que l'aplicació utilitza internament per a diferenciar els diferents dispositius. Aquest _ID_ també és el que es mostrarà al popup que demana el PIN amb el text: **Introduïu el PIN per a (ID):** 
-<br/>També és poden especificar rutes mútuament excloents, per exemple en el cas que un mateix dispositiu _PKCS11_ pugui tenir diferents versions de controladors (amb diferents rutes) o és vulgui donar suport a diferents sistemes operatius; en aquest cas es pot especificar de la següent forma: _[pathDriverAVersio1,pathDriverAVersio2,pathDriverAVersioN,pathDriverASistemaOperatiu2],IDA_
+<br/>També es poden especificar rutes mútuament excloents. Per exemple en el cas que un mateix dispositiu _PKCS11_ pugui tenir diferents versions de controladors (amb diferents rutes) o es vulgui donar suport a diferents sistemes operatius; en aquest cas es pot especificar de la següent forma: _[pathDriverAVersio1,pathDriverAVersio2,pathDriverAVersioN,pathDriverASistemaOperatiu2],IDA_
 En aquest cas l'aplicació anirà provant de carregar els drivers especificades entre `[ ]` en el ordre establert fins que en pugui carregar una, un cop carregada la resta ja no es provaran. Per a la configuració es poden combinar les dues formes, per exemple: _[pathDriverAVersio1,pathDriverAVersio2],IDA;pathB,IDB_. Camp no obligatori.
 *	**multiple**: Flag per a indicar si es tracta d'una signatura múltiple que ha de permetre la pujada de documents posteriorment. El valor "true" habilita el flag. Camp no obligatori.
 En cas que es vulgui signar més d'un document o hash, el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `document_to_sign`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir. Els noms dels documents no poden coincidir.
@@ -259,7 +259,7 @@ Descripció dels camps _JSON_ de la configuració de l'apsa:
 *	**keystore_type**: Tipus de keystore. **Camp obligatori**. 
 *	**doc_name**: Nom del document. **Camp obligatori**.
 *	**hash_a_xifrar**: hash a signar. **Camp obligatori**.
-*	**modeFuncionament**: Indica el mode de funcionament, per si és vol extreure el certificat de signatura o si es vol signar un hash. Els valors possibles són *SIGNATURA* o *CERTIFICAT*. Per defecte si no s'informa pren el valor *SIGNATURA*. Camp no obligatori.
+*	**modeFuncionament**: Indica el mode de funcionament, per si es vol extreure el certificat de signatura o si es vol signar un hash. Els valors possibles són *SIGNATURA* o *CERTIFICAT*. Per defecte si no s'informa pren el valor *SIGNATURA*. Camp no obligatori.
 *	**signingCertificate**: Certificat per signar en base64. Camp no obligatori.
 
 En cas que es vulgui signar més d'un document o hash el servei ho permet, posant els diferents documents o hashos separats per `;` (al camp `hash_a_xifrar`) amb els seus respectius noms també separat per `;` (al camp `doc_name`). El número d'elements d'aquests dos camps ha de coincidir. Els noms dels documents no poden coincidir.
@@ -304,32 +304,32 @@ Els possibles valors acceptats del **signature_mode** són:
 Els possibles valors acceptats del **doc_type** són:
 *	1: allFilesInDir
 *	2: singleFile
-*	3: hashDoc.
-*	4: B64fileContent.
-*	6: urlFile.
+*	3: hashDoc
+*	4: B64fileContent
+*	6: urlFile
 
 ### 2.7. Filtres de certificats: **certs_cfg**
 
-L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de seleccionar el certificat per part de l'usuari. Si el filtre és prou específic (exceptuant el paràmetre **keyUsage**) per donar només una coincidència; a l'usuari no se li mostrarà el diàleg de selecció de certificats i se seleccionarà de forma automàtica la coincidència, en cas que n'hi hagi més d'un és mostrarà el diàleg de selecció amb els certificats que coincideixin amb el criteri proporcionat:
+L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de seleccionar el certificat per part de l'usuari. Si el filtre és prou específic (exceptuant el paràmetre **keyUsage**) per donar només una coincidència; a l'usuari no se li mostrarà el diàleg de selecció de certificats i se seleccionarà de forma automàtica la coincidència, en cas que n'hi hagi més d'un es mostrarà el diàleg de selecció amb els certificats que coincideixin amb el criteri proporcionat:
 
 * 	**allowed_CAs**: Permet filtrar mitjançant el _CommonName_ de l'_IssuerDistinguishedName_ del certificat. Es poden indicar múltiples entrades separades per punts i comes `;`. El filtre és _case insensitive_. Exemple: `“EC-SAFP;EC-idCAT”`.
 * 	**allowed_OIDs**: Permet filtrar mitjançant l'identificador de la directiva de certificat que apareix a l'extensió _Bases del certificat_. Es poden indicar múltiples entrades separades per punts i comes `;`.
 * 	**selected_alias**: Permet filtrar per l'àlies del certificat. Es comprova que existeixi en el dispositiu / magatzem seleccionat.
 * 	**selected_CN**: Permet filtrar per el _CommonName_ dins del _SubjectDistinguishedName_ del certificat.
 * 	**subject_Text**: Permet filtrar per una cadena de text que ha d'estar present dins de qualsevol dels camps del _SubjectDistinguishedName_ del certificat. El filtre és _case insensitive_. Exemple: `“Director General”`
-* 	**required_nif**: Aquest paràmetre filtra pel NIF especificat els certificats que es mostren per signar. A més a més, realitza una comprovació contra [PSIS](http://web.aoc.cat/blog/serveis/validador/) prèvia a la realització de la signatura, validant que el certificat seleccionat per l'usuari és correspongui amb el _NIF_ indicat en aquest camp. Cas que no sigui així, l'applet no continuarà amb l'operació de signatura i mostrarà el missatge d'error corresponent. 
+* 	**required_nif**: Aquest paràmetre filtra pel NIF especificat els certificats que es mostren per signar. A més a més, realitza una comprovació contra [PSIS](http://web.aoc.cat/blog/serveis/validador/) prèvia a la realització de la signatura, validant que el certificat seleccionat per l'usuari es correspongui amb el _NIF_ indicat en aquest camp. Cas que no sigui així, l'applet no continuarà amb l'operació de signatura i mostrarà el missatge d'error corresponent. 
 * 	**psis_validation**: Igual que el paràmetre **required_nif** aquest paràmetre fa una validació previa del certificat abans de realitzar la signatura. Simplement valida que el certificat sigui reconegut per [PSIS](http://web.aoc.cat/blog/serveis/validador/).
 * 	**keyUsage**: Permet filtrar per l'ús de la clau del certificat. Els possibles valors d'aquest atribut són:
-	* 	FD : Firma digital.
-	* 	NR : Non repudiation.
+	* 	FD : Firma digital
+	* 	NR : Non repudiation
 	
-	Es poden indicar múltiples entrades separades per punts i comes `;`. El filtre es _case insensitive_. Per defecte filtra per les dues opcions. Exemple: `"NR; FD"`.
+	Es poden indicar múltiples entrades separades per punts i comes `;`. El filtre és _case insensitive_. Per defecte filtra per les dues opcions. Exemple: `"NR; FD"`.
 
 ### 2.8. Aparença i configuració de sigantures PDF: **pdf_cfg**
 * 	**pdf_visible_signature**: Permet indicar a l'applet que la signatura que es crearà al document PDF sigui invisible (valor a `false`). Per defecte el valor és `true` (visible). Si hi ha camps de signatura, aquest paràmetre no té afectació i es signarà en els camp/s buits de signatura.
 * 	**pdf_reserved_space**: Permet especificar l'espai de memòria a reservar per la signatura dins del document PDF. Cal indicar aquest valor en `KBytes`. Per defecte, el valor que pren aquest paràmetre en funció del tipus de signatura és: 
 	* 	Signatura CMS:      	26 KB 
-	* 	Signatura CAdES: 	500 KB.
+	* 	Signatura CAdES: 	50 KB
 * 	**pdf_signature_field**: Si el document PDF a signar disposa de camps de signatura buits, és possible indicar el nom del camp que es desitja signar mitjançant aquest paràmetre.
 * 	**pdf_certification_level**: Permet especificar el nivell de certificació de la signatura d'un document PDF. Els possibles valors d'aquest atribut són:
 	* 	0 : Document no certificat (opció per defecte).
@@ -343,7 +343,7 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 	* 	0 : Descripció més imatge. És el mode per defecte. Inclou la descripció de la signatura (signant, data, raó, localització), i una imatge en cas que s'hagi proporcionat una imatge per la signatura en el camp pdf_image.
 	* 	1 : Només imatge. En aquest cas en la signatura visible només veurem la imatge especificada al camp pdf_image, i no apareixerà la descripció. Si no s'especifica res al camp pdf_image, es pintarà la signatura amb la descripció.
 * 	**pdf_signature_rectangle**: Quan no hi ha camps de signatura i la signatura ha de ser visible, hi ha l'opció de seleccionar on es crearà el camp de la mateixa. Aquest paràmetre permet especificar les coordenades del quadre de signatura dins de la plana. El valor d'aquest paràmetre per defecte és `100 100 200 200`. Les coordenades s'indiquen de forma numèrica i separades per espais, el valor de les mateixes es correspon a: `LowerLeftX LowerLeftY UpperRightX UpperRightY`.
-* 	**pdf_signature_page_number**: Indica en quina plana del document ha d'anar la signatura. És possible indicar que la signatura es coloqui a l'última plana del document PDF especificant el valor `0`, o també és possible indicar que sigui visible a totes les planes del mateix especificant el valor `-1`.
+* 	**pdf_signature_page_number**: Indica en quina plana del document ha d'anar la signatura. És possible indicar que la signatura es col·loqui a l'última plana del document PDF especificant el valor `0`, o també és possible indicar que sigui visible a totes les planes del mateix especificant el valor `-1`.
 * 	**pdf_signature_rotation**: Permet rotar el camp de signatura visible dins del PDF, rotant la imatge i el text del mateix. Els possibles valors són `90`,`180`,`270` (per defecte pren el valor `0`). El gir es fa en sentit anti-horari el nombre de graus especificats.
 * 	**pdf_show_adobe_sign_validation**: Al visualitzar la signatura a través de l'Abobe aquest per defecte mostra  el tick, cross o el interrogant i la descripció de l'estat: signature valid, signature invalid, signature not yet verified (a banda de la imatge, text etc que afegeix l'applet). Aquest paràmetre permet configurar si es vol que es mostri o no aquesta informació donant com a valor `true` o `false`. Per defecte aquest paràmetre pren el valor `false` i per tant aquesta informació no es mostra.
 
@@ -354,14 +354,14 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 * 	**n_detached**: Igual que amb el **n_enveloping** però per a les signatures XML detached, permet generar una signatura XML amb referències a tots els documents signats. La diferència respecte la opció anterior és la possibilitat de poder utilitzar també els resums criptogràfics precalculats dels documents a signar. Per a fer-ho aquest paràmetre ha de prendre el valor `true`. Per defecte el valor és `false`. 
 * 	**uris_to_be_signed**: En cas de signatures de tipus XAdES enveloped, és possible mitjançant aquest paràmetre, especificar el node o nodes a signar, en lloc de signar tot el document. Els identificadors s'han d'especificar separats per `;` i cal que es corresponguin amb el valor del atribut `id` dels `<nodes>` del document sobre els que es vol realitzar la signatura. En cas que s'especifiquin identificadors de nodes que no existeixen al document, retornarà un missatge d'error indicant que els atributs no existeixen al document a signar.
 * 	**includeXMLTimestamp**: En cas que la signatura incorpori un segell de temps, indica si aquest ha de ser del tipus `XMLTimeStamp` o `EncapsulatedTimeStamp`. Per defecte aquest paràmetre pren el valor `true` que indica que el segell serà de tipus `XMLTimeStamp`, si es vol que el tipus sigui `EncapsulatedTimeStamp` s'ha de posar el valor del paràmetre a `false`.
-* 	**xmlts_tsa_url**: Indica l'adreça URL del servei de segellat de temps `XMLTimestamp`. El seu valor per defecte és el servei de segellat de temps de PSIS per segells de temps de format XML segons l'estàndard definit per OASIS al protocol DSS: http://psis.catcert.net/psis/catcert/dss. És molt important tenir en compte que, en cas de modificar el valor d'aquest paràmetre, cal garantir que el servei de segellat que estem seleccionant treballi segons el protocol corresponent. 
+* 	**xmlts_tsa_url**: Indica l'adreça URL del servei de segellat de temps `XMLTimestamp`. El seu valor per defecte és el servei de segellat de temps de PSIS per segells de temps de format XML segons l'estàndard definit per OASIS al protocol DSS: https://psis.aoc.cat/psis/catcert/dss. És molt important tenir en compte que, en cas de modificar el valor d'aquest paràmetre, cal garantir que el servei de segellat que estem seleccionant treballi segons el protocol corresponent. 
 * 	**canonicalizationWithComments**: Indica si l'algoritme de canonicalització emprat en la generació de la signatura XML tindrà en compte comentaris o no. Per defecte pren el valor `false`, i per tant ometrà els comentaris. En cas de voler el contrari, el valor del paràmetre a de ser `true`.
 * 	**protectKeyInfo**: Valor booleà que indica si s'ha de signar l'element `<KeyInfo>` amb la informació de la clau amb la que s'ha realitzat la signatura. Per defecte pren el valor `false`.
 
 ### 2.10. Paràmetres de signatura CMS: **cms_cfg**
 
 * 	**timeStamp_CMS_signature**: Permet afegir un segell de temps a les signatures CMS (no aplica per a CAdES-T que per definició ja incorporen el segell de temps) i per extensió a les signatures CMS incrustades en un PDF. Per activar-ho cal posar el valor del paràmetre a `true`. Per defecte el valor és `false`.
-* 	**cmsts_tsa_url**: Indica l'adreça URL del servei de segellat de temps de segells binaris. El seu valor per defecte és el servei de segellat de temps segons el protocol [RFC3161](https://www.ietf.org/rfc/rfc3161.txt) de PSIS: http://psis.catcert.net/psis/catcert/tsp. S'ha de tenir en compte que en cas de canviar aquest valor el servei de TSA que es proporcioni compleixi amb aquest RFC.
+* 	**cmsts_tsa_url**: Indica l'adreça URL del servei de segellat de temps de segells binaris. El seu valor per defecte és el servei de segellat de temps segons el protocol [RFC3161](https://www.ietf.org/rfc/rfc3161.txt) de PSIS: https://psis.aoc.cat/psis/catcert/tsp. S'ha de tenir en compte que en cas de canviar aquest valor el servei de TSA que es proporcioni compleixi amb aquest RFC.
 
 ### 2.11. Paràmetres de polítiques per als formats avançats de signatura XAdES i CAdES: **ades_cfg**
 
@@ -390,7 +390,7 @@ Descripció dels camps _JSON_ de la configuració del servei de signatura múlti
 *	**doc_name**: Nom del document. **Camp obligatori**.
 *	**document_to_sign**: Document original a signar amb el format establert segons el camp doc_type del procés de signatura. **Camp obligatori**.
 
-En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida és fa des de *Javascript* utilitzant domini registrat els pròpis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
+En aquesta crida també és necessari afegir la capçalera http **Origin** amb el nom del domini. Si la crida es fa des de *Javascript* utilitzant domini registrat els pròpis navegadors per un tema de seguretat ja afegeixen la capçalera a la crida, [veure CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
 
 
 ## 4. StartSignProcess: Resposta
@@ -419,7 +419,7 @@ Un cop s'ha aconseguit el `token` i creada la configuració de signatura vincula
 
 Aquesta plana s'encarregarà de la creació de signatura per part de l'usuari a través d'un [**JNLP**](https://docs.oracle.com/javase/tutorial/deployment/deploymentInDepth/jnlp.html) o d'una **aplicació nativa** que properament estarà disponible.
 
-Si l'usuari té instal·lada l'aplicació nativa la signatura és realitzara amb aquest component, cas que no la signatura es farà a través del _JNLP_
+Si l'usuari té instal·lada l'aplicació nativa la signatura es realitzara amb aquest component, cas que no la signatura es farà a través del _JNLP_
 
 El temps màxim permès per processar la petició és de 5 minuts. Si el client no ha generat la signatura passat aquest temps, la petició es donarà per finalitzada amb error de timeout.
 
@@ -431,7 +431,7 @@ Un cop el client hagi realitzat la signatura a través del **JNLP**, el servei d
 
 ### 6.1 Opció 1: `redirectUrl` : Redirecció *GET* 
 
-En cas que en el `/StartSignProcess` s'hagi informat el paràmetre `redirectUrl`, l'aplicació del signador farà una redirecció a la url informada retornant el flux a l'aplicació client. En la url de redirecció, s'afegira el paràmetre `token_id` amb el valor del token perquè l'aplicació pugui saber de quina operació és tracta, per exemple `https://applicacio/redirect?token_id=bec40de2-510f-4f19-bdfd-2a6595d708b7`.
+En cas que en el `/StartSignProcess` s'hagi informat el paràmetre `redirectUrl`, l'aplicació del signador farà una redirecció a la url informada retornant el flux a l'aplicació client. En la url de redirecció, s'afegira el paràmetre `token_id` amb el valor del token perquè l'aplicació pugui saber de quina operació es tracta, per exemple `https://applicacio/redirect?token_id=bec40de2-510f-4f19-bdfd-2a6595d708b7`.
 
 Un cop la aplicació client prengui el control podrà demanar la resposta de l'operació a través del servei _REST_ `/getSignature` descrit a continuació.
 
@@ -468,7 +468,7 @@ Els possibles valors dels camps:
 *	**error**: El motiu d'error en cas que no hagi anat correctament.
 *	**urlRedirect** : La url de redirecció on s'ha enviat la signatura resultat amb el paràmetre del `token` informat.
 
-En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, la resposta del servei tindrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
+En cas que l'operació sigui de *Multisignatura*, és a dir que el client faci varies signatures en una mateixa operació, la resposta del servei tindrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
 
 L'altre cas singular, és el de l'Applet de PSA en mode *CERTIFICAT*, en el qual el *type* tindrà el valor *CERT* i en el *signResult* recuperarem el certificat seleccionat per l'usuari en base64.
 
@@ -499,7 +499,7 @@ Els possibles valors dels camps:
 
 Serà necessari per tant per part de l'aplicació client d'implementar un endpoint que accepti rebre un _POST_ amb el contingut del _JSON_ especificat en aquesta punt. Amb la resposta anirà la capçalera http `Content-Type: application/json`.
 
-En cas que l'operació sigui de *Multisignatura*, es a dir que el client faci varies signatures en una mateixa operació, l'aplicació rebrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
+En cas que l'operació sigui de *Multisignatura*, és a dir que el client faci varies signatures en una mateixa operació, l'aplicació rebrà una unica resposta amb el `token` igual que es fa amb signatures simples. La diferència serà que en aquesta cas la resposta serà un document _ZIP_ que contindrà les diferents signatures generades.
 
 **NOTES:** 
 * És tasca de l'aplicació client validar que la signatura compleix amb els requeriments esperats com per exemple que l'ha signat la persona desitjada, que el certificat no està revocat, que la signatura és vàlida etc.
@@ -513,7 +513,7 @@ Per alleugerir el pes de la response a `getSignature` per l'opció 1: `redirectU
 * **Origin**: Nom del domini que realitzarà les peticions.
 * **Date**: Data amb el format `dd/MM/yyyy HH:mm` (Exemple: _28/05/2016 13:21_)
 
-D'aquesta forma és podrà reduïr en els casos necessaris el pes de la resposta i agilitzar la comunicació.
+D'aquesta forma es podrà reduïr en els casos necessaris el pes de la resposta i agilitzar la comunicació.
 
 **NOTES:** 
 * La descàrrega de la resposta només estarà disponible 15 dies.
@@ -546,7 +546,7 @@ A banda de la **Demo** a tall d'exemple també es mostren els enllaços del **Si
 
 * El servei té una restricció del número de documents a signar, com a màxim `25` per operació de signatura, o fins un màxim de `50` en cas que aquest siguin resums criptogràfics (`doc_type=3`).
 * El servei té una restricció de mida pel que respecta a les peticions, els frontals estan configurats per no acceptar missatges de mida superior a `7MB`. Per tant s'ha de tenir en compte aquesta restricció a l'hora de passar documents grans codificats en base64 dins del camp `document_to_sign`.
-* Es recomanable per a l'agilitat del servei i de les pròpies aplicacions usuaris (tenint també en compte la restricció de mida dels documents a signar) signar sempre que sigui possible el resum criptogràfic del document en comptes del document sencer. D'aquesta manera el servei funcionarà de forma més àgil i els temps de resposta tant per l'aplicació client com per a l'usuari final que realitza la signatura seràn més optims. No s'ha d'oblidar també que finalment és l'aplicació client la que haurà de gestionar aquestes signatures i per qualsevol aplicació sempre serà més fàcil treballar amb signatures de pocs KB que de MB.
+* És recomanable per a l'agilitat del servei i de les pròpies aplicacions usuaris (tenint també en compte la restricció de mida dels documents a signar) signar sempre que sigui possible el resum criptogràfic del document en comptes del document sencer. D'aquesta manera el servei funcionarà de forma més àgil i els temps de resposta tant per l'aplicació client com per a l'usuari final que realitza la signatura seràn més optims. No s'ha d'oblidar també que finalment és l'aplicació client la que haurà de gestionar aquestes signatures i per qualsevol aplicació sempre serà més fàcil treballar amb signatures de pocs KB que de MB.
 * De moment no hi ha cap restricció al respecte, però s'exigirà en un futur, que les aplicacions que s'integrin amb el servei utilitzin protocol HTTPS tant en les crides com en el callback encarregat de rebre la signatura.
 
 ## 9. Compatibilitat
