@@ -1,14 +1,14 @@
-# Valid - Signador
+# Signador
 Servei de Signatura Electrònica basada en certificats digitals
 
 ### Documentació del projecte Signador
 
 Per a poder utilitzar el servei és necessari donar-se d'alta previament, per a fer-ho és necessari facilitar la següent informació:
 
-*	Domini des del qual es realitzarà les peticions.
-*	Imatge amb el logo de l'aplicació usuaria. Mida màxima 300 width x 100 height.
+*	Domini des del qual es realitzaran les peticions.
+*	Imatge amb el logo de l'aplicació usuària. Mida màxima 300 width x 100 height.
 *	Imatge amb el logo que apareixerà a l'applet. Mida màxima 300 width x 100 height. *No obligatori*.
-*	Clau per a identificar l'aplicació com usuaria del servei.
+*	Clau per a identificar l'aplicació com usuària del servei.
 *	Allow Native, per si es permet el funcionament del servei amb l'aplicació nativa. *Activat* per defecte, només cal indicar-ho en cas que no és vulgui activar (no recomanat).
 
 ## Diagrama de flux
