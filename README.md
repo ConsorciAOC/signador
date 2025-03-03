@@ -551,7 +551,7 @@ A banda de la **Demo** a tall d'exemple també es mostren els enllaços del **Si
 
 ## 9. Compatibilitat
 
-En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia aplicació així com les eines que portaran a terme la signatura en la màquina d'usuari, en aquestes guies s'explica la compatibilitat del servei i de les eines pel que fa a versions de sistemes operatius, navegadors, etc que suporta:
+En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia aplicació així com les eines que portaran a terme la signatura en la màquina d'usuari. En aquestes guies s'explica la compatibilitat del servei i de les eines pel que fa a versions de sistemes operatius, navegadors, etc, que suporta:
 
 ### [9.1 Servei del signador](guiaUsuaris/compatibilitatSignador.md)
 ### [9.2 JNLP](guiaUsuaris/jnlp.md)
@@ -559,4 +559,4 @@ En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia 
 
 ## Llibreria integradors
 
-Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar en el servei. Trobareu més detall sobre la mateixa [aqui](https://github.com/ConsorciAOC/signador/blob/master/integracioJS/README.md).
+Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar amb el servei. Trobareu més detall sobre la mateixa [aquí](https://github.com/ConsorciAOC/signador/blob/master/integracioJS/README.md).
