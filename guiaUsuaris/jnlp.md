@@ -1,6 +1,7 @@
 <!-- TOC-SIDEBAR-START -->
 <div id="docToc" class="doc-toc">
 <div class="doc-toc__head"><span>Índex</span><button id="docTocHide" title="Amaga l'índex" aria-label="Amaga l'índex">&#10094;</button></div>
+<a id="docTocHome" class="doc-toc__home" href="../" title="Anar a l'inici"><svg class="doc-toc__home-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1769b0"/><path d="M12 5.4 L19.8 12.4 L17.9 12.4 L17.9 18.6 L13.7 18.6 L13.7 14 L10.3 14 L10.3 18.6 L6.1 18.6 L6.1 12.4 L4.2 12.4 Z" fill="#fff"/><rect x="14.7" y="6.4" width="1.7" height="3.2" fill="#fff"/></svg> INICI</a>
 <nav id="docTocNav" class="doc-toc__nav"></nav>
 <div id="docTocResize" class="doc-toc__resize" title="Arrossega per canviar l'amplada"></div>
 </div>
@@ -14,6 +15,9 @@ body.toc-open{margin-left:var(--toc-w)}
 body.toc-closed #docToc{transform:translateX(-100%)}
 #docToc .doc-toc__head{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;font-weight:700;color:#159957;border-bottom:1px solid #e1e4e8;background:#fff}
 #docToc .doc-toc__head button{border:0;background:transparent;cursor:pointer;font-size:1rem;color:#586069}
+#docToc .doc-toc__home{display:flex;align-items:center;padding:.5rem 1rem;color:#1e6bb8;text-decoration:none;border-bottom:1px solid #e1e4e8;font-size:.85rem;font-weight:600;letter-spacing:.03em;background:#fff}
+#docToc .doc-toc__home:hover{background:#eef3f8;text-decoration:underline}
+#docToc .doc-toc__home-ico{width:1.2em;height:1.2em;margin-right:.45rem;flex:0 0 auto}
 #docTocNav{overflow:auto;padding:.4rem .25rem;flex:1}
 #docTocNav ul{list-style:none;margin:0;padding:0}
 #docTocNav ul ul{padding-left:.7rem}
