@@ -29,6 +29,7 @@ body.toc-closed #docToc{transform:translateX(-100%)}
 #docTocNav .toc-link{display:block;flex:1;padding:.22rem .4rem;color:#586069;text-decoration:none;border-left:3px solid transparent;line-height:1.35}
 #docTocNav .toc-link:hover{background:#eef3f8;border-left-color:#159957}
 #docTocNav li.has-children>.toc-row>.toc-link{color:#000;font-weight:600}
+#docTocNav li.lvl3>.toc-row>.toc-link{color:#000;font-weight:600}
 #docTocNav li.lvl4>.toc-row>.toc-link{font-size:.82rem}
 #docTocNav li.lvl5>.toc-row>.toc-link,#docTocNav li.lvl6>.toc-row>.toc-link{font-size:.8rem}
 #docTocNav li.lvl2{border-top:1px solid #e1e4e8;margin-top:.35rem;padding-top:.15rem}
@@ -94,6 +95,12 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 })();
 </script>
 <!-- TOC-SIDEBAR-END -->
+<!-- TOC-HOME-OVERRIDE-START -->
+<style>
+/* Home (README): subapartats de nivell 3 sense negreta, en gris com les fulles */
+#docTocNav li.lvl3>.toc-row>.toc-link{color:#586069;font-weight:400}
+</style>
+<!-- TOC-HOME-OVERRIDE-END -->
 
 ### Documentació del servei Signador
 
@@ -654,4 +661,4 @@ En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia 
 
 ## Llibreria integradors
 
-Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar amb el servei. Trobareu més detall sobre la mateixa 
+Per a facilitar el procés d'integració posem a disposició dels integradors una llibreria feta en *Javascript* per a poder-se integrar amb el servei. Trobareu més detall sobre la mateixa [aquí](https://github.com/ConsorciAOC/signador/blob/master/integracioJS/README.md).

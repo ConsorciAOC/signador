@@ -30,6 +30,7 @@ body.toc-closed #docToc{transform:translateX(-100%)}
 #docTocNav .toc-link{display:block;flex:1;padding:.22rem .4rem;color:#586069;text-decoration:none;border-left:3px solid transparent;line-height:1.35}
 #docTocNav .toc-link:hover{background:#eef3f8;border-left-color:#159957}
 #docTocNav li.has-children>.toc-row>.toc-link{color:#000;font-weight:600}
+#docTocNav li.lvl3>.toc-row>.toc-link{color:#000;font-weight:600}
 #docTocNav li.lvl4>.toc-row>.toc-link{font-size:.82rem}
 #docTocNav li.lvl5>.toc-row>.toc-link,#docTocNav li.lvl6>.toc-row>.toc-link{font-size:.8rem}
 #docTocNav li.lvl2{border-top:1px solid #e1e4e8;margin-top:.35rem;padding-top:.15rem}
