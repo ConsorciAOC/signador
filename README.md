@@ -118,11 +118,11 @@ Existeixen dues formes d'integrar-se amb el servei. La part inicial és comú en
 
 ### Diagrama de flux amb redirect
 
-![Diagrama flux Signador amb redirect](imgs/redirectFlow.png?raw=true "Diagrama flux Signador amb redirect")
+![Diagrama flux Signador amb redirect](imgs/redirectFlow.svg "Diagrama flux Signador amb redirect")
 
 ### Diagrama de flux amb callback
 
-![Diagrama flux Signador amb callback](imgs/callbackFlow.png?raw=true "Diagrama flux Signador amb callback")
+![Diagrama flux Signador amb callback](imgs/callbackFlow.svg "Diagrama flux Signador amb callback")
 
 ## Ús del servei
 
