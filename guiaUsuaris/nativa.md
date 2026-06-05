@@ -146,7 +146,7 @@ Un cop descarregat l'executable procedim a realitzar la instal·lació. A contin
 * [3.2 MACOSX](#32-mac-os-x)
 * [3.3 Ubuntu](#33-ubuntu)
 
-## 3.1 Windows 
+### 3.1 Windows 
 
 Un cop descarregat l'instal·lable per a Windows només cal fer doble clic sobre el mateix i seguir les següents passes de l'assistent d'instal·lació:
 
@@ -193,7 +193,7 @@ Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del ce
 
 Si a més a més es vol fer servir la nativa en Windows sobre _Firefox_ cal carregar la clau generada al magatzem de confiança del propi _Firefox_, aquesta passa només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox).
 
-## 3.2 MAC OS X
+### 3.2 MAC OS X
 
 :warning: En cas que us bloquegi la instal·lació, seguiu primer [aquestes passes](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/jnlp.md#problemes-espec%C3%ADfics-per-a-mac-os-x) abans de continuar amb l'instal·lació (són del bloqueig amb _JNLP_ però és el mateix que succeeix amb la nativa).
 
@@ -227,7 +227,7 @@ Aquest és el missatge final del instal·lador, un cop fem clic a `Finalitzar` a
 
 Un cop finalitzada la instal·lació per al correcte funcionament de l'aplicació serà necessari instal·lar el certificat al magatzem de claus propi de MAC OS X, per a utilitzar l'aplicació amb _Safari_ o _Chrome_, podeu veure les instruccions al apartat [5.3 MAC OS X](#53-MAC-OS-X). O en cas de voler utilitzar _Firefox_ instal·lar el certificat al magatzem d'aquest navegador, podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
 
-## 3.3 Ubuntu
+### 3.3 Ubuntu
 
 La operació d'instal·lació a Ubuntu s'ha de fer amb l'usuari que utilitzarà l'aplicació i el que tingui les claus amb les que desitja signar carregades al magatzem de claus del firefox.
 
