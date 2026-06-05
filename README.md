@@ -658,7 +658,7 @@ En aquest apartat podreu trobar els enllaços a la informació sobre la pròpia 
 ### [9.2 JNLP](guiaUsuaris/jnlp.md)
 ### [9.3 Nativa](guiaUsuaris/nativa.md)
 
-## [10 Nativa Multiusuari (Windows)](multiUsuari/index.md)
+<!-- ## [10 Nativa Multiusuari (Windows)](multiUsuari/index.md) -->
 
 ## Llibreria integradors
 
