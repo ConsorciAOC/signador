@@ -14,7 +14,7 @@ body{padding-top:54px}
 .site-topnav .soon{display:flex;align-items:center;padding:0 20px;font-weight:600;font-size:.9rem;letter-spacing:.03em;color:#8a98a3;cursor:default}
 .site-topnav .soon .b{font-size:.6rem;background:#2bbf86;color:#04331f;border-radius:9px;padding:1px 7px;margin-left:7px}
 #docToc{top:54px !important;height:calc(100vh - 54px) !important}
-.doc-toc__show{top:64px !important}
+.doc-toc__show{top:64px !important;font-size:.82rem !important;padding:.3rem .55rem !important}
 .page-header{padding-top:0.9rem !important;padding-bottom:0.9rem !important}
 .project-name{font-size:2rem !important;margin-bottom:.02rem !important}
 .page-header .project-tagline{margin-top:0 !important;margin-bottom:.85rem !important}
