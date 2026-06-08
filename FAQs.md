@@ -1,3 +1,7 @@
+---
+title: "FAQs"
+description: "Preguntes freqüents per a integradors"
+---
 <!-- TOP-MENU-START -->
 <nav class="site-topnav">
 <a href="https://consorciaoc.github.io/signador/">SIGNADOR</a>

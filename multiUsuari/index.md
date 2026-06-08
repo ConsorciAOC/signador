@@ -1,3 +1,7 @@
+---
+title: "Manual d'instal·lació — Nativa Multiusuari"
+description: "Instruccions d'instal·lació de l'APP Signador Nativa en mode Multiusuari (Windows)"
+---
 <!-- TOP-MENU-START -->
 <nav class="site-topnav">
 <a href="https://consorciaoc.github.io/signador/">SIGNADOR</a>

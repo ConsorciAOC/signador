@@ -1,3 +1,7 @@
+---
+title: "Compatibilitat"
+description: "Documentació del servei Signador"
+---
 <!-- TOP-MENU-START -->
 <nav class="site-topnav">
 <a href="https://consorciaoc.github.io/signador/">SIGNADOR</a>
