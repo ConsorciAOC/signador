@@ -16,7 +16,10 @@ body{padding-top:54px}
 #docToc{top:54px !important;height:calc(100vh - 54px) !important}
 .doc-toc__show{top:64px !important}
 .page-header{padding-top:0.9rem !important;padding-bottom:0.9rem !important}
-.project-name{font-size:2rem !important;margin-bottom:.2rem !important}
+.project-name{font-size:2rem !important;margin-bottom:.02rem !important}
+.page-header .project-tagline{margin-top:0 !important;margin-bottom:.85rem !important}
+.page-header .btn{display:inline-block;color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.3);border-radius:.3rem;padding:.3rem .7rem !important;font-size:.78rem !important;font-weight:600;text-decoration:none;margin-bottom:.3rem !important}
+.page-header .btn:hover{background:rgba(255,255,255,.2)}
 </style>
 <!-- TOP-MENU-END -->
 
