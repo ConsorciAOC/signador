@@ -171,15 +171,19 @@ En la pàgina d'instal·lació de la nativa l'usuari pot escollir la versió del
 
 **Nota 2**: En aquest enllaç https://github.com/ConsorciAOC/signador/releases podeu trobar en alguns casos release de proves que encara no s'han publicat al web (però que ho faran en breu) i que en alguns casos poden resoldré alguna causística o problema concret. Cal tenir en compte també que de vegades aquestes versions poden necessitar d'un canvi al web que encara no s'ha produït i poden no funcionar, en les _notes_ de la release trobareu l'avís si és el cas.
 
-## 3. Instal·lació
+## 3. Històric de canvis
+
+Podeu consultar el registre de canvis (*changelog*) de cada versió de l'<i>Aplicació Nativa</i>, amb el detall de les novetats de cada *release*, a la pàgina [Històric de versions](nativaHistoric.html).
+
+## 4. Instal·lació
 
 Un cop descarregat l'executable procedim a realitzar la instal·lació. A continuació trobareu la instal·lació per a cadascún dels sistemes operatius suportats:
 
-* [3.1 Windows](#31-windows)
-* [3.2 MACOSX](#32-mac-os-x)
-* [3.3 Ubuntu](#33-ubuntu)
+* [4.1 Windows](#41-windows)
+* [4.2 MACOSX](#42-mac-os-x)
+* [4.3 Ubuntu](#43-ubuntu)
 
-### 3.1 Windows 
+### 4.1 Windows 
 
 Un cop descarregat l'instal·lable per a Windows només cal fer doble clic sobre el mateix i seguir les següents passes de l'assistent d'instal·lació:
 
@@ -224,9 +228,9 @@ Un cop s'hagi instal·lat i arrenqui l'aplicació, en cas que ho faci en Windows
 
 Pel correcte funcionament de l'aplicació ha d'acceptar la instal·lació del certificat. En aquest cas això permetra utilitzar l'aplicació des del _Chrome_, _Edge_, i _Explorer_.
 
-Si a més a més es vol fer servir la nativa en Windows sobre _Firefox_ cal carregar la clau generada al magatzem de confiança del propi _Firefox_, aquesta passa només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox).
+Si a més a més es vol fer servir la nativa en Windows sobre _Firefox_ cal carregar la clau generada al magatzem de confiança del propi _Firefox_, aquesta passa només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [6.2 Firefox](#62-firefox).
 
-### 3.2 MAC OS X
+### 4.2 MAC OS X
 
 :warning: En cas que us bloquegi la instal·lació, seguiu primer [aquestes passes](https://github.com/ConsorciAOC/signador/blob/master/guiaUsuaris/jnlp.md#problemes-espec%C3%ADfics-per-a-mac-os-x) abans de continuar amb l'instal·lació (són del bloqueig amb _JNLP_ però és el mateix que succeeix amb la nativa).
 
@@ -258,9 +262,9 @@ Aquest és el missatge final del instal·lador, un cop fem clic a `Finalitzar` a
 
 ![installMac7](imgs/nativa/macosx/installMac7.png)
 
-Un cop finalitzada la instal·lació per al correcte funcionament de l'aplicació serà necessari instal·lar el certificat al magatzem de claus propi de MAC OS X, per a utilitzar l'aplicació amb _Safari_ o _Chrome_, podeu veure les instruccions al apartat [5.3 MAC OS X](#53-MAC-OS-X). O en cas de voler utilitzar _Firefox_ instal·lar el certificat al magatzem d'aquest navegador, podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
+Un cop finalitzada la instal·lació per al correcte funcionament de l'aplicació serà necessari instal·lar el certificat al magatzem de claus propi de MAC OS X, per a utilitzar l'aplicació amb _Safari_ o _Chrome_, podeu veure les instruccions al apartat [6.3 MAC OS X](#63-MAC-OS-X). O en cas de voler utilitzar _Firefox_ instal·lar el certificat al magatzem d'aquest navegador, podeu veure les instruccions al apartat [6.2 Firefox](#62-firefox)
 
-### 3.3 Ubuntu
+### 4.3 Ubuntu
 
 La operació d'instal·lació a Ubuntu s'ha de fer amb l'usuari que utilitzarà l'aplicació i el que tingui les claus amb les que desitja signar carregades al magatzem de claus del firefox.
 
@@ -304,9 +308,9 @@ Cada cop que arrenqueu el sistema i vulgueu fer ús de la nativa, haureu d'arren
 
 La primera vegada que l'aplicació s'executa genera les claus necessaries per al seu funcionament, aquest procés només és fa el primer cop que arrenca, la resta de vegades aprofita les claus ja generades.
 
-Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau generada al magatzem de confiança del navegador, aquesta passa només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [5.2 Firefox](#52-firefox)
+Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau generada al magatzem de confiança del navegador, aquesta passa només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [6.2 Firefox](#62-firefox)
 
-## 4. Validació
+## 5. Validació
 
 Un cop s'hagi instal·lat l'aplicació nativa, es pot realitzar un simple test de funcionament per comprovar que la instal·lació s'ha realitzat correctament.
 
@@ -325,11 +329,11 @@ En cas contrari, es mostrarà el següent error:
 * Si acabeu d'instal·lar l'aplicació nativa reviseu el següent apartat d'instal·lar el cerfiticat.
 * Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
-## 5. Instal·lar Certificat
+## 6. Instal·lar Certificat
 
 Perquè funcioni l'aplicació nativa és obligatori que s'instal·li el certificat en el seu navegador o sistema operatiu.
 
-### 5.1 Windows
+### 6.1 Windows
 
 La càrrega del certificat al magatzem de _Windows_ permet el correcte funcionament de l'aplicació amb Internet explorer, Edge i Chrome.
 
@@ -377,7 +381,7 @@ C:\Program Files (x86)\Signador\lib\certificate
 
 * Torni a realitzar una validació.
 
-### 5.2 Firefox
+### 6.2 Firefox
 
 _Firefox_ disposa del seu propi magatzem de claus, per tant independentment del sistema operatiu sobre el que s'estigui executant, si vol fer servir l'aplicació amb _Firefox_ serà necessari carregar el certificat segueint les següents passes que apliquen per qualsevol sistema operatiu:
 
@@ -402,7 +406,7 @@ El certificat a instal·lar, `root.crt`, es troba a la carpeta a on s'ha instal�
 - *Linux 64 bits*   $HOME/Signador/lib/certificate
 - *MACOSX*  /Applications/Signador.app/Contents/Resources/app/lib/certificate
 
-**En el cas de Linux en cas de no trobar el `root.crt`, recordeu que aquest es genera quan s'arrenca l'aplicació per primer cop, per tant si no el trobeu, recordeu arrencar l'aplicació tal i com s'indica en els [pases de la instal·lació](#33-ubuntu)**
+**En el cas de Linux en cas de no trobar el `root.crt`, recordeu que aquest es genera quan s'arrenca l'aplicació per primer cop, per tant si no el trobeu, recordeu arrencar l'aplicació tal i com s'indica en els [pases de la instal·lació](#43-ubuntu)**
 
 ![escullCertFF](imgs/escullCertFF.png)
 
@@ -412,7 +416,7 @@ El certificat a instal·lar, `root.crt`, es troba a la carpeta a on s'ha instal�
 
 * Torni a realitzar una validació.
 
-### 5.3 MAC OS X
+### 6.3 MAC OS X
 
 Per a MAC OS X es carreguen dos certificat de forma automàtica però l'usuari ha de procedir a acceptar-los manualment amb les passes que es descriuen a continuació:
 
@@ -445,7 +449,7 @@ D'aquesta manera Firefox confiarà en els certificats instal·lats al sistema (_
 
 **Nota**: Si el problema persisteix poseu-vos en contacte amb el Suport a Usuari del Consorci AOC.
 
-## 6. Funcionament
+## 7. Funcionament
 
 Un cop s'ha instal·lat l'aplicació i aquesta funciona correctament, el canvi del funcionament de la versió **JNLP** a la **Nativa** és totalment transparent per l'usuari. 
 
@@ -455,11 +459,11 @@ A continuació es mostra un exemple de la pantalla de funcionament del signador 
 
 ![nativaSample](imgs/nativaSample.png)
 
-## 7. Desinstal·lació
+## 8. Desinstal·lació
 
 A continuació és mostren les passes necessaries per a desinstal·lar l'aplicació depenent del sistems operatiu.
 
-### 7.1 Windows
+### 8.1 Windows
 
 En cas que es vulgui desinstal·lar, es pot accedir a la carpeta a on s'hagi instal·lat la aplicació (per defecte `C:\Program Files (x86)\Signador` o `C:\Program Files\Signador`), executar el fitxer _uninstall.exe_:
 
@@ -475,7 +479,7 @@ Si disposeu d'un sistema operatiu Windows 10, podeu utilitzar la tecla <kbd><img
 
 ![uninstallWin10](imgs/nativa/windows/uninstallWin10.png)
 
-### 7.2 MAC OS X
+### 8.2 MAC OS X
 
 En aquest cas, només cal anar a `Aplicacions` des del `Finder` i arrosegar el `Signador.app` a la paperera, demanarà la contrasenya d'usuari per a confirmar l'esborrat:
 
@@ -483,9 +487,9 @@ En aquest cas, només cal anar a `Aplicacions` des del `Finder` i arrosegar el `
 
 ![uninstallMac2](imgs/nativa/macosx/uninstallMac2.png)
 
-## 8. Configuració avançada
+## 9. Configuració avançada
 
-### 8.1 PKCS11 addicionals
+### 9.1 PKCS11 addicionals
 
 En cas que fent ús del signador a través del magatzem de Firefox, el signador no detecti algun certificat carregat en un dispositiu PKCS11, es pot intentar indicar al signador a través d'un paràmetre de configuració la llibreria d'aquest per tal de que la carregui.
 
@@ -508,7 +512,7 @@ Només caldria afegir doncs una línia extra indicant la ruta a la llibreria de 
 -Djavax.net.ssl.trustStore=/home/albert/Signador/lib/certificate/cacerts
 ```
 
-## 9. Troubleshooting
+## 10. Troubleshooting
 
 En cas de problemes amb l'execució de l'aplicació nativa podeu obrir una petició a través del nostre [portal de suport](https://www.aoc.cat/suport/) fent una descripció del problema, i afegint la següent informació: *sistema operatiu*, *navegador*, i si és possible els fitxers amb els logs de l'execució que podeu trobar en el path de la instal·lació de la nativa a `$SIGNADOR_HOME/log/webappTemp.log` i `$SIGNADOR_HOME/error.log`. El formulari no accepta adjunts amb extensió `.log`, haureu de canviar l'extensió a `.txt` abans d'adjuntar-los.
 
