@@ -1,3 +1,24 @@
+<!-- TOP-MENU-START -->
+<nav class="site-topnav">
+<a href="https://consorciaoc.github.io/signador/" class="active">SIGNADOR</a>
+<a href="https://consorciaoc.github.io/signador/guiaUsuaris/nativa.html">NATIVA</a>
+<a href="https://consorciaoc.github.io/signador/guiaUsuaris/jnlp.html">JNLP</a>
+<span class="soon" title="Properament (encara no disponible)">TCAT-RA<span class="b">aviat</span></span>
+</nav>
+<style>
+body{padding-top:54px}
+.site-topnav{position:fixed;top:0;left:0;right:0;height:54px;display:flex;align-items:stretch;gap:2px;background:#10303f;z-index:1100;padding:0 8px;font-family:"Open Sans",Helvetica,Arial,sans-serif}
+.site-topnav a{display:flex;align-items:center;color:#dfe8ee;text-decoration:none;padding:0 20px;font-weight:600;font-size:.9rem;letter-spacing:.03em;border-bottom:3px solid transparent}
+.site-topnav a:hover{background:#15425a;color:#fff}
+.site-topnav a.active{color:#fff;background:#15425a;border-bottom-color:#2bbf86}
+.site-topnav .soon{display:flex;align-items:center;padding:0 20px;font-weight:600;font-size:.9rem;letter-spacing:.03em;color:#8a98a3;cursor:default}
+.site-topnav .soon .b{font-size:.6rem;background:#2bbf86;color:#04331f;border-radius:9px;padding:1px 7px;margin-left:7px}
+#docToc{top:54px !important;height:calc(100vh - 54px) !important}
+.doc-toc__show{top:64px !important}
+.page-header{padding-top:1.33rem !important;padding-bottom:1.33rem !important}
+</style>
+<!-- TOP-MENU-END -->
+
 # Signador
 Servei de Signatura Electrònica basada en certificats digitals.
 

@@ -1,7 +1,27 @@
+<!-- TOP-MENU-START -->
+<nav class="site-topnav">
+<a href="https://consorciaoc.github.io/signador/">SIGNADOR</a>
+<a href="https://consorciaoc.github.io/signador/guiaUsuaris/nativa.html">NATIVA</a>
+<a href="https://consorciaoc.github.io/signador/guiaUsuaris/jnlp.html" class="active">JNLP</a>
+<span class="soon" title="Properament (encara no disponible)">TCAT-RA<span class="b">aviat</span></span>
+</nav>
+<style>
+body{padding-top:54px}
+.site-topnav{position:fixed;top:0;left:0;right:0;height:54px;display:flex;align-items:stretch;gap:2px;background:#10303f;z-index:1100;padding:0 8px;font-family:"Open Sans",Helvetica,Arial,sans-serif}
+.site-topnav a{display:flex;align-items:center;color:#dfe8ee;text-decoration:none;padding:0 20px;font-weight:600;font-size:.9rem;letter-spacing:.03em;border-bottom:3px solid transparent}
+.site-topnav a:hover{background:#15425a;color:#fff}
+.site-topnav a.active{color:#fff;background:#15425a;border-bottom-color:#2bbf86}
+.site-topnav .soon{display:flex;align-items:center;padding:0 20px;font-weight:600;font-size:.9rem;letter-spacing:.03em;color:#8a98a3;cursor:default}
+.site-topnav .soon .b{font-size:.6rem;background:#2bbf86;color:#04331f;border-radius:9px;padding:1px 7px;margin-left:7px}
+#docToc{top:54px !important;height:calc(100vh - 54px) !important}
+.doc-toc__show{top:64px !important}
+.page-header{padding-top:1.33rem !important;padding-bottom:1.33rem !important}
+</style>
+<!-- TOP-MENU-END -->
+
 <!-- TOC-SIDEBAR-START -->
 <div id="docToc" class="doc-toc">
 <div class="doc-toc__head"><span>Índex</span><button id="docTocHide" title="Amaga l'índex" aria-label="Amaga l'índex">&#10094;</button></div>
-<a id="docTocHome" class="doc-toc__home" href="../" title="Anar a l'inici"><svg class="doc-toc__home-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1769b0"/><path d="M12 5.4 L19.8 12.4 L17.9 12.4 L17.9 18.6 L13.7 18.6 L13.7 14 L10.3 14 L10.3 18.6 L6.1 18.6 L6.1 12.4 L4.2 12.4 Z" fill="#fff"/><rect x="14.7" y="6.4" width="1.7" height="3.2" fill="#fff"/></svg> INICI</a>
 <nav id="docTocNav" class="doc-toc__nav"></nav>
 <div id="docTocResize" class="doc-toc__resize" title="Arrossega per canviar l'amplada"></div>
 </div>
