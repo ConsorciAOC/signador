@@ -138,9 +138,15 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 * `https://signador.aoc.cat` (port per defecte 443)
 * `https://nativa.aoclocal.cat` (ports del 9090 al 9095)
 
-Opcionalment si feu signatures amb segells de temps també seria necessari obrir conectivitats a PSIS:
+Opcionalment, si feu signatures amb segells de temps també serà necessari obrir conectivitats amb les autoritats de segell de temps:
 
-* `http://psis.catcert.net` (port per defecte 80)
+PSIS:
+* `https://psis.aoc.cat` (port per defecte 443)
+
+QTSA (Qualified TimeStamping Authority):
+
+* `https://q.tsa.aoc.cat/` (port per defecte 443)
+
 
 ## Es poden deshabilitar les actualitzacions automàtiques?
 
