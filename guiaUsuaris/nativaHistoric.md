@@ -7,7 +7,7 @@ description: "Registre de canvis (changelog) per release"
 <a href="https://consorciaoc.github.io/signador/">SIGNADOR</a>
 <a href="https://consorciaoc.github.io/signador/guiaUsuaris/nativa.html" class="active">NATIVA</a>
 <a href="https://consorciaoc.github.io/signador/guiaUsuaris/jnlp.html">JNLP</a>
-<span class="soon" title="Properament (encara no disponible)">NATIVA MULTIUSUARI<span class="b">aviat</span></span><!-- Enllaç definitiu (activar quan estigui llest): <a href="https://consorciaoc.github.io/signador/multiUsuari/">NATIVA MULTIUSUARI</a> -->
+<a href="https://consorciaoc.github.io/signador/multiUsuari/">NATIVA MULTIUSUARI</a>
 <a href="https://consorciaoc.github.io/signador/guiaUsuaris/signaturaRemota.html">TCAT-RA</a>
 </nav>
 <style>
