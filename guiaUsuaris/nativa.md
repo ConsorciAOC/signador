@@ -318,7 +318,7 @@ Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau
 
 Si heu de desplegar l'aplicació en molts equips alhora (per exemple mitjançant _scripts_, polítiques de grup o eines de desplegament de programari), podeu instal·lar-la de manera desatesa (silenciosa) a Windows a partir del paquet `.msi`, sense la interacció amb l'assistent gràfic.
 
-Trobareu les instruccions, els paràmetres de configuració i la referència completa de `msiexec` a la pàgina [Instal·lació desatesa (MSI)](nativaDesatesa.html).
+Trobareu les instruccions, els paràmetres de configuració i la referència completa de `msiexec` a la pàgina [Instal·lació desatesa (MSI)](nativaDesatesa/).
 
 -->
 
