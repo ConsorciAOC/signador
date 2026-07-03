@@ -156,7 +156,7 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 
 <p>El paquet s'obté des de la pàgina de descàrrega de la nativa, un cop l'organització s'ha donat d'alta al servei amb l'opció de nativa activada. Cal escollir la versió corresponent al sistema operatiu i l'arquitectura:</p>
 
-- [Descarrega] (https://signador.aoc.cat/signador/downloadNativaMsi">)</li>
+- [Descarrega] (https://signador.aoc.cat/signador/downloadNativaMsi)
 
 <p>El fitxer descarregat té un nom del tipus <code>ANS_windows-x64_&lt;versió&gt;.msi</code> (per exemple <code>ANS_windows-x64_1_0_3_4.msi</code>). Als exemples d'aquesta pàgina es fa servir aquest nom; substituïu-lo pel de la versió que hàgiu descarregat.</p>
 
