@@ -182,6 +182,7 @@ Un cop descarregat l'executable procedim a realitzar la instal·lació. A contin
 * [4.1 Windows](#41-windows)
 * [4.2 MACOSX](#42-mac-os-x)
 * [4.3 Ubuntu](#43-ubuntu)
+* [4.4 Instal·lació desatesa](#44-installaci-desatesa)
 
 ### 4.1 Windows 
 
@@ -309,6 +310,12 @@ Cada cop que arrenqueu el sistema i vulgueu fer ús de la nativa, haureu d'arren
 La primera vegada que l'aplicació s'executa genera les claus necessaries per al seu funcionament, aquest procés només és fa el primer cop que arrenca, la resta de vegades aprofita les claus ja generades.
 
 Abans de fer la validació, en el cas d'Ubuntu, serà necessari carregar la clau generada al magatzem de confiança del navegador, aquesta passa només és necessari fer-lo una única vegada. Podeu veure les instruccions al apartat [6.2 Firefox](#62-firefox)
+
+### 4.4 Instal·lació desatesa
+
+Si heu de desplegar l'aplicació en molts equips alhora (per exemple mitjançant _scripts_, polítiques de grup o eines de desplegament de programari), podeu instal·lar-la de manera desatesa (silenciosa) a Windows a partir del paquet `.msi`, sense la interacció amb l'assistent gràfic.
+
+Trobareu les instruccions, els paràmetres de configuració i la referència completa de `msiexec` a la pàgina [Instal·lació desatesa (MSI)](nativaDesatesa.html).
 
 ## 5. Validació
 
