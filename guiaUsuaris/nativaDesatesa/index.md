@@ -132,7 +132,7 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 </style>
 <!-- TOC-HOME-OVERRIDE-END -->
 
-<p>Aquesta pàgina descriu com instal·lar l'<a href="nativa.html">Aplicació Nativa del Signador</a> de manera <strong>desatesa</strong> (silenciosa) a Windows a partir del paquet <code>.msi</code>, sense la interacció de l'usuari amb l'assistent gràfic. Si busqueu la instal·lació pas a pas amb l'assistent, consulteu la <a href="nativa.html#41-windows">guia d'instal·lació de la nativa</a>.</p>
+<p>Aquesta pàgina descriu com instal·lar l'<a href="/signador/guiaUsuaris/nativa.html">Aplicació Nativa del Signador</a> de manera <strong>desatesa</strong> (silenciosa) a Windows a partir del paquet <code>.msi</code>, sense la interacció de l'usuari amb l'assistent gràfic. Si busqueu la instal·lació pas a pas amb l'assistent, consulteu la <a href="/signador/guiaUsuaris/nativa.html#41-windows">guia d'instal·lació de la nativa</a>.</p>
 
 <h2 id="introduccio">1. Introducció</h2>
 
@@ -312,7 +312,7 @@ userCheckForUpdates$Boolean=true</code></pre>
 <li><strong>Windows 32 bits:</strong> <code>C:\Program Files (x86)\Signador\lib\certificate</code></li>
 </ul>
 
-<p>Per importar-lo manualment al magatzem de Windows: obriu <em>Opcions d'Internet</em> &rarr; pestanya <em>Contingut</em> &rarr; <em>Certificats</em> &rarr; pestanya <em>Entitats de certificació arrel de confiança</em> &rarr; <em>Importar</em>, i seleccioneu el fitxer <code>root.crt</code>. Trobareu les instruccions detallades amb captures a l'apartat <a href="nativa.html#61-windows">Instal·lar certificat</a> de la guia de la nativa.</p>
+<p>Per importar-lo manualment al magatzem de Windows: obriu <em>Opcions d'Internet</em> &rarr; pestanya <em>Contingut</em> &rarr; <em>Certificats</em> &rarr; pestanya <em>Entitats de certificació arrel de confiança</em> &rarr; <em>Importar</em>, i seleccioneu el fitxer <code>root.crt</code>. Trobareu les instruccions detallades amb captures a l'apartat <a href="/signador/guiaUsuaris/nativa.html#61-windows">Instal·lar certificat</a> de la guia de la nativa.</p>
 
 <p><strong>Nota:</strong> Firefox disposa del seu propi magatzem de certificats. Si voleu signar amb Firefox, cal importar el mateix <code>root.crt</code> a Firefox (Opcions &rarr; Certificats &rarr; Visualitza els certificats &rarr; pestanya Entitats &rarr; Importar) i marcar-lo com a fiable per identificar llocs web. Aquest pas només cal fer-lo una vegada per equip.</p>
 
@@ -354,7 +354,7 @@ userCheckForUpdates$Boolean=true</code></pre>
 <tr><td>La pàgina de test dóna error</td><td>El certificat no està instal·lat o acceptat. Reviseu l'apartat 7.</td></tr>
 <tr><td>Sempre apareix l'opció JNLP</td><td>No es resol el domini <code>nativa.aoclocal.cat</code> contra <code>127.0.0.1</code>. Reviseu tallafocs, proxy i DNS corporatius.</td></tr>
 <tr><td>Error d'arquitectura amb Firefox</td><td>El paquet (32/64 bits) no coincideix amb l'arquitectura del Firefox instal·lat. Instal·leu el paquet corresponent.</td></tr>
-<tr><td>No es detecta un certificat en dispositiu PKCS11</td><td>Afegiu la ruta de la llibreria <code>.dll</code> al fitxer <code>Signador.vmoptions</code> amb el paràmetre <code>-Duser.pkcs11.path=...</code> (vegeu la <a href="nativa.html#91-pkcs11-addicionals">configuració avançada</a>).</td></tr>
+<tr><td>No es detecta un certificat en dispositiu PKCS11</td><td>Afegiu la ruta de la llibreria <code>.dll</code> al fitxer <code>Signador.vmoptions</code> amb el paràmetre <code>-Duser.pkcs11.path=...</code> (vegeu la <a href="/signador/guiaUsuaris/nativa.html#91-pkcs11-addicionals">configuració avançada</a>).</td></tr>
 </tbody>
 </table>
 
