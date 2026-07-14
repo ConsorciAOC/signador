@@ -147,7 +147,7 @@ En aquesta pàgina es recull el registre de canvis (*changelog*) de l'<i>Aplicac
 
 <span class="cl-tag cl-sec">Seguretat</span>
 
- - Suport de signatura amb claus **ECC**.
+ - Suport de signatura amb claus **ECC (Criptografia de Corba El·líptica)**.
  - Suport per a **SHA-384**.
 
 ### 2.1.0.0 (4 de març de 2026)
