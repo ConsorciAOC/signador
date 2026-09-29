@@ -488,7 +488,7 @@ L'objecte **certs_cfg** és opcional i permet especificar filtratges a l'hora de
 ### 2.10. Paràmetres de signatura CMS: **cms_cfg**
 
 * 	**timeStamp_CMS_signature**: Permet afegir un segell de temps a les signatures CMS (no aplica per a CAdES-T que per definició ja incorporen el segell de temps) i per extensió a les signatures CMS incrustades en un PDF. Per activar-ho cal posar el valor del paràmetre a `true`. Per defecte el valor és `false`.
-* 	**cmsts_tsa_url**: Indica l'adreça URL del servei de segellat de temps de segells binaris. El seu valor per defecte és el servei de segellat de temps qualificat del Consorci AOC (https://q.tsa.aoc.cat/Keyman/ivtsp/qualified/request/basic) segons el protocol [RFC3161](https://www.ietf.org/rfc/rfc3161.txt). S'ha de tenir en compte que en cas de canviar aquest valor el servei de TSA que es proporcioni compleixi amb aquest RFC.
+* 	**cmsts_tsa_url**: Indica l'adreça URL del servei de segellat de temps de segells binaris. El seu valor per defecte és el [servei de segellat de temps qualificat del Consorci AOC] (https://q.tsa.aoc.cat/Keyman/ivtsp/qualified/request/basic) segons el protocol [RFC3161](https://www.ietf.org/rfc/rfc3161.txt). S'ha de tenir en compte que en cas de canviar aquest valor el servei de TSA que es proporcioni compleixi amb aquest RFC.
 
 ### 2.11. Paràmetres de polítiques per als formats avançats de signatura XAdES i CAdES: **ades_cfg**
 
