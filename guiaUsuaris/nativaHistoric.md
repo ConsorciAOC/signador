@@ -136,12 +136,23 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 .cl-tag{display:inline-block;font-size:.72rem;font-weight:600;padding:.12rem .65rem;border-radius:1rem;letter-spacing:.04em;vertical-align:middle}
 .cl-sec{background:#fbeaf0;color:#a32d56}
 .cl-chg{background:#e6f1fb;color:#155799}
+.cl-add{background:#e6f4ea;color:#1e7a3c}
 .main-content h2{display:flex;align-items:baseline;flex-wrap:wrap}
 </style>
 
 <h2>Històric de canvis</h2>
 
 En aquesta pàgina es recull el registre de canvis (*changelog*) de l'<i>Aplicació Nativa</i> del Signador, ordenat de la versió més recent a la més antiga.
+
+### 2.3.0.0 <span class="cl-date">(4 de novembre de 2026)</span>
+
+<span class="cl-tag cl-add">Afegit</span>
+
+ - Nou **instal·lable per a macOS amb arquitectura ARM** (equips amb processador *Apple Silicon*).
+
+<span class="cl-tag cl-chg">Canviat</span>
+
+ - Actualització de les llibreries de tractament de documents **PDF**.
 
 ### 2.1.1.0 <span class="cl-date">(27 de maig de 2026)</span>
 
@@ -150,7 +161,7 @@ En aquesta pàgina es recull el registre de canvis (*changelog*) de l'<i>Aplicac
  - Suport de signatura amb claus **ECC (Criptografia de Corba El·líptica)**.
  - Suport per a **SHA-384**.
 
-### 2.1.0.0 (4 de març de 2026)
+### 2.1.0.0 <span class="cl-date">(4 de març de 2026)</span>
 
 <span class="cl-tag cl-chg">Canviat</span>
 
