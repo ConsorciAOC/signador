@@ -137,12 +137,19 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 .cl-sec{background:#fbeaf0;color:#a32d56}
 .cl-chg{background:#e6f1fb;color:#155799}
 .cl-add{background:#e6f4ea;color:#1e7a3c}
+.cl-fix{background:#fdf1dc;color:#8a5a00}
 .main-content h2{display:flex;align-items:baseline;flex-wrap:wrap}
 </style>
 
 <h2>Històric de canvis</h2>
 
 En aquesta pàgina es recull el registre de canvis (*changelog*) de l'<i>Aplicació Nativa</i> del Signador, ordenat de la versió més recent a la més antiga.
+
+### 2.3.0.1 <span class="cl-date">(11 de novembre de 2026)</span>
+
+<span class="cl-tag cl-fix">Corregit</span>
+
+ - Els paràmetres **`pdf_reason`** i **`pdf_location`** tornen a no demanar-se a l'usuari quan s'informen fixats amb espais. Aquest comportament havia deixat de funcionar a la versió 2.3.0.0 i s'ha restablert en aquesta.
 
 ### 2.3.0.0 <span class="cl-date">(4 de novembre de 2026)</span>
 
